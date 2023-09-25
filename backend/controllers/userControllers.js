@@ -17,9 +17,23 @@ const logoutUser = asyncHandler(async(req,res)=>{
     res.status(200).json({message:"Logout User"})
 })
 
+//  user progile
+// route GET api/users/profile
+const userProfile = asyncHandler(async(req,res)=>{
+    res.status(200).json({message:" User Profile"})
+})
+
+//  user progile
+// route PUT api/users/profile
+const updateUserProfile = asyncHandler(async(req,res)=>{
+    res.status(200).json({message:" Update User Profile"})
+})
+
 
 export {
     authUser,
     registerUser,
-    logoutUser
+    logoutUser,
+    userProfile,
+    updateUserProfile
 }
