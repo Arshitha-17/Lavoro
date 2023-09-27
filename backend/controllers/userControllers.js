@@ -2,7 +2,6 @@ import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js';
 import generateToken from '../util/generateToken.js'; 
 
-
 const authUser = asyncHandler(async(req,res)=>{   
     const {email,password} = req.body;
     const  user = await User.findOne({email})
@@ -21,7 +20,6 @@ const authUser = asyncHandler(async(req,res)=>{
     }
 
 });
-
 
 // register 
 // route POST /api/users
@@ -63,6 +61,7 @@ const logoutUser = asyncHandler(async(req,res)=>{
     res.status(200).json({message:"User Logout User"})
 })
 
+
 //  user progile
 // route GET api/users/profile
 const userProfile = asyncHandler(async(req,res)=>{
@@ -73,6 +72,7 @@ const userProfile = asyncHandler(async(req,res)=>{
     }
     res.status(200).json(user)
 })
+
 
 //  user progile
 // route PUT api/users/profile
