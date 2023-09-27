@@ -7,14 +7,12 @@ import FormContainer from "../forms/FormContainer";
 import React from 'react'
 
 const Login = () => {
-
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
     const submitHandler= async(e)=>{
         e.preventDefault();
         console.log("submit");
     }
-
   return (
     <FormContainer>
       <h1>SignIn</h1>
