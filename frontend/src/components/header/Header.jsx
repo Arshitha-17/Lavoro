@@ -33,7 +33,6 @@ const Header = () => {
                         <FaSignOutAlt className='logout' style={{height:'30px'}} />
                     </Nav.Link>
             </Navbar.Collapse>
-         
         </Navbar>
       </header>
     );
