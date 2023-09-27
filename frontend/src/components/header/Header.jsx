@@ -9,8 +9,7 @@ const Header = () => {
       <header>
       <Navbar className='navbarStyle' variant='dark' expand='lg' collapseOnSelect>
         <LinkContainer to='/' >
-
-            <Navbar.Brand href='/'>
+            <Navbar.Brand >
               <img style={{ paddingLeft: '15px' }}
                 src={logoImage}
                 alt='Logo'
