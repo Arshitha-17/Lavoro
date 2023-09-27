@@ -1,0 +1,20 @@
+.navbarStyle {
+    background: linear-gradient(to bottom, #065659, black);
+   
+  }
+  
+ .logout{
+color: white;
+width: 50px;
+padding-left: 15px;
+margin-right: 20px;
+}
+
+.login-button {
+background: linear-gradient(to bottom, #268b8f,#5c5b5b); 
+   width: 100px;
+   color: white;
+  font-weight: bold;
+  height: 35px;
+  
+}
