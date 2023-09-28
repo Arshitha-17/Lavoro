@@ -52,6 +52,7 @@ body {
 
 }
 
+/* login button hover */
 
 .loginButton:hover {
   background: linear-gradient(to bottom, #268b8f, #5c5b5b) !important;

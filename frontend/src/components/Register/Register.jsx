@@ -6,8 +6,8 @@ import React from 'react'
 import '../Login/Login.css'
 import userProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg'; // Replace with the actual image path
 
-
 const Register = () => {
+    
     const [name,setName] = useState('')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
@@ -15,6 +15,7 @@ const Register = () => {
 
 
     const submitHandler= async(e)=>{
+        
         e.preventDefault();
         console.log("submit");
     }
@@ -28,7 +29,7 @@ const Register = () => {
       </div>
       <h1 className="heading" >Register</h1>
      
-      <Form onSubmit={submitHandler}> 
+      <Form onSubmit={submitHandler }> 
       <Form.Group className='my-2 pt-2' controlId='name'  >
         {/* <Form.Label>Email</Form.Label> */}
         <Form.Control className="userInput " 
@@ -41,7 +42,6 @@ const Register = () => {
       </Form.Group>
 
       <Form.Group className='my-2 pt-2' controlId='email'  >
-        {/* <Form.Label>Email</Form.Label> */}
         <Form.Control className="userInput " 
         type='email'
         placeholder='Email'
@@ -51,8 +51,7 @@ const Register = () => {
     </Form.Control>
       </Form.Group>
 
-      <Form.Group className='my-2 pt-2' controlId='password'  >
-        {/* <Form.Label>Password</Form.Label> */}
+      <Form.Group className='my-2 pt-2' controlId='password'  >  
         <Form.Control className="userInput  "
         type='password'
         placeholder='Password'
@@ -62,7 +61,7 @@ const Register = () => {
       </Form.Group>
 
       <Form.Group className='my-2 pt-2' controlId='confirmPassword'  >
-        {/* <Form.Label>Password</Form.Label> */}
+      
         <Form.Control className="userInput  "
         type='password'
         placeholder='Confirm Password'

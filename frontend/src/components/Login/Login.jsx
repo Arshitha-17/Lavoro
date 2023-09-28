@@ -26,7 +26,7 @@ const Login = () => {
      
       <Form onSubmit={submitHandler}> 
       <Form.Group className='my-2 pt-2' controlId='email'  >
-        {/* <Form.Label>Email</Form.Label> */}
+      
         <Form.Control className="userInput " 
         type='email'
         placeholder='Email'
@@ -37,7 +37,7 @@ const Login = () => {
       </Form.Group>
 
       <Form.Group className='my-2 pt-2' controlId='password'  >
-        {/* <Form.Label>Password</Form.Label> */}
+        
         <Form.Control className="userInput  "
         type='password'
         placeholder='Password'
