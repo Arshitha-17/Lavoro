@@ -70,8 +70,9 @@ const Register = () => {
         onChange={(e)=>setconfirmPassword(e.target.value)}
         ></Form.Control>
       </Form.Group>
-
+        <div className="pt-2">
       <Button type='submit' className="loginButton " >Register</Button>
+        </div>
 
       <Row className="py-3 ">
         <Col className="text-white" >Already have an account ? <Link to='/login' >Login</Link> </Col>
