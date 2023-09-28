@@ -7,7 +7,6 @@ import '../Login/Login.css'
 import userProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg'; // Replace with the actual image path
 
 
-
 const Register = () => {
     const [name,setName] = useState('')
     const [email,setEmail] = useState('')
