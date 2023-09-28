@@ -7,7 +7,7 @@ import '../Login/Login.css'
 import userProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg'; // Replace with the actual image path
 
 const Register = () => {
-    
+
     const [name,setName] = useState('')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
@@ -17,18 +17,16 @@ const Register = () => {
     const submitHandler= async(e)=>{
         
         e.preventDefault();
-        console.log("submit");
+        console.log("submit"); 
     }
   return (
     <FormContainer  >
       <div className="hrLink text-white" >Are you an hr <Link to='/hr/login' >click here?</Link></div>
       <div className="p-3">
-
       <div className="userProfileDiv">
         <img src={userProfileImage} alt="User Profile" className="user-profile-image" />
       </div>
-      <h1 className="heading" >Register</h1>
-     
+      <h1 className="heading" >Register</h1>     
       <Form onSubmit={submitHandler }> 
       <Form.Group className='my-2 pt-2' controlId='name'  >
         {/* <Form.Label>Email</Form.Label> */}
