@@ -26,7 +26,7 @@ const Register = () => {
           email,
           password
         }
-        let res = await usersApi.post('users/',formData)
+        let res = await usersApi.post('users/register',formData)
         if(res.data){
           localStorage.setItem('userInfo',JSON.stringify(res.data))
           navigate('/');

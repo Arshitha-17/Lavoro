@@ -14,6 +14,9 @@ const Login = () => {
         e.preventDefault();
         console.log("submit");
     }
+
+    
+
   return (
     <FormContainer  >
       <div className="hrLink text-white" >Are you an hr <Link to='/hr/login' >click here?</Link></div>
