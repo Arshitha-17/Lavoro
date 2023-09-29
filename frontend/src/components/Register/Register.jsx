@@ -1,24 +1,45 @@
-import { useState } from "react";
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from "react";
+
+import { Link, useNavigate } from 'react-router-dom'
 import { Col, Form, Row, Button } from 'react-bootstrap'; 
 import FormContainer from "../forms/FormContainer";
 import React from 'react'
 import '../Login/Login.css'
 import userProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg'; // Replace with the actual image path
+import { usersApi } from "../../axiosApi/axiosInstance";
 
 const Register = () => {
+
+  const userInfo = localStorage.getItem("userInfo")
 
     const [name,setName] = useState('')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
     const [confirmPassword,setconfirmPassword] = useState('')
 
+    const navigate = useNavigate();
 
     const submitHandler= async(e)=>{
-        
         e.preventDefault();
-        console.log("submit"); 
+        let formData = {
+          name,
+          email,
+          password
+        }
+        let res = await usersApi.post('users/',formData)
+        if(res.data){
+          localStorage.setItem('userInfo',JSON.stringify(res.data))
+          navigate('/');
+        }
+        console.log(res.data)
+        console.log("submit");
     }
+
+    useEffect(()=>{
+      if(userInfo){
+        navigate('/')
+      }
+    },[])
   return (
     <FormContainer  >
       <div className="hrLink text-white" >Are you an hr <Link to='/hr/login' >click here?</Link></div>
