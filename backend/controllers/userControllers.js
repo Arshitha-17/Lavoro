@@ -50,6 +50,10 @@ const registerUser= asyncHandler(async(req,res)=>{
     }
 })
 
+
+// forgot password 
+//  route POA
+
 // logout user
 // route POST api/users/logout
 const logoutUser = asyncHandler(async(req,res)=>{
