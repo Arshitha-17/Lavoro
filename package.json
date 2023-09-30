@@ -22,7 +22,8 @@
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.2",
     "mdb-react-ui-kit": "^6.3.0",
-    "mongoose": "^7.5.2"
+    "mongoose": "^7.5.2",
+    "otp-generator": "^4.0.1"
   },
   "devDependencies": {
     "concurrently": "^8.2.1",

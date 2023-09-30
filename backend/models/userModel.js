@@ -15,9 +15,9 @@ const userSchema = mongoose.Schema({
         type:String ,
         required: true
     },
-    name:{
-        type:String ,
-        required: true
+    otp:{
+        type:Number ,
+        required: false
     },
 
 },{

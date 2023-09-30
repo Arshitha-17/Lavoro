@@ -3,7 +3,9 @@ import { authUser,
     registerUser,
     logoutUser,
     userProfile,
-    updateUserProfile } from "../controllers/userControllers.js"
+    updateUserProfile,
+    forgotPassword,
+ } from "../controllers/userControllers.js"
 
 const router = express.Router()
 import { protect } from "../middleware/authMiddleware.js"
@@ -11,7 +13,7 @@ import { protect } from "../middleware/authMiddleware.js"
 // router.post('/',home)
 router.post('/register',registerUser)
 router.post('/auth',authUser)
-
+router.post('/forgot',forgotPassword)
 router.post('/logout',logoutUser)
 router.post('/logout',logoutUser)
 router.route('/profile').get(protect,userProfile).put(protect,updateUserProfile)

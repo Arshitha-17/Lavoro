@@ -52,7 +52,29 @@ const registerUser= asyncHandler(async(req,res)=>{
 
 
 // forgot password 
-//  route POA
+//  route POST 
+const forgotPassword = asyncHandler(async(req,res)=>{
+    const {email} =  req.body
+    const  user = await User.findOne({email})
+   if(!user){
+    res.status(404).json({message:'User not Found'})
+    return
+   }
+
+     // Generate a 6-digit OTP using Math.random
+  const otp = Math.floor(100000 + Math.random() * 900000); // Generates a random number between 100000 and 999999 (inclusive)
+
+  // Save the OTP to the user's record
+  user.otp = otp;
+
+  await user.save();
+
+  res.status(200).json({ otp });
+
+
+})
+
+
 
 // logout user
 // route POST api/users/logout
@@ -108,6 +130,7 @@ const updateUserProfile = asyncHandler(async(req,res)=>{
 export {
     authUser,
     registerUser,
+    forgotPassword,
     logoutUser,
     userProfile,
     updateUserProfile
