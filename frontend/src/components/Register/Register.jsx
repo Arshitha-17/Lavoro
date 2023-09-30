@@ -54,7 +54,7 @@ const Register = () => {
 
   return (
     <FormContainer>
-      <div className="hrLink text-white">Are you an hr <Link to="/hr/login">click here?</Link></div>
+      <div className="hrLink text-white">Are you an HR <Link to="/hr/login">click here?</Link></div>
       <div className="p-3">
         <div className="userProfileDiv">
           <img src={userProfileImage} alt="User Profile" className="user-profile-image" />
