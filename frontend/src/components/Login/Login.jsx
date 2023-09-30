@@ -6,6 +6,7 @@ import React from 'react'
 import './Login.css'
 import userProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg'; // Replace with the actual image path
 import { usersApi } from "../../axiosApi/axiosInstance";
+import {toast} from 'react-toastify'
 
 const Login = () => {
 
@@ -18,18 +19,25 @@ const Login = () => {
     const submitHandler= async(e)=>{
         e.preventDefault();
         console.log("submit");
+        try {
+          
+          let formData= {
+            email,password
+          }
+  
+          let res = await usersApi.post('users/auth',formData)
+          if(res.data){
+            localStorage.setItem('userInfo',JSON.stringify(res.data))
+            navigate('/')
+          }
+          console.log(res.data);
+          console.log('User logined');
+        } catch (error) {
+          toast.error(error.response.data.message)
+          console.log(error.response.data.message);
+          
+        }
         
-        let formData= {
-          email,password
-        }
-
-        let res = await usersApi.post('users/auth',formData)
-        if(res.data){
-          localStorage.setItem('userInfo',JSON.stringify(res.data))
-          navigate('/')
-        }
-        console.log(res.data);
-        console.log('User logined');
     }
 
     useEffect(()=>{

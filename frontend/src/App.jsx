@@ -1,5 +1,17 @@
 import React from 'react'
 import Lavoro from './components/Lavoro/Lavoro'
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const App = () => <Lavoro/>
-export default App
+
+
+function App() {
+    return (
+      <>
+        <ToastContainer/>
+        <Lavoro/>
+      </>
+    )
+  }
+  
+  export default App
