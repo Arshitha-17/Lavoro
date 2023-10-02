@@ -1,6 +1,7 @@
 import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js';
 import generateToken from '../util/generateToken.js'; 
+import {sendOtpEmail} from './sendOtpEmail.js'
 
 const authUser = asyncHandler(async(req,res)=>{   
     const {email,password} = req.body;
@@ -61,15 +62,22 @@ const forgotPassword = asyncHandler(async(req,res)=>{
     return
    }
 
-     // Generate a 6-digit OTP using Math.random
-  const otp = Math.floor(100000 + Math.random() * 900000); // Generates a random number between 100000 and 999999 (inclusive)
+     // Generate a 6 digit OTP 
+  const otp = Math.floor(100000 + Math.random() * 900000); 
 
-  // Save the OTP to the user's record
+  // Save the OTP
   user.otp = otp;
 
   await user.save();
 
-  res.status(200).json({ otp });
+  const emailSent = await sendOtpEmail(user.email,otp)
+
+  if(emailSent){
+
+      res.status(200).json({ otp });
+  }else{
+    res.status(500).json({message:'Failed to send email'})
+  }
 
 
 })
