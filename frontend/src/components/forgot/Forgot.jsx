@@ -20,7 +20,7 @@ const Forgot = () => {
         try {
           const res = await usersApi.post('users/forgot',{email})
           if(res.status===200){
-            navigate('users/otp')
+            navigate('/otp')
           }
 
         } catch (error) {

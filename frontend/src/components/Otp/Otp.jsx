@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from 'react-router-dom'
-import { Col, Form, Row, Button } from 'react-bootstrap'; 
+import { useState } from "react";
+import { Link } from 'react-router-dom'
+import {  Form, Row, Button } from 'react-bootstrap'; 
 import FormContainer from "../forms/FormContainer";
 import React from 'react'
 
@@ -20,20 +20,21 @@ const Otp = () => {
     }
   return (
     <FormContainer  >
-      <div className="hrLink text-white" >Are you an hr <Link to='/hr/login' >click here?</Link></div>
+    
       <div className="p-5">
 
       <div className="userProfileDiv">
         <img src={userProfileImage} alt="User Profile" className="user-profile-image" />
       </div>
-      <h1 className="heading" >SignIn</h1>
+      <h1 className="heading" >OTP</h1>
      
       <Form onSubmit={submitHandler}> 
-      <Form.Group className='my-2 pt-2' controlId='otp'  >       
+      <Form.Group className='my-2 pt-2' controlId='otp'  >    
+         
         <Form.Control className="userInput  "
         type='Number'
         placeholder='OTP'
-        value={password} 
+        value={otp} 
         onChange={(e)=>setOtp(e.target.value)}
         ></Form.Control>
       </Form.Group>
