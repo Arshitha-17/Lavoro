@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {  Form, Row, Button } from 'react-bootstrap'; 
+import {  Form, Button } from 'react-bootstrap'; 
 import FormContainer from "../forms/FormContainer";
 import React from 'react'
 import userProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg'; // Replace with the actual image path
@@ -41,9 +41,6 @@ const ResetPassword = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            {validationErrors.confirmPassword && (
-              <div className="text-danger">{validationErrors.confirmPassword}</div>
-            )}
           </Form.Group>
       <Button type='submit' className="loginButton " >Reset</Button>  
       </Form>

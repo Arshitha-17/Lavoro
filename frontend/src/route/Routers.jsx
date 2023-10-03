@@ -16,7 +16,7 @@ const Routers = () => {
         <Route path='/register' element={<RegisterScreen/>} />       
         <Route path='/forgot' element={<ForgotScreen/>} />       
         <Route path='/otp' element={<OtpScreen/>} />       
-        <Route path='/resetPasswoed' element={<ResetPasswordScreen/>} />       
+        <Route path='/resetPassword' element={<ResetPasswordScreen/>} />       
     </Routes>
   )
 }
