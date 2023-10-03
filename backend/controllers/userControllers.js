@@ -96,10 +96,10 @@ const otpVerify= asyncHandler(async(req,res)=>{
     const user = await User.findOne({email})
 
     if(user.otp!==otp){
-        console.log('hey numma wrong aanntto');
+      
         return res.status(400).json({ message: 'Wrong OTP' });
     }else{
-        console.log('OTP success')
+      
         return res.status(200).json({user,message:'OTP verified successfully'})
     }
     
@@ -110,7 +110,6 @@ const otpVerify= asyncHandler(async(req,res)=>{
 // route POST api/users/resetPassword
 const resetPassword=asyncHandler(async(req,res)=>{
     const {email,password,confirmPassword} = req.body
-    console.log(req.body);
     
     if(password!==confirmPassword){
         res.status(400).json({message:'Password and Confirm Password not match'})
@@ -124,7 +123,7 @@ const resetPassword=asyncHandler(async(req,res)=>{
          if(user){
              user.password = password;
            const updateUser= await user.save();
-           console.log(updateUser);
+
             res.status(200).json({message: "Password reset successfully" });  
          }
 
