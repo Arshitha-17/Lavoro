@@ -17,7 +17,7 @@ const Otp = () => {
     try {
       const res = await usersApi.post('users/otp', { email, otp });
       if (res.status === 200) {
-        navigate('/resetPassword')
+        navigate('/resetPassword',{state:{email}})
       }
     } catch (error) {
       // Display the error message from the server response

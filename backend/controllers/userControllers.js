@@ -106,6 +106,36 @@ const otpVerify= asyncHandler(async(req,res)=>{
 })
 
 
+// logout user
+// route POST api/users/resetPassword
+const resetPassword=asyncHandler(async(req,res)=>{
+    const {email,password,confirmPassword} = req.body
+    console.log(req.body);
+    
+    if(password!==confirmPassword){
+        res.status(400).json({message:'Password and Confirm Password not match'})
+    }
+    try {
+        const user = await User.findOne({email})
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+          }
+         // Update the user's password
+         if(user){
+             user.password = password;
+           const updateUser= await user.save();
+           console.log(updateUser);
+            res.status(200).json({message: "Password reset successfully" });  
+         }
+
+        
+    } catch (error) {
+        res.status(500).json({message:"Internal Server error"})
+    }
+
+
+})
+
 
 // logout user
 // route POST api/users/logout
@@ -164,6 +194,8 @@ export {
     forgotPassword,
     logoutUser,
     otpVerify,
+    resetPassword,
     userProfile,
-    updateUserProfile
+    updateUserProfile,
+    
 }

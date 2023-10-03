@@ -3,15 +3,31 @@ import {  Form, Button } from 'react-bootstrap';
 import FormContainer from "../forms/FormContainer";
 import React from 'react'
 import userProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg'; // Replace with the actual image path
+import { usersApi } from "../../../axiosApi/axiosInstance";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ResetPassword = () => {
+    const location = useLocation()
+    const email = location.state.email;
+
     const [password,setPassword] = useState('')
     const [confirmPassword,setConfirmPassword] = useState('')
-    
+
+    const navigate = useNavigate()
     const submitHandler= async(e)=>{
         e.preventDefault();
         console.log("submit");
         
+        const res =await usersApi.post('users/resetPassword',{email,password,confirmPassword});
+        try {
+            if(res.status===200){
+                navigate('/login')
+            }
+        } catch (error) {
+            console.log(error.response.data.message)
+            toast.error(error.response?.data?.message || "Something went wrong");
+        }
    
     }
   return (
