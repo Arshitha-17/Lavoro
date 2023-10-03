@@ -8,8 +8,6 @@ const ResetPassword = () => {
     const [password,setPassword] = useState('')
     const [confirmPassword,setConfirmPassword] = useState('')
     
-    const email = location.state.email
-
     const submitHandler= async(e)=>{
         e.preventDefault();
         console.log("submit");
@@ -28,7 +26,7 @@ const ResetPassword = () => {
       <Form onSubmit={submitHandler}> 
       <Form.Group className='my-2 pt-2' controlId='password'  >             
         <Form.Control className="userInput  "
-        type='String'
+        type='password'
         placeholder='Password'
         value={password} 
         onChange={(e)=>setPassword(e.target.value)}
