@@ -1,4 +1,4 @@
-import Otp from '../components/Otp/Otp'
+import Otp from '../components/Users/OtpVerify/Otp'
 
 const OtpScreen = () => {
   return (

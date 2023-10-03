@@ -22,6 +22,7 @@ const authUser = asyncHandler(async(req,res)=>{
 
 });
 
+
 // register 
 // route POST /api/users
 const registerUser= asyncHandler(async(req,res)=>{
@@ -69,17 +70,39 @@ const forgotPassword = asyncHandler(async(req,res)=>{
   user.otp = otp;
 
   await user.save();
+  
+  //   const emailSent = await sendOtpEmail(user.email,otp)
+  //   if(emailSent){
+      //       res.status(200).json({ otp });
+      //   }else{
+          //     res.status(500).json({message:'Failed to send email'})
+          //   }
+          
+// ----------------remove this and uncomment above code 
+    const emailSent = true
+    if(emailSent){
+            res.status(200).json({ message:'OTP Send'});
+        }else{
+              res.status(500).json({message:'Failed to send email'})
+            }
+})
 
-  const emailSent = await sendOtpEmail(user.email,otp)
 
-  if(emailSent){
+// otp verify
+//  route POST  api/users/otp
+const otpVerify= asyncHandler(async(req,res)=>{
+    const {email,otp} = req.body;
 
-      res.status(200).json({ otp });
-  }else{
-    res.status(500).json({message:'Failed to send email'})
-  }
+    const user = await User.findOne({email})
 
-
+    if(user.otp!==otp){
+        console.log('hey numma wrong aanntto');
+        return res.status(400).json({ message: 'Wrong OTP' });
+    }else{
+        console.log('OTP success')
+        return res.status(200).json({user,message:'OTP verified successfully'})
+    }
+    
 })
 
 
@@ -96,7 +119,7 @@ const logoutUser = asyncHandler(async(req,res)=>{
 })
 
 
-//  user progile
+//  user profile
 // route GET api/users/profile
 const userProfile = asyncHandler(async(req,res)=>{
     const user ={
@@ -140,6 +163,7 @@ export {
     registerUser,
     forgotPassword,
     logoutUser,
+    otpVerify,
     userProfile,
     updateUserProfile
 }

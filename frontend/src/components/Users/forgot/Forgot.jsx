@@ -6,7 +6,7 @@ import React from 'react'
 import './Forgot.css'
 import userProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg'; // Replace with the actual image path
 import { useNavigate } from "react-router-dom";
-import { usersApi } from "../../axiosApi/axiosInstance";
+import { usersApi } from "../../../axiosApi/axiosInstance";
 import {toast} from 'react-toastify'
 
 const Forgot = () => {
@@ -20,12 +20,12 @@ const Forgot = () => {
         try {
           const res = await usersApi.post('users/forgot',{email})
           if(res.status===200){
-            navigate('/otp')
+            navigate('/otp',{ state:{ email:email } })
           }
 
         } catch (error) {
           toast.error(error.response.data.message)
-          console.log(error.response.data.message);
+          console.log(error);
 
         }
    
@@ -52,7 +52,7 @@ const Forgot = () => {
         >
     </Form.Control>
       </Form.Group>
-      <Button type='submit' className="loginButton " >Send</Button>
+      <Button type='submit' className="loginButton " >Sent OTP</Button>
       </Form>
       </div>
     </FormContainer>

@@ -6,6 +6,7 @@ import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
 import ForgotScreen from '../screens/ForgotScreen'
 import OtpScreen from '../screens/OtpScreen'
+import ResetPasswordScreen from '../screens/ResetPasswordScreen'
 
 const Routers = () => {
   return (
@@ -15,6 +16,7 @@ const Routers = () => {
         <Route path='/register' element={<RegisterScreen/>} />       
         <Route path='/forgot' element={<ForgotScreen/>} />       
         <Route path='/otp' element={<OtpScreen/>} />       
+        <Route path='/resetPasswoed' element={<ResetPasswordScreen/>} />       
     </Routes>
   )
 }

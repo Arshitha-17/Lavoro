@@ -1,4 +1,4 @@
-import Forgot from '../components/forgot/Forgot'
+import Forgot from '../components/Users/forgot/Forgot'
 const ForgotScreen = () => {
   return (
     <Forgot/>

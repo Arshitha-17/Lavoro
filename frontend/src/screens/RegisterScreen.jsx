@@ -1,4 +1,4 @@
-import Register from '../components/Register/Register'
+import Register from '../components/Users/Register/Register'
 
 const RegisterScreen = () => {
   return (
