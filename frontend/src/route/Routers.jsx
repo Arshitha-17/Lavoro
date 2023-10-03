@@ -1,12 +1,12 @@
 import React from 'react'
 
 import {Route, Routes} from 'react-router-dom'
-import HomeScreen from '../screens/HomeScreen'
-import LoginScreen from '../screens/LoginScreen'
-import RegisterScreen from '../screens/RegisterScreen'
-import ForgotScreen from '../screens/ForgotScreen'
-import OtpScreen from '../screens/OtpScreen'
-import ResetPasswordScreen from '../screens/ResetPasswordScreen'
+import HomeScreen from '../screens/Users/HomeScreen'
+import LoginScreen from '../screens/Users/LoginScreen'
+import RegisterScreen from '../screens/Users/RegisterScreen'
+import ForgotScreen from '../screens/Users/ForgotScreen'
+import OtpScreen from '../screens/Users/OtpScreen'
+import ResetPasswordScreen from '../screens/Users/ResetPasswordScreen'
 
 const Routers = () => {
   return (

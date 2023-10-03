@@ -1,4 +1,4 @@
-import ResetPassword from '../components/Users/ResetPassword/ResetPassword'
+import ResetPassword from '../../components/Users/ResetPassword/ResetPassword'
 
 const ResetPasswordScreen = () => {
   return (
