@@ -23,11 +23,7 @@ const authHr= asyncHandler(async(req,res)=>{
 // hr register 
 // route POST /api/hr
 const HRregister= asyncHandler(async(req,res)=>{
-    console.log('Hey Hr register');
     const {name,email,password} = req.body
-    console.log(req.body);
-
-   
 
     const HrExist = await Hr.findOne({email})
     if(HrExist){
