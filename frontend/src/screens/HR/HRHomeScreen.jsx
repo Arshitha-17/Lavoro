@@ -1,4 +1,4 @@
-import HrHome from '../../components/HR/Register/HRregister'
+import HrHome from '../../components/HR/Homes/HrHome'
 
 const HRHomeScreen = () => {
   return (

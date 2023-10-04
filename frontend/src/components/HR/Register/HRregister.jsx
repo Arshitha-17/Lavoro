@@ -13,7 +13,7 @@ const HRregister = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [validationErrors, setValidationErrors] = useState({});
-  const [existingEmails, setExistingEmails] = useState([]); // You should populate this with existing emails
+  const [existingEmails, setExistingEmails] = useState([]);
 
   const navigate = useNavigate();
 
@@ -29,13 +29,14 @@ console.log(formData);
     // Validate the form data
     const errors = validateRegistrationForm(formData, existingEmails);
 
+    console.log(errors);
     if (Object.keys(errors).length === 0) {
       // If there are no validation errors, proceed with registration
-      let res = await usersApi.post('hr/register', formData);
+      let res = await usersApi.post('hr/HrRegister', formData);
 
       if (res.data) {
         localStorage.setItem('HRInfo', JSON.stringify(res.data));
-        navigate('hr/');
+        navigate('/hr/');
       }
 
       console.log(res.data);
@@ -48,7 +49,7 @@ console.log(formData);
 
   useEffect(() => {
     if (userInfo) {
-      navigate('hr/');
+      navigate('/hr/');
     }
   }, [userInfo, navigate]);
 
@@ -114,7 +115,7 @@ console.log(formData);
 
           <Row className="py-3">
             <Col className="text-white">
-              Already have an account? <Link to="hr/login">Login</Link>
+              Already have an account? <Link to="/hr/login">Login</Link>
             </Col>
           </Row>
         </Form>

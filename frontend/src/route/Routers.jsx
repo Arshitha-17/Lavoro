@@ -27,7 +27,7 @@ const Routers = () => {
 {/*-------------- HR Routes--------------  */}
         <Route path='/hr/login' element={<HRLoginScreen/> } />
         <Route path='/hr/register' element={<HRRegisterScreen/> } />
-        <Route path='/hr/' element={<HRHomeScreen/>} />
+        <Route path='/hr' element={<HRHomeScreen/>} />
 
     </Routes>
   )

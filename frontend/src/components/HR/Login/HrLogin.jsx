@@ -29,7 +29,7 @@ const HrLogin = () => {
       let res = await usersApi.post('hr/authHr', formData)
       if (res.data) {
         localStorage.setItem('HRInfo', JSON.stringify(res.data))
-        navigate('/hr/home')
+        navigate('/hr/')
       }
       console.log(res.data);
       console.log('User logined');
@@ -43,7 +43,7 @@ const HrLogin = () => {
 
   useEffect(() => {
     if (HRInfo) {
-      navigate('/hr/home')
+      navigate('/hr/')
     }
   })
 
