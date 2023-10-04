@@ -5,6 +5,7 @@ import FormContainer from "../forms/FormContainer";
 import userProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg'; // Replace with the actual image path
 import { usersApi } from "../../../axiosApi/axiosInstance";
 import { validateRegistrationForm } from "./formValidation"; // Import the validation function
+import { toast } from "react-toastify";
 
 const Register = () => {
   const userInfo = localStorage.getItem("userInfo");
@@ -26,24 +27,30 @@ const Register = () => {
       confirmPassword,
     };
 
+
+
     // Validate the form data
     const errors = validateRegistrationForm(formData, existingEmails);
-
-    if (Object.keys(errors).length === 0) {
-      // If there are no validation errors, proceed with registration
-      let res = await usersApi.post('users/register', formData);
-
-      if (res.data) {
-        localStorage.setItem('userInfo', JSON.stringify(res.data));
-        navigate('/');
+    try {
+      if (Object.keys(errors).length === 0) {
+        // If there are no validation errors, proceed with registration
+        let res = await usersApi.post('users/register', formData);
+  
+        if (res.data) {
+          localStorage.setItem('userInfo', JSON.stringify(res.data));
+          navigate('/');
+        }
+  
+        console.log(res.data);
+        console.log("submit");
+      } else {
+        // If there are validation errors, set them in state
+        setValidationErrors(errors);
       }
-
-      console.log(res.data);
-      console.log("submit");
-    } else {
-      // If there are validation errors, set them in state
-      setValidationErrors(errors);
+    } catch (error) {
+      toast.error(error.response.data.message)
     }
+   
   };
 
   useEffect(() => {

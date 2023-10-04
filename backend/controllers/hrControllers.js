@@ -27,10 +27,12 @@ const HRregister= asyncHandler(async(req,res)=>{
     const {name,email,password} = req.body
     console.log(req.body);
 
+   
+
     const HrExist = await Hr.findOne({email})
     if(HrExist){
         res.status(400);
-        throw new Error(`Hr already exist`)
+        throw new Error(`Email already exist`)
         
     }
     const hr = await Hr.create({
