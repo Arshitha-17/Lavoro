@@ -13,12 +13,10 @@ let hr= location.pathname.startsWith('/hr');
 let admin = location.pathname.startsWith('/admin')
   return (
     <div>   
-
- {/* is used to show user to implent error message */}
-
  {
           (admin)?<AdminHeader/> :((hr)?<HrHeader /> : <Header />)
-        }
+  
+  }
 
 
      <Routers/>
