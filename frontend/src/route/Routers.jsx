@@ -16,6 +16,10 @@ import HRForgotScreen from '../screens/HR/HRForgotScreen'
 import HROtpScreen from '../screens/HR/HROtpScreen'
 import HRResetPassword from '../screens/HR/HRResetPassword'
 
+// -----------------Admin--------------
+
+import AdminLoginScreen from '../screens/Admins/AdminLoginScreen'
+
 const Routers = () => {
   return (
     <Routes>
@@ -34,6 +38,10 @@ const Routers = () => {
         <Route path='/hr/otp' element={<HROtpScreen/> } />
         <Route path='/hr/resetpassword' element={<HRResetPassword/> } />
         <Route path='/hr' element={<HRHomeScreen/>} />
+
+
+{/* ----------------Admin Routes------------- */}
+<Route path='/admin/login' element={<AdminLoginScreen/> } />
 
     </Routes>
   )

@@ -9,7 +9,7 @@ import cookieParser from "cookie-parser";
 const port = process.env.PORT || 5000
 import userRoutes from "./routes/userRoutes.js"
 import hrRoutes from "./routes/hrRoutes.js"
-
+import adminRoutes from './routes/adminRoutes.js'
 connectDB()
 
 const app =express();
@@ -24,6 +24,7 @@ app.use(cors({
 
 app.use('/api/users',userRoutes)
 app.use('/api/hr',hrRoutes)
+app.use('/api/admin',adminRoutes)
 
 app.get('/',(req,res)=>res.send("server is ready"))
 
