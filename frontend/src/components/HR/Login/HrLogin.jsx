@@ -32,7 +32,7 @@ const HrLogin = () => {
         navigate('/hr/')
       }
       console.log(res.data);
-      console.log('User logined');
+      console.log('Hr logined');
     } catch (error) {
       toast.error(error.response.data.message)
       console.log(error.response.data.message);

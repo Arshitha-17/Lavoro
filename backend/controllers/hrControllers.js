@@ -56,7 +56,7 @@ const HRregister = asyncHandler(async (req, res) => {
 
 const HrForgotPassword = asyncHandler(async (req, res) => {
     const { email } = req.body
-    const hr = await Hr.findOne({email })
+    const hr = await Hr.findOne({ email })
     if (!hr) {
         return res.status(404).json({ message: 'Email not Found' })
     }
@@ -99,25 +99,25 @@ const HrOtp = asyncHandler(async (req, res) => {
 })
 
 
-const HrResetPassword=asyncHandler(async(req,res)=>{
-    const {email,password,confirmPassword} = req.body   
-    if(password!==confirmPassword){
-        res.status(400).json({message:'Password and Confirm Password not match'})
+const HrResetPassword = asyncHandler(async (req, res) => {
+    const { email, password, confirmPassword } = req.body
+    if (password !== confirmPassword) {
+        res.status(400).json({ message: 'Password and Confirm Password not match' })
     }
     try {
-        const hr = await Hr.findOne({email})
+        const hr = await Hr.findOne({ email })
         if (!hr) {
             return res.status(404).json({ message: "User not found" });
-          }
-         // Update the user's password
-         if(hr){
+        }
+        // Update the user's password
+        if (hr) {
             hr.password = password;
-           const updateHr= await hr.save();
+            const updateHr = await hr.save();
 
-            res.status(200).json({message: "Password reset successfully" });  
-         }       
+            res.status(200).json({ message: "Password reset successfully" });
+        }
     } catch (error) {
-        res.status(500).json({message:"Internal Server error"})
+        res.status(500).json({ message: "Internal Server error" })
     }
 })
 
