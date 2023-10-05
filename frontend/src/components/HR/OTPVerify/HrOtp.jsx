@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {  Form, Row, Button } from 'react-bootstrap'; 
+import {  Form, Button } from 'react-bootstrap'; 
 import FormContainer from "../../Users/forms/FormContainer";
 import React from 'react';
 import userProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg'; // Replace with the actual image path
@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { usersApi } from "../../../axiosApi/axiosInstance";
 import {toast} from 'react-toastify'
 
-const Otp = () => {
+const HrOtp = () => {
   const [otp, setOtp] = useState('')
   const navigate = useNavigate()
   const location = useLocation()
@@ -15,9 +15,9 @@ const Otp = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await usersApi.post('users/otp', { email, otp });
+      const res = await usersApi.post('hr/HrOtp', { email, otp });
       if (res.status === 200) {
-        navigate('/resetPassword',{state:{email}})
+        navigate('/hr/resetPassword',{state:{email}})
       }
     } catch (error) {
       // Display the error message from the server response
@@ -25,10 +25,8 @@ const Otp = () => {
     }
   }
   return (
-    <FormContainer  >
-    
+    <FormContainer  >   
       <div className="p-5">
-
       <div className="userProfileDiv">
         <img src={userProfileImage} alt="User Profile" className="user-profile-image" />
       </div>
@@ -48,4 +46,4 @@ const Otp = () => {
     </FormContainer>
   )
 }
-export default Otp
+export default HrOtp

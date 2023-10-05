@@ -84,7 +84,7 @@ const HrForgotPassword = asyncHandler(async (req, res) => {
 
 // otp verify
 //  route POST  api/hr/otp
-const HrOtpVerify = asyncHandler(async (req, res) => {
+const HrOtp = asyncHandler(async (req, res) => {
     const { email, otp } = req.body;
 
     const hr = await Hr.findOne({ email })
@@ -101,9 +101,10 @@ const HrOtpVerify = asyncHandler(async (req, res) => {
 
 
 
+
 export {
     authHr,
     HRregister,
     HrForgotPassword,
-    HrOtpVerify
+    HrOtp
 }
