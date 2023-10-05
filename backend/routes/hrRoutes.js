@@ -1,6 +1,7 @@
 import express from "express"
 import { authHr,
-    HRregister } from "../controllers/hrControllers.js"
+    HRregister,
+    HrForgotPassword } from "../controllers/hrControllers.js"
 
 const HRrouter = express.Router()
 
@@ -8,6 +9,7 @@ const HRrouter = express.Router()
 
 HRrouter.post('/authHr',authHr)
 HRrouter.post('/HrRegister',HRregister)
+HRrouter.post('/HrForgot',HrForgotPassword)
 
 
 

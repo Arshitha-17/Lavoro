@@ -64,12 +64,12 @@ console.log(formData);
 
   return (
     <FormContainer>
-      <div className="hrLink text-white">Are you an HR <Link to="/hr/login">click here?</Link></div>
+      <div className="hrLink text-white">Are you an Jobseeker <Link to="/login">click here?</Link></div>
       <div className="p-3">
         <div className="userProfileDiv">
           <img src={userProfileImage} alt="User Profile" className="user-profile-image" />
         </div>
-        <h1 className="heading">Register</h1>
+        <h1 className="heading">HR Register</h1>
         <Form onSubmit={submitHandler}>
           <Form.Group className="my-2 pt-2" controlId="name">
             <Form.Control

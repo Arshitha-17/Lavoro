@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {  Form, Row, Button } from 'react-bootstrap'; 
-import FormContainer from "../forms/FormContainer";
+import FormContainer from "../../Users/forms/FormContainer";
 import React from 'react';
 import userProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg'; // Replace with the actual image path
 import { useLocation, useNavigate } from "react-router-dom";
@@ -15,7 +15,7 @@ const Otp = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await usersApi.post('users/otp', { email, otp });
+      const res = await usersApi.post('hr/otp', { email, otp });
       if (res.status === 200) {
         navigate('/resetPassword',{state:{email}})
       }

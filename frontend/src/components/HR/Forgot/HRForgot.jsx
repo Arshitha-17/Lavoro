@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import {  Form, Row, Button } from 'react-bootstrap'; 
-import FormContainer from "../forms/FormContainer";
+import FormContainer from "../../Users/forms/FormContainer";
 import React from 'react'
 import './HrForgot.css'
 import userProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg'; // Replace with the actual image path
@@ -9,18 +9,19 @@ import { useNavigate } from "react-router-dom";
 import { usersApi } from "../../../axiosApi/axiosInstance";
 import {toast} from 'react-toastify'
 
-const HrForgot = () => {
+const HRForgot = () => {
   const navigate = useNavigate()
     const [email,setEmail] = useState('')
     const submitHandler= async(e)=>{
         e.preventDefault();
-        console.log("submit");  
+        console.log("qwertysubmit");  
 
 
         try {
-          const res = await usersApi.post('hr/forgot',{email})
+          const res = await usersApi.post('hr/HrForgot',{email})
+          
           if(res.status===200){
-            navigate('hr/otp',{ state:{ email:email } }) 
+            navigate('/hr/otp',{ state:{ email:email } }) 
           }
 
         } catch (error) {
@@ -59,4 +60,4 @@ const HrForgot = () => {
   )
 }
 
-export default HrForgot
+export default HRForgot

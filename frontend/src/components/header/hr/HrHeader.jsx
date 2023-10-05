@@ -8,7 +8,7 @@ const HrHeader = () => {
     return (
       <header>
       <Navbar className='navbarStyle' variant='dark' expand='lg' collapseOnSelect>
-        <LinkContainer to='/' >
+        <LinkContainer to='/hr/' >
             <Navbar.Brand >
               <img style={{ paddingLeft: '15px' }}
                 src={logoImage}
@@ -22,16 +22,16 @@ const HrHeader = () => {
             <Navbar.Toggle aria-controls='basic-navbar-nav' />
             <Navbar.Collapse id='basic-navbar-nav' >
                     <Nav className='ms-auto mx-auto ' > {/* Use mx-auto class for centering */}
-                    <LinkContainer to='/' >
+                    <LinkContainer to='/hr/' >
                     <Nav.Link className=' text-white me-5'><h5>Home</h5></Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to='/jobs'>
+                    <LinkContainer to='hr/applications'>
                         <Nav.Link  className=' text-white me-5'><h5>Applications</h5></Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to='/profile'>
+                    <LinkContainer to='hr/profile'>
                         <Nav.Link  className=' text-white me-5'><h5>Profile</h5></Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to='/contact'>
+                    <LinkContainer to='hr/contact'>
                         <Nav.Link  className=' text-white me-5'><h5>Contact</h5></Nav.Link>
                     </LinkContainer>
                     </Nav>
