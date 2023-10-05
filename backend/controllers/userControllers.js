@@ -106,7 +106,7 @@ const otpVerify= asyncHandler(async(req,res)=>{
 })
 
 
-// logout user
+// reset password user
 // route POST api/users/resetPassword
 const resetPassword=asyncHandler(async(req,res)=>{
     const {email,password,confirmPassword} = req.body

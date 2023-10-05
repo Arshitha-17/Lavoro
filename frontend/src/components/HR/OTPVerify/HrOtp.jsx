@@ -24,6 +24,7 @@ const HrOtp = () => {
       toast.error(error.response?.data?.message || "Something went wrong");
     }
   }
+  
   return (
     <FormContainer  >   
       <div className="p-5">
