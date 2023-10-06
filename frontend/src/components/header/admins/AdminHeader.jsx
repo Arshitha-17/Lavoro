@@ -25,22 +25,22 @@ const AdminHeader = () => {
                     <LinkContainer to='/' >
                     <Nav.Link className=' text-white me-5'><h5>Dashboard</h5></Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to='/jobs'>
+                    <LinkContainer to='/admin/jobs'>
                         <Nav.Link  className=' text-white me-5'><h5>User</h5></Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to='/profile'>
+                    <LinkContainer to='/admin/profile'>
                         <Nav.Link  className=' text-white me-5'><h5>Hr</h5></Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to='/contact'>
+                    <LinkContainer to='/admin/contact'>
                         <Nav.Link  className=' text-white me-5'><h5>Contact</h5></Nav.Link>
                     </LinkContainer>
                     </Nav>
-                    <LinkContainer to='/login'>
+                    <LinkContainer to='/admin/login'>
                     <Nav.Link >
                       <Button className='me-2 login-button' style={{'borderRadius':'90px' }}>Login</Button>
                       </Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to='/logout'>
+                    <LinkContainer to='/admin/logout'>
                     <Nav.Link >
                         <FaSignOutAlt className='logout' style={{height:'30px'}} />
                     </Nav.Link>
