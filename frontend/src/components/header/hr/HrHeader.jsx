@@ -25,22 +25,22 @@ const HrHeader = () => {
                     <LinkContainer to='/hr/' >
                     <Nav.Link className=' text-white me-5'><h5>Home</h5></Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to='hr/applications'>
+                    <LinkContainer to='/hr/applications'>
                         <Nav.Link  className=' text-white me-5'><h5>Applications</h5></Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to='hr/profile'>
+                    <LinkContainer to='/hr/profile'>
                         <Nav.Link  className=' text-white me-5'><h5>Profile</h5></Nav.Link>
                     </LinkContainer>
                     <LinkContainer to='hr/contact'>
                         <Nav.Link  className=' text-white me-5'><h5>Contact</h5></Nav.Link>
                     </LinkContainer>
                     </Nav>
-                    <LinkContainer to='/login'>
+                    <LinkContainer to='/hr/login'>
                     <Nav.Link >
                       <Button className='me-2 login-button' style={{'borderRadius':'90px' }}>Login</Button>
                       </Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to='/logout'>
+                    <LinkContainer to='/hr/logout'>
                     <Nav.Link >
                         <FaSignOutAlt className='logout' style={{height:'30px'}} />
                     </Nav.Link>
