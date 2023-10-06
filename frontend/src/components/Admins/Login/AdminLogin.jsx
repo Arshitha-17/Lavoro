@@ -27,11 +27,11 @@ const AdminLogin = () => {
 
       let res = await usersApi.post('admin/authAdmin', formData)
       if (res.data) {
-        localStorage.setItem('userInfo', JSON.stringify(res.data))
+        localStorage.setItem('adminInfo', JSON.stringify(res.data))
         navigate('/admin/')
       }
       console.log(res.data);
-      console.log('User logined');
+      console.log('Admin logined');
     } catch (error) {
       toast.error(error.response.data.message)
       console.log(error.response.data.message);
@@ -68,9 +68,7 @@ const AdminLogin = () => {
             >
             </Form.Control>
           </Form.Group>
-
           <Form.Group className='my-2 pt-2' controlId='password'  >
-
             <Form.Control className="userInput  "
               type='password'
               placeholder='Password'
@@ -80,7 +78,7 @@ const AdminLogin = () => {
           </Form.Group>
           <div className=" forgotDiv">
             <Button type='submit' className="loginButton " >Login</Button>
-            <Col className="forgotLink" > <Link to='/forgot' >forgotpassword ? </Link> </Col>
+            <Col className="forgotLink" > <Link to='/admin/forgot' >forgotpassword ? </Link> </Col>
           </div>
          
         </Form>
@@ -88,6 +86,5 @@ const AdminLogin = () => {
     </FormContainer>
   )
 }
-
 export default AdminLogin
 
