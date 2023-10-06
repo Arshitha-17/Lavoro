@@ -21,6 +21,7 @@ import HRResetPassword from '../screens/HR/HRResetPassword'
 import AdminLoginScreen from '../screens/Admins/AdminLoginScreen'
 import AdminForgotScreen from '../screens/Admins/AdminForgotScreen'
 import AdminOtpScreen from '../screens/Admins/AdminOtpScreen'
+import AdminResetPasswordScreen from '../screens/Admins/AdminResetPasswordScreen'
 
 
 const Routers = () => {
@@ -31,7 +32,7 @@ const Routers = () => {
         <Route path='/register' element={<RegisterScreen/>} />       
         <Route path='/forgot' element={<ForgotScreen/>} />       
         <Route path='/otp' element={<OtpScreen/>} />       
-        <Route path='/resetPassword' element={<ResetPasswordScreen/>} />   
+        <Route path='/resetPassword' element={<AdminResetPasswordScreen/>} />   
 
 
 {/*-------------- HR Routes--------------  */}
@@ -47,6 +48,7 @@ const Routers = () => {
 <Route path='/admin/login' element={<AdminLoginScreen/> } />
 <Route path='/admin/forgot' element={<AdminForgotScreen/> } />
 <Route path='/admin/otp' element={<AdminOtpScreen/> } />
+<Route path='/admin/resetPassword' element={<AdminResetPasswordScreen/> } />
 
     </Routes>
   )

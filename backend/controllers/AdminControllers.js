@@ -67,10 +67,35 @@ const AdminOtp = asyncHandler(async (req, res) => {
     }
 })
 
+// rest password
+const AdminResetPassword = asyncHandler(async (req, res) => {
+    const { email, password, confirmPassword } = req.body
+    if (password !== confirmPassword) {
+        res.status(400).json({ message: 'Password and Confirm Password not match' })
+    }
+    try {
+        const admin = await Admin.findOne({ email })
+        if (!admin) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        // Update the admin's password
+        if (admin) {
+            admin.password = password;
+            const updateAdmin = await admin.save();
+
+            res.status(200).json({ message: "Password reset successfully" });
+        }
+    } catch (error) {
+        res.status(500).json({ message: "Internal Server error" })
+    }
+})
+
+
 
 
 export{
     authAdmin,
     AdminForgotPassword,
-    AdminOtp
+    AdminOtp,
+    AdminResetPassword
 }
