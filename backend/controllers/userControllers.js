@@ -37,7 +37,7 @@ const registerUser= asyncHandler(async(req,res)=>{
         email,
         password
     })
-
+    
     if(user){
         generateToken(res,user._id);
         res.status(201).json({

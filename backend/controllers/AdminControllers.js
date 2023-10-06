@@ -2,7 +2,7 @@ import asyncHandler from 'express-async-handler'
 import Admin from '../models/adminModel.js'
 import generateToken from '../util/generateToken.js';
 import { AdminSendOtpEmail } from './AdminSendOtpEmail.js'
-
+import Category from '../models/category.js';
 
 //  admin/auth
 const authAdmin = asyncHandler(async (req, res) => {
@@ -69,10 +69,8 @@ const AdminOtp = asyncHandler(async (req, res) => {
 
 // rest password
 const AdminResetPassword = asyncHandler(async (req, res) => {
-    const { email, password, confirmPassword } = req.body
-    if (password !== confirmPassword) {
-        res.status(400).json({ message: 'Password and Confirm Password not match' })
-    }
+    const { email, password } = req.body
+
     try {
         const admin = await Admin.findOne({ email })
         if (!admin) {
@@ -90,12 +88,35 @@ const AdminResetPassword = asyncHandler(async (req, res) => {
     }
 })
 
+// admin categoty add
+// admin/category
+const category = asyncHandler(async (req, res) => {
+    const { categoryName } = req.body;
 
+    try {
+        // Check if any category already exists with a similar name
+        const existingCategory = await Category.findOne({ categoryName: { $regex: new RegExp(categoryName, 'i') } });
+
+        if (existingCategory) {
+            return res.status(400).json({ message: "Category already added" });
+        }
+
+        // If the category doesn't exist, create and save it
+        const category = new Category({ categoryName });
+        await category.save();
+
+        return res.status(201).json({ message: "Category added successfully" });
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: "Internal Server error" });
+    }
+});
 
 
 export{
     authAdmin,
     AdminForgotPassword,
     AdminOtp,
-    AdminResetPassword
+    AdminResetPassword,
+    category
 }
