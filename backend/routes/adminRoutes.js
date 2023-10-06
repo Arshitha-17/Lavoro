@@ -1,6 +1,7 @@
 import express from "express"
 import { authAdmin,
-     AdminForgotPassword
+     AdminForgotPassword,
+     AdminOtp
      } from "../controllers/AdminControllers.js"
 
 const adminRouter = express.Router()
@@ -9,6 +10,7 @@ const adminRouter = express.Router()
 
 adminRouter.post('/authAdmin',authAdmin)
 adminRouter.post('/adminForgot',AdminForgotPassword)
+adminRouter.post('/AdminOtp',AdminOtp)
 
 
 

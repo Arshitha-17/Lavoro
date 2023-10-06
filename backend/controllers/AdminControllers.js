@@ -51,8 +51,26 @@ const AdminForgotPassword = asyncHandler(async (req, res) => {
 })
 
 
+// otp verify
+//  route POST  api/admin/otp
+const AdminOtp = asyncHandler(async (req, res) => {
+    const { email, otp } = req.body;
+
+    const admin = await Admin.findOne({ email })
+
+    if (admin.otp !== otp) {
+
+        return res.status(400).json({ message: 'Wrong OTP' });
+    } else {
+
+        return res.status(200).json({ admin, message: 'OTP verified successfully' })
+    }
+})
+
+
 
 export{
     authAdmin,
-    AdminForgotPassword
+    AdminForgotPassword,
+    AdminOtp
 }
