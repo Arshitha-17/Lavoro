@@ -125,6 +125,7 @@ const HrResetPassword = asyncHandler(async (req, res) => {
 
 
 
+
 export {
     authHr,
     HRregister,

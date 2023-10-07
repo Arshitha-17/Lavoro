@@ -92,7 +92,7 @@ const AdminResetPassword = asyncHandler(async (req, res) => {
 // admin/category
 const category = asyncHandler(async (req, res) => {
     const { categoryName } = req.body;
-
+    console.log(req.body);
     try {
         // Check if any category already exists with a similar name
         const existingCategory = await Category.findOne({ categoryName: { $regex: new RegExp(categoryName, 'i') } });
@@ -102,15 +102,30 @@ const category = asyncHandler(async (req, res) => {
         }
 
         // If the category doesn't exist, create and save it
-        const category = new Category({ categoryName });
-        await category.save();
+        const categories = new Category({ categoryName });
+        await categories.save();
 
         return res.status(201).json({ message: "Category added successfully" });
     } catch (error) {
-        console.log(error)
+        
         res.status(500).json({ message: "Internal Server error" });
     }
 });
+
+// get category
+const getCategories=asyncHandler(async(req,res)=>{
+    const categories = await Category.find({})
+    res.status(200).json(categories);    
+})
+
+
+const deleteCategory = asyncHandler(async(req,res)=>{
+    const {id} = req.params;
+    console.log(id);
+    const category= await Category.findByIdAndDelete(id)
+    console.log(id);
+
+})
 
 
 export{
@@ -118,5 +133,7 @@ export{
     AdminForgotPassword,
     AdminOtp,
     AdminResetPassword,
-    category
+    category,
+    deleteCategory,
+    getCategories
 }

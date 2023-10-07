@@ -22,6 +22,7 @@ import AdminLoginScreen from '../screens/Admins/AdminLoginScreen'
 import AdminForgotScreen from '../screens/Admins/AdminForgotScreen'
 import AdminOtpScreen from '../screens/Admins/AdminOtpScreen'
 import AdminResetPasswordScreen from '../screens/Admins/AdminResetPasswordScreen'
+import AdminCategoryScreen from '../screens/Admins/AdminCategoryScreen'
 
 
 const Routers = () => {
@@ -32,7 +33,7 @@ const Routers = () => {
         <Route path='/register' element={<RegisterScreen/>} />       
         <Route path='/forgot' element={<ForgotScreen/>} />       
         <Route path='/otp' element={<OtpScreen/>} />       
-        <Route path='/resetPassword' element={<AdminResetPasswordScreen/>} />   
+        <Route path='/resetPassword' element={<ResetPasswordScreen/>} />   
 
 
 {/*-------------- HR Routes--------------  */}
@@ -49,6 +50,7 @@ const Routers = () => {
 <Route path='/admin/forgot' element={<AdminForgotScreen/> } />
 <Route path='/admin/otp' element={<AdminOtpScreen/> } />
 <Route path='/admin/resetPassword' element={<AdminResetPasswordScreen/> } />
+<Route path='/admin/categories' element={<AdminCategoryScreen/> } />
 
     </Routes>
   )
