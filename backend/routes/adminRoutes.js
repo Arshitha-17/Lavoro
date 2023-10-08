@@ -5,7 +5,8 @@ import { authAdmin,
      AdminResetPassword,
      category,
      deleteCategory,
-     getCategories
+     getCategories,
+     editCategory
      } from "../controllers/AdminControllers.js"
 
 const adminRouter = express.Router()
@@ -19,7 +20,7 @@ adminRouter.post('/AdminResetPassword',AdminResetPassword)
 adminRouter.post('/adminCategory',category)
 adminRouter.delete('/adminCategory/:id',deleteCategory)
 adminRouter.get('/adminCategory',getCategories)
-
+adminRouter.put('/adminCategory/:id',editCategory)
 
 
 export default adminRouter

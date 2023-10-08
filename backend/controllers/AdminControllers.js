@@ -127,6 +127,32 @@ const deleteCategory = asyncHandler(async(req,res)=>{
     console.log(id);
 })
 
+// edit category
+
+const editCategory = asyncHandler(async (req, res) => {
+    const categoryId = req.params.id; // Assuming you pass the category ID as a URL parameter
+    const { categoryName } = req.body; // Assuming you pass the updated category name in the request body
+  
+    try {
+      // Check if the category with the given ID exists
+      const existingCategory = await Category.findById(categoryId);
+  
+      if (!existingCategory) {
+        return res.status(404).json({ message: 'Category not found' });
+      }
+  
+      // Update the category name
+      existingCategory.categoryName = categoryName;
+  
+      // Save the updated category
+      const updatedCategory = await existingCategory.save();
+  
+      res.status(200).json({ message: 'Category updated successfully', category: updatedCategory });
+    } catch (error) {
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+  
 
 export{
     authAdmin,
@@ -135,5 +161,6 @@ export{
     AdminResetPassword,
     category,
     deleteCategory,
-    getCategories
+    getCategories,
+    editCategory
 }
