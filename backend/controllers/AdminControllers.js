@@ -107,54 +107,53 @@ const category = asyncHandler(async (req, res) => {
 
         return res.status(201).json({ message: "Category added successfully" });
     } catch (error) {
-        
+
         res.status(500).json({ message: "Internal Server error" });
     }
 });
 
 // get category
-const getCategories=asyncHandler(async(req,res)=>{
+const getCategories = asyncHandler(async (req, res) => {
     const categories = await Category.find({})
-    res.status(200).json(categories);    
+    res.status(200).json(categories);
 })
 
 // delete category
-const deleteCategory = asyncHandler(async(req,res)=>{
-    const {id} = req.params;
+const deleteCategory = asyncHandler(async (req, res) => {
+    const { id } = req.params;
     console.log(id);
-    const category= await Category.findByIdAndDelete(id)
-    res.status(200).json({message:'Delete Successfully'})
+    const category = await Category.findByIdAndDelete(id)
+    res.status(200).json({ message: 'Delete Successfully' })
     console.log(id);
 })
 
 // edit category
 
 const editCategory = asyncHandler(async (req, res) => {
-    const categoryId = req.params.id; // Assuming you pass the category ID as a URL parameter
-    const { categoryName } = req.body; // Assuming you pass the updated category name in the request body
-  
-    try {
-      // Check if the category with the given ID exists
-      const existingCategory = await Category.findById(categoryId);
-  
-      if (!existingCategory) {
-        return res.status(404).json({ message: 'Category not found' });
-      }
-  
-      // Update the category name
-      existingCategory.categoryName = categoryName;
-  
-      // Save the updated category
-      const updatedCategory = await existingCategory.save();
-  
-      res.status(200).json({ message: 'Category updated successfully', category: updatedCategory });
-    } catch (error) {
-      res.status(500).json({ message: 'Internal server error' });
-    }
-  });
-  
+    const categoryId = req.params.id;
+    const { categoryName } = req.body;
 
-export{
+    try {
+
+        const existingCategory = await Category.findById(categoryId);
+
+        if (!existingCategory) {
+            return res.status(404).json({ message: 'Category not found' });
+        }
+
+        // Update the category 
+        existingCategory.categoryName = categoryName;
+
+        const updatedCategory = await existingCategory.save();
+
+        res.status(200).json({ message: 'Category updated successfully', category: updatedCategory });
+    } catch (error) {
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+
+export {
     authAdmin,
     AdminForgotPassword,
     AdminOtp,
