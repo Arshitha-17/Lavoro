@@ -118,13 +118,13 @@ const getCategories=asyncHandler(async(req,res)=>{
     res.status(200).json(categories);    
 })
 
-
+// delete category
 const deleteCategory = asyncHandler(async(req,res)=>{
     const {id} = req.params;
     console.log(id);
     const category= await Category.findByIdAndDelete(id)
+    res.status(200).json({message:'Delete Successfully'})
     console.log(id);
-
 })
 
 

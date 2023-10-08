@@ -36,9 +36,20 @@ const [allCategories, setAllCategories] = useState([])
 
 // delete
 
-// const deleteCategory =()=>{
-//   const 
-// }
+const deleteCategory =async(categoryId)=>{
+
+  try {
+    const res = await usersApi.delete(`/admin/adminCategory/${categoryId}`)
+    if(res.data.message){
+      toast.success('Category Successfully Deleted')
+      setAdded(true)
+    }
+
+  } catch (error) {
+    toast.error("Error Occured")
+  }
+  
+}
 
 // get method
 useEffect(()=>{
