@@ -1,0 +1,10 @@
+.categotyButton {
+  background: linear-gradient(to bottom, #268b8f, #5c5b5b);
+  color: white;
+  height: 35px;
+
+}
+
+.cat-heading {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

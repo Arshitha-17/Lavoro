@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import { Modal } from 'react-bootstrap'
 import { Table, Button, Form } from 'react-bootstrap';
-
+import './Category.css'
 import { usersApi } from '../../../axiosApi/axiosInstance';
 import { toast } from 'react-toastify';
 
@@ -12,24 +12,23 @@ const Category = () => {
 
 const [allCategories, setAllCategories] = useState([])
 
-  const addCategory = () => {
+  const addCategory =async () => {
     
     try {
 
-      const res = usersApi.post('admin/adminCategory', { categoryName: newCategory })
+      let res = await usersApi.post('admin/adminCategory', { categoryName: newCategory })
       console.log(res)
-      if (res.status==201) {
+      if (res.data.message) {
+        toast.success("Successfully added")
+      }
         setNewCategory('')
         setShowModal(false)
         setAdded(true)
-        toast.success("Successfully added")
-      }
-
 
     } catch (error) {
-      if (res.status === 400) {
-        return toast.error(error.response.data.message)
-      }
+      
+      return toast.error(error.response.data.message)
+      
 
     }
   }
@@ -57,16 +56,16 @@ useEffect(()=>{
 
   return (
     <div>
-      <h1>Categories</h1>
-      <div className='px-3'>
-      <button  onClick={() => setShowModal(true)}>Add Category</button>
+      <h1 className='cat-heading p-3 text-white'>Categories</h1>
+      <div className=' px-5'>
+      <button className='categotyButton rounded-pill px-3'  onClick={() => setShowModal(true)}>Add Category</button>
       </div>
-      <div className='p-3'>
+      <div className='p-5'>
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Categoty</th>
-            <th>Edit</th>
+            <th>Category</th>
+            <th>Edit</th> 
             <th>Delete</th>
           </tr>
         </thead>
