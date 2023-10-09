@@ -140,7 +140,6 @@ const editCategory = asyncHandler(async (req, res) => {
         if (!existingCategory) {
             return res.status(404).json({ message: 'Category not found' });
         }
-
         // Update the category 
         existingCategory.categoryName = categoryName;
 
