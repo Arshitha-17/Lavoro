@@ -1,7 +1,7 @@
 import asyncHandler from 'express-async-handler'
 import Admin from '../models/adminModel.js'
 import generateToken from '../util/generateToken.js';
-import { AdminSendOtpEmail } from './AdminSendOtpEmail.js'
+import { AdminSendOtpEmail } from './SendEmail/AdminSendOtpEmail.js'
 import Category from '../models/category.js';
 
 //  admin/auth

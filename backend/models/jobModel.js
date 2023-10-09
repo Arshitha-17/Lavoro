@@ -5,11 +5,10 @@ const jobSchema = mongoose.Schema({
     companyName: {
         type: String,
         required: true,
-        
     },
     jobRole : {
         type: String,
-        required: true
+       
     },
     experience: {
         type: String,

@@ -1,7 +1,7 @@
 import asyncHandler from 'express-async-handler'
 import Hr from '../models/hrModel.js'
 import generateToken from '../util/generateToken.js';
-import { HrSendOtpEmail } from './HrSendOtpEmail.js'
+import { HrSendOtpEmail } from './SendEmail/HrSendOtpEmail.js'
 
 const authHr = asyncHandler(async (req, res) => {
 

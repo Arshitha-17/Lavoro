@@ -1,10 +1,34 @@
 .categotyButton {
-  background: linear-gradient(to bottom, #268b8f, #5c5b5b);
-  color: white;
+  background: linear-gradient(to bottom, #268b8f, #161515);
+  color: rgb(255, 255, 255);
   height: 35px;
+  border-style:none ;
 
 }
 
 .cat-heading {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+}
+
+.editButton{
+  background: linear-gradient(to bottom, #268b8f, #5c5b5b);
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 15px;
+  color: white;
+  border-style: none;
+  
+}
+.editButton:hover{
+  background-color: brown;
+}
+
+.deleteButton{
+  background: linear-gradient(to bottom, #268b8f, #5c5b5b);
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 15px;
+  color: white;
+  border-style: none;
 }

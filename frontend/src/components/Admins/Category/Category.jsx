@@ -114,14 +114,14 @@ const Category = () => {
                 <td>{category.categoryName}</td>
                 <td>
                   <button
-                    variant='Warning'
+                    className='editButton'
                     onClick={() => openEditCategoryModal(category._id, category.categoryName)}
                   >
                     Edit
                   </button>
                 </td>
                 <td>
-                  <button variant='danger' onClick={() => deleteCategory(category._id)}>
+                  <button className='deleteButton' variant='danger' onClick={() => deleteCategory(category._id)}>
                     Delete
                   </button>
                 </td>
