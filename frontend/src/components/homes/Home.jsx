@@ -1,21 +1,16 @@
 import { Container, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import './Home.css';
+
 const Home = () => {
   return (
-    <div className=' py-5'>         
-          <div className='d-flex'>
-            <Link to= '/login'>
-            <Button variant='primary' className='me-3'>
-              Sign In
-            </Button>
-            </Link>
-            <Link to='/register'>
-            <Button variant='secondary' >
-              Register
-            </Button>
-            </Link>
-            
-          </div>
+    <div className='container'>    
+      <div className='searchBar'>
+        <form className="form-inline my-2 my-lg-0">
+          <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+          <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>     
     </div>
   );
 };

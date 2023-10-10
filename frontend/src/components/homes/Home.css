@@ -1,0 +1,11 @@
+.searchBar {
+    display: flex;
+    align-items: center; /* Align items vertically center */
+  }
+  
+  /* Add margin to the search button */
+  .searchBar button {
+    margin-left: 10px; /* Adjust the margin as needed */
+  }
+
+  

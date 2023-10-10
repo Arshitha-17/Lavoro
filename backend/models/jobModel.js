@@ -8,7 +8,7 @@ const jobSchema = mongoose.Schema({
     },
     jobRole : {
         type: String,
-       
+        ref: "Hr",
     },
     experience: {
         type: String,
@@ -27,7 +27,7 @@ const jobSchema = mongoose.Schema({
         required: true
     },
     lastDate: {
-        type: date,
+        type: Date,
         required: true
     },
     requirements: {

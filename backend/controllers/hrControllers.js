@@ -2,6 +2,7 @@ import asyncHandler from 'express-async-handler'
 import Hr from '../models/hrModel.js'
 import generateToken from '../util/generateToken.js';
 import { HrSendOtpEmail } from './SendEmail/HrSendOtpEmail.js'
+import Job from '../models/jobModel.js';
 
 const authHr = asyncHandler(async (req, res) => {
 
@@ -122,8 +123,23 @@ const HrResetPassword = asyncHandler(async (req, res) => {
 })
 
 
+// Job Uploading
 
-
+const jobAdding = asyncHandler(async(req,res)=>{
+    const {companyName,jobRole,experience,salary,jobType,jobLocation,lastDate,requirements} = req.body
+    console.log(req.body);
+    const job =await Job.create({
+        companyName,
+        jobRole,
+        experience,
+        salary,
+        jobType,
+        jobLocation,
+        lastDate,
+        requirements
+    })
+   
+})
 
 
 export {
@@ -131,5 +147,6 @@ export {
     HRregister,
     HrForgotPassword,
     HrOtp,
-    HrResetPassword
+    HrResetPassword,
+    jobAdding
 }
