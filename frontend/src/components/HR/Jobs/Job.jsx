@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Nav, Form, Button } from 'react-bootstrap';
 import './Job.css'; // Import your CSS file
 import { LinkContainer } from 'react-router-bootstrap';
@@ -6,9 +6,77 @@ import HrProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavor
 import { AiOutlineUser, AiOutlineMessage, AiOutlineUnorderedList, } from 'react-icons/ai'
 import { IoMdNotificationsOutline } from 'react-icons/io'
 import { MdLogout, MdWorkOutline } from 'react-icons/md'
-import FormContainer from '../../Users/forms/FormContainer';
+import { usersApi } from '../../../axiosApi/axiosInstance';
+import { toast } from 'react-toastify';
+
 
 const Job = () => {
+    const [companyName, setCompanyName] = useState('')
+    const [jobRole, setJobRole] = useState('')
+    const [experience, setExperience] = useState('')
+    const [salary, setSalary] = useState('')
+    const [jobType, setJobType] = useState('')
+    const [jobLocation, setJobLocation] = useState('')
+    const [lastDate, setLastDate] = useState('')
+    const [requirements, setRequirements] = useState('')
+    const [allCategories, setAllCategories] = useState([])
+
+    const submitHandler = async(e) => {
+        e.preventDefault();
+        console.log("saved"); 
+        if(!companyName || companyName ||
+            jobRole||
+            experience||
+            salary||
+            jobType||
+            jobLocation ||
+            lastDate||
+            requirements){
+            toast.error('All field are required')
+            return
+        }
+
+        const jobData = {
+            companyName,
+            jobRole,
+            experience,
+            salary,
+            jobType,
+            jobLocation,
+            lastDate,
+            requirements,
+        };
+    try {
+        const res= await usersApi.post('hr/HrJobAdd',jobData)
+      if(res.status===200){
+        console.log(res);
+        toast.success(res.data.message)
+        setAllCategories('')
+        setCompanyName('')
+        setExperience('')
+        setJobLocation('')
+        setJobType('')
+        setJobRole('')
+        setLastDate('')
+        setRequirements('')
+        setSalary('')
+      }
+
+    } catch (error) {
+        console.error('Error saving job:', error);
+    }
+
+    }
+
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            let res = await usersApi.get('hr/getCategories')
+            console.log(res.data);
+            setAllCategories(res.data)
+        }
+        fetchCategories()
+    }, [])
     return (
         <Container fluid>
             <Row>
@@ -73,42 +141,74 @@ const Job = () => {
                     <h3 className='head text-white '>Post Job</h3>
                     <div className='form_div '>
 
-                        <Form>
+                        <Form onSubmit={submitHandler}>
                             <Form.Group className='form_group' >
                                 <Form.Control className='my-4 job_input '
                                     type='text'
+                                    value={companyName}
                                     placeholder='Company Name'
+                                    onChange={(e) => setCompanyName(e.target.value)}
                                 >
                                 </Form.Control>
+                                <Form.Control
+                                    as="select"
+                                    className="my-4 job_input"
+                                    name="jobRole"
+                                    value={jobRole}
+                                    onChange={(e) => setJobRole(e.target.value)}
+                                >
+                                    <option disabled hidden value="">Select a Job Role</option>
+                                    {
+                                        allCategories.length>0 ? (
+                                            allCategories.map((category,index)=>(
+                                                <option key={index} value={category.categoryName}>{category.categoryName}</option>
+                                            ))
+                                        ):null 
+                                    }
+                                    
+                                </Form.Control>
+
                                 <Form.Control className='my-4 job_input'
                                     type='text'
+                                    value={experience}
                                     placeholder='Experience/Fresher '
+                                    onChange={(e) => setExperience(e.target.value)}
                                 >
                                 </Form.Control>
                                 <Form.Control className='my-4 job_input'
                                     type='text'
+                                    value={salary}
                                     placeholder='Salary'
+                                    onChange={(e) => setSalary(e.target.value)}
                                 >
                                 </Form.Control>
                                 <Form.Control className='my-4 job_input'
                                     type='text'
+                                    value={jobType}
                                     placeholder='Job type'
+                                    onChange={(e) => setJobType(e.target.value)}
                                 >
                                 </Form.Control>
                                 <Form.Control className='my-4 job_input'
                                     type='text'
+                                    value={jobLocation}
                                     placeholder='Job location'
+                                    onChange={(e) => setJobLocation(e.target.value)}
                                 >
                                 </Form.Control>
                                 <Form.Control className='my-4 job_input'
                                     type='text'
+                                    value={lastDate}
                                     placeholder='Last apply date'
+                                    onChange={(e) => setLastDate(e.target.value)}
                                 >
                                 </Form.Control>
                                 <Form.Control className='my-4 job_input'
                                     as='textarea'
                                     rows={5}
+                                    value={requirements}
                                     placeholder='Requirements'
+                                    onChange={(e) => setRequirements(e.target.value)}
                                 >
                                 </Form.Control>
                             </Form.Group>
@@ -120,5 +220,4 @@ const Job = () => {
         </Container>
     );
 };
-
 export default Job;

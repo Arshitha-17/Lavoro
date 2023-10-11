@@ -3,6 +3,7 @@ import Hr from '../models/hrModel.js'
 import generateToken from '../util/generateToken.js';
 import { HrSendOtpEmail } from './SendEmail/HrSendOtpEmail.js'
 import Job from '../models/jobModel.js';
+import Category from '../models/category.js'
 
 const authHr = asyncHandler(async (req, res) => {
 
@@ -122,10 +123,16 @@ const HrResetPassword = asyncHandler(async (req, res) => {
     }
 })
 
+const getCategories = asyncHandler(async(req,res)=>{
+    
+    const jobCategory = await Category.find({})
+    res.status(200).json(jobCategory)
+})
+
 
 // Job Uploading
-
 const jobAdding = asyncHandler(async (req, res) => {
+
     const { companyName, jobRole, experience, salary, jobType, jobLocation, lastDate, requirements } = req.body
     console.log(req.body);
     const job = await Job.create({
@@ -138,7 +145,8 @@ const jobAdding = asyncHandler(async (req, res) => {
         lastDate,
         requirements
     })
-    return res.status(200).json({message:'Job Add Successfully'})
+
+    return res.status(200).json({message:'Job Add Successfully', job})
 })
 
 
@@ -148,5 +156,6 @@ export {
     HrForgotPassword,
     HrOtp,
     HrResetPassword,
+    getCategories,
     jobAdding
 }

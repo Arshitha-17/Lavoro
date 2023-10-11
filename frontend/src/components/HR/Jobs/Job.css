@@ -33,6 +33,7 @@
 }  
 .head{
   font-family: 'Times New Roman', Times, serif;
+  font-weight: bold
 }
 
 .sidebar-headings{
@@ -45,7 +46,7 @@ padding-left: 15px;
 }
 
 .form_group{
-  padding-right: 200px;
+  padding-right: 300px;
 }
 
 .job_input{
