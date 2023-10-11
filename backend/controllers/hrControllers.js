@@ -125,10 +125,10 @@ const HrResetPassword = asyncHandler(async (req, res) => {
 
 // Job Uploading
 
-const jobAdding = asyncHandler(async(req,res)=>{
-    const {companyName,jobRole,experience,salary,jobType,jobLocation,lastDate,requirements} = req.body
+const jobAdding = asyncHandler(async (req, res) => {
+    const { companyName, jobRole, experience, salary, jobType, jobLocation, lastDate, requirements } = req.body
     console.log(req.body);
-    const job =await Job.create({
+    const job = await Job.create({
         companyName,
         jobRole,
         experience,
@@ -138,7 +138,7 @@ const jobAdding = asyncHandler(async(req,res)=>{
         lastDate,
         requirements
     })
-   
+    return res.status(200).json({message:'Job Add Successfully'})
 })
 
 

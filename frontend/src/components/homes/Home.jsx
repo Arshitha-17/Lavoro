@@ -1,5 +1,4 @@
-import { Container, Card, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+
 import './Home.css';
 
 const Home = () => {

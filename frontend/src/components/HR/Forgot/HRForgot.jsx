@@ -14,9 +14,7 @@ const HRForgot = () => {
     const [email,setEmail] = useState('')
     const submitHandler= async(e)=>{
         e.preventDefault();
-        console.log("qwertysubmit");  
-
-
+       
         try {
           const res = await usersApi.post('hr/HrForgot',{email})
           

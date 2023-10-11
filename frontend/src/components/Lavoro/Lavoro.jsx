@@ -17,8 +17,6 @@ let admin = location.pathname.startsWith('/admin')
           (admin)?<AdminHeader/> :((hr)?<HrHeader /> : <Header />)
   
   }
-
-
      <Routers/>
     </div>
   )
