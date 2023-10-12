@@ -156,6 +156,16 @@ const jobList = asyncHandler(async(req,res)=>{
     res.status(200).json(jobs)
 })
 
+// Job delete
+const deleteJob = asyncHandler(async(req,res)=>{
+    console.log('inside delete');
+    const {id} = req.params
+    console.log(req.params);
+    const jobs = await Job.findByIdAndDelete(id)
+    res.status(200).json({message:'Delete Job successfully'})
+})
+
+
 
 
 export {
@@ -166,5 +176,6 @@ export {
     HrResetPassword,
     getCategories,
     jobAdding,
-    jobList
+    jobList,
+    deleteJob
 }

@@ -6,7 +6,8 @@ import { authHr,
     HrResetPassword, 
     getCategories,
     jobAdding,
-    jobList} from "../controllers/hrControllers.js"
+    jobList,
+    deleteJob} from "../controllers/hrControllers.js"
 
 const HRrouter = express.Router()
 
@@ -20,6 +21,7 @@ HRrouter.post('/HrResetPassword',HrResetPassword)
 HRrouter.post('/HrJobAdd',jobAdding)
 HRrouter.get('/getCategories',getCategories)
 HRrouter.get('/HrJobList',jobList)
+HRrouter.delete('/HrJobList/:id',deleteJob)
 
 
 
