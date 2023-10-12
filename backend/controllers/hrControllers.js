@@ -149,6 +149,14 @@ const jobAdding = asyncHandler(async (req, res) => {
     return res.status(200).json({message:'Job Add Successfully', job})
 })
 
+// list jobs
+const jobList = asyncHandler(async(req,res)=>{
+    const jobs = await Job.find({})
+    console.log(jobs)
+    res.status(200).json(jobs)
+})
+
+
 
 export {
     authHr,
@@ -157,5 +165,6 @@ export {
     HrOtp,
     HrResetPassword,
     getCategories,
-    jobAdding
+    jobAdding,
+    jobList
 }
