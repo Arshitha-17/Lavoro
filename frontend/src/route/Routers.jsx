@@ -7,6 +7,7 @@ import RegisterScreen from '../screens/Users/RegisterScreen'
 import ForgotScreen from '../screens/Users/ForgotScreen'
 import OtpScreen from '../screens/Users/OtpScreen'
 import ResetPasswordScreen from '../screens/Users/ResetPasswordScreen'
+import JobListingScreen from '../screens/Users/JobListingScreen'
 
 // --------------HR------------------
 import HRLoginScreen from '../screens/HR/HRLoginScreen'
@@ -16,6 +17,7 @@ import HRForgotScreen from '../screens/HR/HRForgotScreen'
 import HROtpScreen from '../screens/HR/HROtpScreen'
 import HRResetPassword from '../screens/HR/HRResetPassword'
 import HRJobAddScreen from '../screens/HR/HRJobAddScreen'
+import HRJobListScreen from '../screens/HR/HRJobListScreen'
 
 // -----------------Admin--------------
 
@@ -24,7 +26,6 @@ import AdminForgotScreen from '../screens/Admins/AdminForgotScreen'
 import AdminOtpScreen from '../screens/Admins/AdminOtpScreen'
 import AdminResetPasswordScreen from '../screens/Admins/AdminResetPasswordScreen'
 import AdminCategoryScreen from '../screens/Admins/AdminCategoryScreen'
-import HRJobListScreen from '../screens/HR/HRJobListScreen'
 
 
 const Routers = () => {
@@ -36,6 +37,7 @@ const Routers = () => {
         <Route path='/forgot' element={<ForgotScreen/>} />       
         <Route path='/otp' element={<OtpScreen/>} />       
         <Route path='/resetPassword' element={<ResetPasswordScreen/>} />   
+        <Route path='/jobList' element={<JobListingScreen/>} />   
 
 
 {/*-------------- HR Routes--------------  */}
