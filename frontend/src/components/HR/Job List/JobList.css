@@ -4,13 +4,16 @@
 
 .sidebar {
   width: 250px;
-  /* Adjust the width as needed */
+
   background-color: #333;
-  /* Sidebar background color */
+  
   color: #fff;
-  /* Sidebar text color */
+
   padding: 20px;
-  /* Adjust padding as needed */
+  
+  height: fit-content;
+  /* position: sticky;
+  top: 0; */
 }
 
 .content {
@@ -22,6 +25,7 @@
 
 .sidebar {
   border-radius: 25px;
+  
 }
 
 .hr-profile-image {
@@ -75,7 +79,7 @@
 }
 
 .subdiv {
-  height: 100px;
+
   background-color: rgb(255, 255, 255);
 }
 
@@ -84,19 +88,24 @@
   padding-top: 5px;
   padding-left: 10px;
   color: black;
-  padding-bottom: 5px;
+  margin: 0px;
+
 }
 
 
 .subheads {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   display: flex;
   color: #054a4d;
+  padding: 20px 20px;
+
 }
 
 .sub {
-  padding-left: 18px;
-  padding-right: 80px;
+  margin: 0px;
+  padding: 0px;
   font-size: 18px;
 }
 
