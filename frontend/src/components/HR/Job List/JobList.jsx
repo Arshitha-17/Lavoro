@@ -7,14 +7,25 @@ import { NavLink } from 'react-router-dom';
 import './JobList.css'
 import { useEffect, useState } from 'react';
 import { usersApi } from '../../../axiosApi/axiosInstance';
+import { toast } from 'react-toastify';
 
 const Job = () => {
     const [jobs, setJobs] = useState([])
+    const [deletedJob,setdeletedJob] = useState(false)
+
+    const deleteJob =async (jobId)=>{
+        const res = await usersApi.delete(`hr/HrJobList/${jobId}`)
+        if(res.data.message){
+            toast.success(res.data.message)
+            setJobs(true)
+        }else{
+            toast.error("error occured")
+        }
+    }
 
     useEffect(() => {
         const fetchJob = async () => {
             let res = await usersApi.get('hr/HrJobList')
-            console.log(res.data);
             setJobs(res.data)
         }
         fetchJob()
@@ -73,7 +84,7 @@ const Job = () => {
                                             <h6 className='sub'>{job.jobLocation} </h6>
                                             <h6 className='sub'>{job.salary} </h6>
                                             <h6 className='sub'>{job.experience} </h6>
-                                            <button className='delete'>Delete</button>
+                                            <button className='delete' onClick={()=>deleteJob(job._id)} >Delete</button>
                                         </div>
                                     </div>
                                 ))
