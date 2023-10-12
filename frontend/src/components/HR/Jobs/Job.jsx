@@ -24,18 +24,10 @@ const Job = () => {
     const submitHandler = async(e) => {
         e.preventDefault();
         console.log("saved"); 
-        if(!companyName || companyName ||
-            jobRole||
-            experience||
-            salary||
-            jobType||
-            jobLocation ||
-            lastDate||
-            requirements){
+        if(!companyName ||! jobRole||! experience||! salary|| !jobType|| !jobLocation || !lastDate||!requirements){
             toast.error('All field are required')
             return
         }
-
         const jobData = {
             companyName,
             jobRole,
@@ -197,7 +189,7 @@ const Job = () => {
                                 >
                                 </Form.Control>
                                 <Form.Control className='my-4 job_input'
-                                    type='text'
+                                    type='date'
                                     value={lastDate}
                                     placeholder='Last apply date'
                                     onChange={(e) => setLastDate(e.target.value)}
