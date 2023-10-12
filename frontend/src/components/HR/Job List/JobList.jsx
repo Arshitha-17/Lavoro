@@ -1,4 +1,4 @@
-import { Container, Row, Col, Nav, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col} from 'react-bootstrap';
 import HrProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg'; // Replace with the actual image path
 import { AiOutlineUser, AiOutlineMessage, AiOutlineUnorderedList, } from 'react-icons/ai'
 import { IoMdNotificationsOutline } from 'react-icons/io'
@@ -6,8 +6,7 @@ import { MdLogout, MdWorkOutline } from 'react-icons/md'
 import { NavLink } from 'react-router-dom';
 import './JobList.css'
 
-const Job = () => {
-
+const Job = () => {  
     return (
         <Container fluid>
             <Row>
@@ -48,7 +47,20 @@ const Job = () => {
                     </div>
                 </Col>
                 <Col sm={9} className="content">
-
+                        <h3 className='mainHead' >List Job Post</h3>
+                    <div className='mainDiv'>
+                        <div className='subdiv'> 
+                         <h5 className='mainheads'>Company Name</h5>
+                         <div className='subheads'>
+                            <h6 className='sub' >JobRole</h6>
+                            <h6 className='sub'>Job Type</h6>
+                            <h6 className='sub'>Location</h6>
+                            <h6 className='sub'>Salary</h6>
+                            <h6 className='sub'>Experience</h6>
+                            <button className='delete'>Delete</button>
+                         </div>
+                        </div>
+                    </div>
                 </Col>
             </Row>
         </Container>

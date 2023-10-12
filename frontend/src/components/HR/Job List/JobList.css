@@ -1,54 +1,111 @@
-
 .container {
-    display: flex;
-  }
-  
-  .sidebar {
-    width: 250px; /* Adjust the width as needed */
-    background-color: #333; /* Sidebar background color */
-    color: #fff; /* Sidebar text color */
-    padding: 20px; /* Adjust padding as needed */
-  }
-  
-  .content {
-    flex: 1; /* Allow the main content to expand and fill the remaining space */
-    padding: 20px; /* Adjust padding as needed */
-  }
+  display: flex;
+}
 
-.sidebar{
-    border-radius: 25px;
+.sidebar {
+  width: 250px;
+  /* Adjust the width as needed */
+  background-color: #333;
+  /* Sidebar background color */
+  color: #fff;
+  /* Sidebar text color */
+  padding: 20px;
+  /* Adjust padding as needed */
+}
+
+.content {
+  flex: 1;
+  /* Allow the main content to expand and fill the remaining space */
+  padding: 20px;
+  /* Adjust padding as needed */
+}
+
+.sidebar {
+  border-radius: 25px;
 }
 
 .hr-profile-image {
-    width: 80px; 
-    height: 80px; 
-    border-radius: 50%; 
-    object-fit: cover; 
-    margin-right: 10px; 
-  }
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
 
-.HrProfileImage{
+.HrProfileImage {
 
-    text-align: center;
-}  
-.heads{
+  text-align: center;
+}
+
+.heads {
   display: flex;
   padding: 10px;
 }
-.head{
+
+.head {
 
   font-weight: normal;
   color: #fff;
   text-decoration: none;
   padding-left: 15px;
-  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-.sidebar-headings{
-padding: 15px;
+.sidebar-headings {
+  padding: 15px;
 }
 
-.sidebar_content{
-color: #fff;
-padding-left: 15px;
+.sidebar_content {
+  color: #fff;
+  padding-left: 15px;
+}
+
+/* Start main div style */
+
+.mainDiv {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.mainHead {
+  color: #fff;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.subdiv {
+  height: 100px;
+  background-color: rgb(255, 255, 255);
+}
+
+
+.mainheads {
+  padding-top: 5px;
+  padding-left: 10px;
+  color: black;
+  padding-bottom: 5px;
+}
+
+
+.subheads {
+  align-items: center;
+  display: flex;
+  color: #054a4d;
+}
+
+.sub {
+  padding-left: 18px;
+  padding-right: 80px;
+  font-size: 18px;
+}
+
+.delete {
+  color: #ffffff;
+  border-radius: 10px;
+  background-color: #9C9595;
+  border: solid white;
+  font-size: 18px;
+  background-color: #065659;
+  padding: 5px 10px;
 }
