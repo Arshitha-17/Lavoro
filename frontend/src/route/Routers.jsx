@@ -24,6 +24,7 @@ import AdminForgotScreen from '../screens/Admins/AdminForgotScreen'
 import AdminOtpScreen from '../screens/Admins/AdminOtpScreen'
 import AdminResetPasswordScreen from '../screens/Admins/AdminResetPasswordScreen'
 import AdminCategoryScreen from '../screens/Admins/AdminCategoryScreen'
+import HRJobListScreen from '../screens/HR/HRJobListScreen'
 
 
 const Routers = () => {
@@ -45,6 +46,7 @@ const Routers = () => {
         <Route path='/hr/resetpassword' element={<HRResetPassword/> } />
         <Route path='/hr' element={<HRHomeScreen/>} />
         <Route path='/hr/jobsAdd' element={<HRJobAddScreen/>} />
+        <Route path='/hr/JobList' element={<HRJobListScreen/>} />
 
 
 {/* ----------------Admin Routes------------- */}

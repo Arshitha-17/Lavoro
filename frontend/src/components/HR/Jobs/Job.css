@@ -1,62 +1,72 @@
-
 .container {
-    display: flex;
-  }
-  
-  .sidebar {
-    width: 250px; /* Adjust the width as needed */
-    background-color: #333; /* Sidebar background color */
-    color: #fff; /* Sidebar text color */
-    padding: 20px; /* Adjust padding as needed */
-  }
-  
-  .content {
-    flex: 1; /* Allow the main content to expand and fill the remaining space */
-    padding: 20px; /* Adjust padding as needed */
-  }
+  display: flex;
+}
 
-.sidebar{
-    border-radius: 25px;
+.sidebar {
+  width: 250px;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+
+}
+
+.sidebar {
+  border-radius: 25px;
 }
 
 .hr-profile-image {
-    width: 80px; 
-    height: 80px; 
-    border-radius: 50%; 
-    object-fit: cover; 
-    margin-right: 10px; 
-  }
-
-.HrProfileImage{
-
-    text-align: center;
-}  
-.head{
-  font-family: 'Times New Roman', Times, serif;
-  font-weight: bold
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
 }
 
-.sidebar-headings{
-padding: 15px;
+.HrProfileImage {
+
+  text-align: center;
 }
 
-.sidebar_content{
-color: #fff;
-padding-left: 15px;
+.heads {
+  display: flex;
+  padding: 10px;
 }
 
-.form_group{
+.head {
+
+  font-weight: normal;
+  color: #fff;
+  text-decoration: none;
+  padding-left: 15px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.sidebar-headings {
+  padding: 15px;
+}
+
+.sidebar_content {
+  color: #fff;
+  padding-left: 15px;
+}
+
+.form_group {
   padding-right: 300px;
 }
 
-.job_input{
+.job_input {
   font-family: 'Times New Roman', Times, serif;
 
 }
 
-.addButton{
+.addButton {
   color: #ffffff !important;
-  background-color:#074042 !important;
+  background-color: #074042 !important;
   border: black !important;
   border-radius: 15px !important;
   width: 125px;

@@ -1,0 +1,54 @@
+
+.container {
+    display: flex;
+  }
+  
+  .sidebar {
+    width: 250px; /* Adjust the width as needed */
+    background-color: #333; /* Sidebar background color */
+    color: #fff; /* Sidebar text color */
+    padding: 20px; /* Adjust padding as needed */
+  }
+  
+  .content {
+    flex: 1; /* Allow the main content to expand and fill the remaining space */
+    padding: 20px; /* Adjust padding as needed */
+  }
+
+.sidebar{
+    border-radius: 25px;
+}
+
+.hr-profile-image {
+    width: 80px; 
+    height: 80px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    margin-right: 10px; 
+  }
+
+.HrProfileImage{
+
+    text-align: center;
+}  
+.heads{
+  display: flex;
+  padding: 10px;
+}
+.head{
+
+  font-weight: normal;
+  color: #fff;
+  text-decoration: none;
+  padding-left: 15px;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.sidebar-headings{
+padding: 15px;
+}
+
+.sidebar_content{
+color: #fff;
+padding-left: 15px;
+}
