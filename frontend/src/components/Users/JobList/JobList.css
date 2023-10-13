@@ -10,4 +10,23 @@
 }
 .subhead{
     color: white;
+    padding-top: 8px;
+}
+
+.searchbar{
+   padding-top: 50px;
+   padding-left: 250px;
+   padding-right: 250px;
+}
+
+.input{
+  padding: 15px !important;
+  margin: 0px !important;
+}
+
+.button{
+    color: white !important;
+    padding: 15px !important;
+    border-radius: 0 8px 8px 0 !important;
+    background-color: rgb(25, 187, 25) !important;
 }
