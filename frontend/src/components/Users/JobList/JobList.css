@@ -40,6 +40,10 @@
 
 
 /* side bar */
+.filterhead{
+    padding-left: 25px;
+    padding-top: 25px;
+}
 
 .contentDiv{
     display: flex;
@@ -56,3 +60,4 @@
     padding: 5px;
     border-radius: 10px;
 }
+

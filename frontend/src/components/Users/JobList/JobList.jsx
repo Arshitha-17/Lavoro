@@ -36,7 +36,7 @@ const JobList = () => {
       </div>
       <div className='jobListDiv' >
         <div>
-          <h5 className='text-white' >Filter</h5>
+          <h5 className='filterhead text-white' >Filter</h5>
         </div>
         <div className='contents' >
           <Container fluid>
