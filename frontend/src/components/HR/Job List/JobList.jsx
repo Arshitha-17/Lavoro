@@ -11,7 +11,6 @@ import { toast } from 'react-toastify';
 
 const Job = () => {
     const [jobs, setJobs] = useState([])
-    const [deletedJob,setdeletedJob] = useState(false)
 
     const deleteJob =async (jobId)=>{
         const res = await usersApi.delete(`hr/HrJobList/${jobId}`)

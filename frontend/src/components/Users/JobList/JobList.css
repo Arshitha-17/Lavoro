@@ -1,5 +1,7 @@
 
-
+.firstDiv{
+    height: 100vh;
+}
 .headings{
     padding-top: 40px;
     text-align: center;
@@ -29,4 +31,28 @@
     padding: 15px !important;
     border-radius: 0 8px 8px 0 !important;
     background-color: rgb(25, 187, 25) !important;
+}
+
+.jobListDiv{
+    background-color: black;
+}
+
+
+
+/* side bar */
+
+.contentDiv{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.maindiv{
+    padding: 15px;
+}
+
+.locationInput{
+    padding: 5px;
+    border-radius: 10px;
 }
