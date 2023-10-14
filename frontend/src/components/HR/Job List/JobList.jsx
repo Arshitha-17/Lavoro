@@ -31,6 +31,8 @@ const Job = () => {
     }, [])
 
     return (
+        <>
+        
         <Container fluid>
             <Row>
                 <Col className="sidebar m-4">
@@ -93,6 +95,7 @@ const Job = () => {
                 </Col>
             </Row>
         </Container>
+        </>
     );
 };
 export default Job;

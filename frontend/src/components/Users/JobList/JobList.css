@@ -1,5 +1,6 @@
 
 .firstDiv{
+    padding-top: 100px;
     height: 100vh;
 }
 .headings{
@@ -68,7 +69,7 @@
 }
 
 .icons{
-    
+    color: #054a4d;
     width: 100%; /* Make the icon width 100% of the parent div */
     height: 100%;
 }

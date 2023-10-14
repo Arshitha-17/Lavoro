@@ -2,6 +2,7 @@ import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js';
 import generateToken from '../util/generateToken.js'; 
 import {sendOtpEmail} from './SendEmail/sendOtpEmail.js'
+import Job from '../models/jobModel.js'
 
 const authUser = asyncHandler(async(req,res)=>{   
     const {email,password} = req.body;
@@ -160,6 +161,8 @@ const userProfile = asyncHandler(async(req,res)=>{
 })
 
 
+
+
 //  user progile
 // route PUT api/users/profile
 const updateUserProfile = asyncHandler(async(req,res)=>{
@@ -186,6 +189,14 @@ const updateUserProfile = asyncHandler(async(req,res)=>{
     }
 })
 
+// Job list 
+
+const jobList =  asyncHandler(async(req,res)=>{
+    const jobs = await Job.find({})
+    console.log(jobs);
+    res.status(200).json({jobs})
+})
+
 
 export {
     authUser,
@@ -196,5 +207,6 @@ export {
     resetPassword,
     userProfile,
     updateUserProfile,
+    jobList
     
 }

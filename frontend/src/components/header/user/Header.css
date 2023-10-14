@@ -2,7 +2,12 @@
     background: linear-gradient(to bottom, #065659, black);
    
   }
-
+.headertag{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
   
  .logout{
 color: white;

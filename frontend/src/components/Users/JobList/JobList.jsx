@@ -1,14 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './JobList.css'
 import { Col, Container, Row } from 'react-bootstrap'
-import {BsSave} from "react-icons/bs"
+import { BsSave } from "react-icons/bs"
+import { Link } from 'react-router-dom'
+import { usersApi } from '../../../axiosApi/axiosInstance'
 
 const JobList = () => {
+  const [jobs, setJobs] = useState([])
 
+  useEffect(() => {
+    const fetchJobs = async () => {
+      let res = await usersApi.get('users/jobList')
+      console.log(res.data.jobs);
+      setJobs(res.data.jobs)
+
+    }
+    fetchJobs()
+  }, [])
 
   return (
-    <div>
-      <div className='firstDiv'> 
+    
+    <div >
+      <div className='heightTag'></div>
+      <div className='firstDiv'>
         <div className='headings'>
           <h1 className='mainhead' >Job Listing</h1>
           <h5 className='subhead' >Delivering Rapid Solutions with Lasting Impression.</h5>
@@ -42,6 +56,7 @@ const JobList = () => {
           <Container fluid>
             <Row>
               <Col className="sidebar m-4">
+
                 <div className='maindiv'>
                   <div>
                     <h6>Location</h6>
@@ -95,20 +110,30 @@ const JobList = () => {
               </Col>
               <Col sm={9} className="content">
                 <h3 className='mainHead' >List Job Post</h3>
-                <div className='mainDiv'>
-                  <div className='subdiv my-2 rounded' >
-                    <h5 className='mainheads'>Company Name</h5>
-                    <div className='subheads '>
-                      <h6 className='sub' >Job role </h6>
-                      <h6 className='sub'> job type</h6>
-                      <h6 className='sub'>location</h6>
-                      <h6 className='sub'>Salary </h6>
-                      <div className='saveIcon'>
-                      <BsSave className='icons'/>
-                      </div>
-                      <button className='delete'  >Apply</button>
-                    </div>
-                  </div>
+                <div className='mainDiv' >
+                  {
+                    jobs.length > 0 ? (
+                      jobs.map((job, index) => (
+
+                        <div className='subdiv my-2 rounded' key={index}>
+                          <h5 className='mainheads'>{job.companyName} </h5>
+                          <div className='subheads '>
+                            <h6 className='sub' >{job.jobRole} </h6>
+                            <h6 className='sub'>{job.jobType} </h6>
+                            <h6 className='sub'>{job.jobLocation} </h6>
+                            <h6 className='sub'>{job.salary} </h6>
+                            <div className='saveIcon'>
+                              <Link to='/saveJobs' >
+                                <BsSave className='icons' />
+                              </Link>
+                            </div>
+                            <button className='delete'  >Apply</button>
+                          </div>
+                        </div>
+                      ))
+
+                    ) : null
+                  }
                 </div>
               </Col>
             </Row>
