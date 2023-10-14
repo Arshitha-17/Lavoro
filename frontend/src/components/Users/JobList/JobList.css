@@ -61,3 +61,14 @@
     border-radius: 10px;
 }
 
+.saveIcon{
+    height: 23px;
+    width: 23px;
+   
+}
+
+.icons{
+    
+    width: 100%; /* Make the icon width 100% of the parent div */
+    height: 100%;
+}

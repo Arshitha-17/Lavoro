@@ -104,7 +104,7 @@ const JobList = () => {
                       <h6 className='sub'>location</h6>
                       <h6 className='sub'>Salary </h6>
                       <div className='saveIcon'>
-                      <BsSave/>
+                      <BsSave className='icons'/>
                       </div>
                       <button className='delete'  >Apply</button>
                     </div>
