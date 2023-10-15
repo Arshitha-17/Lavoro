@@ -8,7 +8,9 @@ import { authAdmin,
      getCategories,
      editCategory,
      UserBlock,
-     HrBlock
+     HrBlock,
+     allUsers,
+     allHr     
      } from "../controllers/AdminControllers.js"
 
 const adminRouter = express.Router()
@@ -25,6 +27,8 @@ adminRouter.get('/adminCategory',getCategories)
 adminRouter.put('/adminCategory/:id',editCategory)
 adminRouter.post('/userBlock/:id',UserBlock)
 adminRouter.post('/HrBlock/:id',HrBlock)
+adminRouter.get('/allUsers',allUsers)
+adminRouter.get('/allHr',allHr)
 
 
 export default adminRouter

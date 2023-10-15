@@ -26,6 +26,8 @@ import AdminForgotScreen from '../screens/Admins/AdminForgotScreen'
 import AdminOtpScreen from '../screens/Admins/AdminOtpScreen'
 import AdminResetPasswordScreen from '../screens/Admins/AdminResetPasswordScreen'
 import AdminCategoryScreen from '../screens/Admins/AdminCategoryScreen'
+import AdminUserManageScreen from '../screens/Admins/AdminUserManageScreen'
+import AdminHrManageScreen from '../screens/Admins/AdminHrManageScreen'
 
 
 const Routers = () => {
@@ -57,6 +59,8 @@ const Routers = () => {
 <Route path='/admin/otp' element={<AdminOtpScreen/> } />
 <Route path='/admin/resetPassword' element={<AdminResetPasswordScreen/> } />
 <Route path='/admin/categories' element={<AdminCategoryScreen/> } />
+<Route path='/admin/user_manage' element={<AdminUserManageScreen/> } />
+<Route path='/admin/hr_manage' element={<AdminHrManageScreen/> } />
 
     </Routes>
   )

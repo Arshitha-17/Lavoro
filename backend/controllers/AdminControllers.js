@@ -5,6 +5,7 @@ import { AdminSendOtpEmail } from './SendEmail/AdminSendOtpEmail.js'
 import Category from '../models/category.js';
 import User from '../models/userModel.js';
 import Hr from '../models/hrModel.js';
+import { assign } from 'nodemailer/lib/shared/index.js';
 
 //  admin/auth
 const authAdmin = asyncHandler(async (req, res) => {
@@ -154,7 +155,13 @@ const editCategory = asyncHandler(async (req, res) => {
 });
 
 
-// user Hr manage
+// get all user
+const allUsers= asyncHandler(async(req,res)=>{
+    const user = await User.find({})
+    res.status(200).json(user)
+})
+
+// user manage
 
 const UserBlock= asyncHandler(async(req,res)=>{
 
@@ -173,6 +180,13 @@ const UserBlock= asyncHandler(async(req,res)=>{
         } 
 })
 
+// get hr
+const allHr = asyncHandler(async(req,res)=>{
+    const hr = await Hr.find({})
+    res.status(200).json(hr)
+})
+
+// Hr block
 const HrBlock = asyncHandler(async(req,res)=>{
     const HrId =req.params.id
     const hr =  await Hr.findById(HrId)
@@ -195,5 +209,7 @@ export {
     getCategories,
     editCategory,
     UserBlock,
-    HrBlock
+    allUsers,
+    HrBlock,
+    allHr
 }
