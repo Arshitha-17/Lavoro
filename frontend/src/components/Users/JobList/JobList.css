@@ -1,6 +1,6 @@
 
 .firstDiv{
-    padding-top: 100px;
+    padding-top: 60px;
     height: 100vh;
 }
 .headings{
@@ -46,8 +46,25 @@
     padding-top: 25px;
 }
 
+.filterBtn{
+    background: linear-gradient(to bottom, #268b8f,#5c5b5b); 
+    width: 100px;
+    color: white;
+   font-weight: bold;
+   height: 35px;
+   border: 0px;
+   border-radius: 10px;
+
+
+}
+.jobDiv{
+display: flex;
+padding-right: 25px;
+justify-content: space-between ;
+}
 .contentDiv{
     display: flex;
+  
     justify-content: space-between;
     padding-left: 20px;
     padding-right: 20px;

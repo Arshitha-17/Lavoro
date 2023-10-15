@@ -7,7 +7,8 @@ import { authUser,
     forgotPassword,
     otpVerify,
     resetPassword,
-    jobList
+    jobList,
+    categories
  } from "../controllers/userControllers.js"
 
 const router = express.Router()
@@ -22,6 +23,7 @@ router.post('/resetPassword',resetPassword)
 router.post('/logout',logoutUser)
 router.route('/profile').get(protect,userProfile).put(protect,updateUserProfile)
 router.get('/jobList',jobList)
+router.get('/categories',categories)
 
 export default router
 
