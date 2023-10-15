@@ -3,6 +3,8 @@ import Admin from '../models/adminModel.js'
 import generateToken from '../util/generateToken.js';
 import { AdminSendOtpEmail } from './SendEmail/AdminSendOtpEmail.js'
 import Category from '../models/category.js';
+import User from '../models/userModel.js';
+import Hr from '../models/hrModel.js';
 
 //  admin/auth
 const authAdmin = asyncHandler(async (req, res) => {
@@ -152,6 +154,37 @@ const editCategory = asyncHandler(async (req, res) => {
 });
 
 
+// user Hr manage
+
+const UserBlock= asyncHandler(async(req,res)=>{
+
+    const userId = req.params.id
+    const  user= await User.findById(userId)
+    console.log(user);
+     user.isBlock = !user.isBlock
+     await user.save()
+    
+        if(user){
+            res.status(200).json({
+                isBlock:user.isBlock,message:"Success"
+            })
+        }else{
+            res.status(400).json({message:"Id Invalid"})
+        } 
+})
+
+const HrBlock = asyncHandler(async(req,res)=>{
+    const HrId =req.params.id
+    const hr =  await Hr.findById(HrId)
+    hr.isBlock = ! hr.isBlock
+    await hr.save()
+    if(hr){
+        res.status(200).json({hr:hr.isBlock,message:"Success"})
+    }else{
+        res.status(400).json({message:"Invalid Id"})
+    }
+})
+
 export {
     authAdmin,
     AdminForgotPassword,
@@ -160,5 +193,7 @@ export {
     category,
     deleteCategory,
     getCategories,
-    editCategory
+    editCategory,
+    UserBlock,
+    HrBlock
 }
