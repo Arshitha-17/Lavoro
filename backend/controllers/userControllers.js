@@ -77,20 +77,20 @@ const forgotPassword = asyncHandler(async(req,res)=>{
 
   await user.save();
   
-    const emailSent = await sendOtpEmail(user.email,otp)
-    if(emailSent){
-            res.status(200).json({ otp });
-        }else{
-              res.status(500).json({message:'Failed to send email'})
-            }
-          
-// ----------------remove this and uncomment above code 
-    // const emailSent = true
+    // const emailSent = await sendOtpEmail(user.email,otp)
     // if(emailSent){
-    //         res.status(200).json({ message:'OTP Send'});
+    //         res.status(200).json({ otp });
     //     }else{
     //           res.status(500).json({message:'Failed to send email'})
     //         }
+          
+// ----------------remove this and uncomment above code 
+    const emailSent = true
+    if(emailSent){
+            res.status(200).json({ message:'OTP Send'});
+        }else{
+              res.status(500).json({message:'Failed to send email'})
+            }
 })
 
 

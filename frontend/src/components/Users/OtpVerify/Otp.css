@@ -1,0 +1,12 @@
+.resendButton {
+
+    background: linear-gradient(to bottom, #268b8f, #5c5b5b) !important;
+    margin-left: 100px;
+    border-radius: 90px !important;
+    width: 100px;
+}
+
+.resendButton:hover{
+    background: #ffffff !important;
+    color: #268b8f !important;
+}
