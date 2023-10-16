@@ -27,11 +27,14 @@ const Login = () => {
 
       let res = await usersApi.post('users/auth', formData)
       if (res.data) {
-        localStorage.setItem('userInfo', JSON.stringify(res.data))
-        navigate('/')
+        if(res.message==='You Are Blocked'){
+          toast.error(res.data.message)
+        }else{
+
+          localStorage.setItem('userInfo', JSON.stringify(res.data))
+          navigate('/')
+        }
       }
-      console.log(res.data);
-      console.log('User logined');
     } catch (error) {
       toast.error(error.response.data.message)
       console.log(error.response.data.message);

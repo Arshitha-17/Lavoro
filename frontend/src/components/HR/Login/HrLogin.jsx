@@ -28,18 +28,20 @@ const HrLogin = () => {
 
       let res = await usersApi.post('hr/authHr', formData)
       if (res.data) {
-        localStorage.setItem('HRInfo', JSON.stringify(res.data))
-        navigate('/hr/')
+        if (res.data.message === "You are Blocked") {
+          // Display a toast message for blocked HR users
+          toast.error(res.data.message);
+        } else {
+          localStorage.setItem('HRInfo', JSON.stringify(res.data));
+          navigate('/hr/');
+          console.log('Hr logged in');
+        }
       }
-      console.log(res.data);
-      console.log('Hr logined');
     } catch (error) {
-      toast.error(error.response.data.message)
+      toast.error(error.response.data.message);
       console.log(error.response.data.message);
-
     }
-
-  }
+  };
 
   useEffect(() => {
     if (HRInfo) {
