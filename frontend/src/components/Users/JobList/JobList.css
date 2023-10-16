@@ -90,3 +90,16 @@ justify-content: space-between ;
     width: 100%; /* Make the icon width 100% of the parent div */
     height: 100%;
 }
+
+
+.display-flex {
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap to the next line if they don't fit in the container */
+    justify-content: space-between; /* Distribute the cards evenly with space between them */
+    margin: 0 -15px; /* Add negative margin to handle spacing between cards */
+  }
+  
+  .cardMain {
+    flex: 0 0 calc(33.33% - 30px); /* Adjust the width of each card depending on how many cards you want in a row */
+    margin: 0 15px; /* Add margin to space the cards */
+  }

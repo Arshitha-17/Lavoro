@@ -4,6 +4,8 @@ import { Col, Container, Row } from 'react-bootstrap'
 import { BsSave } from "react-icons/bs"
 import { Link } from 'react-router-dom'
 import { usersApi } from '../../../axiosApi/axiosInstance'
+import categoryImg from "/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/web-development-programmer-engineering-coding-website-augmented-reality-interface-screens-developer-project-engineer-programming-software-application-design-cartoon-illustration_107791-3863.avif"
+
 
 const JobList = () => {
   const [categories, setCategories] = useState([])
@@ -23,7 +25,7 @@ const JobList = () => {
         option.id === id ? { ...option, value: !option.value } : option
       )
     );
-    
+
     const getSelectedOptions = () => {
       const selectedOptions = options
         .filter((option) => option.value)
@@ -34,11 +36,11 @@ const JobList = () => {
     getSelectedOptions()
   };
 
-  const handleCategoryCheck = (_id) =>{
-    setCategories ((prevOption)=>
-    prevOption.map((categories)=>
-    categories._id===_id ? {...categories, values: !categories.values} :categories
-    )
+  const handleCategoryCheck = (_id) => {
+    setCategories((prevOption) =>
+      prevOption.map((categories) =>
+        categories._id === _id ? { ...categories, values: !categories.values } : categories
+      )
     );
     const getSelectedOption = () => {
       const selectedOption = categories
@@ -102,16 +104,21 @@ const JobList = () => {
             </div>
           </form>
         </div>
-        <div className='cardMain'>
-          <div className="card" style={{ width: '18rem' }}>
-            <img className="card-img-top" src="..." alt="Card image cap" />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" className="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
+        {/* <div className="display-flex">
+          {categories.length > 0 ? (
+            categories.map((category, index) => (
+              <div className="cardMain" key={index}>
+                <div className="card" style={{ width: '18rem' }}>
+                  <img className="card-img-top" src={categoryImg} alt="Card image cap" />
+                  <div className="card-body">
+                    <h5 className="card-title">{category.categoryName}</h5>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : null}
+        </div> */}
+
       </div>
       <div className='jobListDiv' >
         <div>
@@ -123,56 +130,56 @@ const JobList = () => {
               <Col className="sidebar m-4">
 
                 <form action="">
-                <div className='maindiv'>
-                  <div>
-                    <h6>Location</h6>
-                    <input
-                      type="text"
-                      className="locationInput input form-control"
-                      placeholder="Type location"
-                      onChange={(e) => setLocationFilter(e.target.value)}
-                    />
-
-                  </div>
-                  <hr />
-                  <div>
+                  <div className='maindiv'>
                     <div>
-                      <h6>Job Type</h6>
-                    </div>
-                    {options.map((option) => (
-                      <div className='jobDiv' key={option.id}>
-                        <label>
-                          {option.label}
-                        </label>
-                        <input
-                          type="checkbox"
-                          className="form-check-input"
-                          checked={option.value}
-                          onChange={() => handleTypeCheckboxChange(option.id)}
-                        />
-                      </div>
-                    ))
-                    }
-                  </div>
-                  <hr />
-                  <div>
-                    <div >
-                      <h6>Category</h6>
-                    </div>
-                    {
-                      categories.length > 0 ? (
-                        categories.map((category, index) => (
+                      <h6>Location</h6>
+                      <input
+                        type="text"
+                        className="locationInput input form-control"
+                        placeholder="Type location"
+                        onChange={(e) => setLocationFilter(e.target.value)}
+                      />
 
-                          <div className='contentDiv' key={index}>
-                            <p>{category.categoryName} </p>
-                            <input onChange={()=>handleCategoryCheck(categories._id)} type="checkbox" className="form-check-input" id="check2" name="option2" value="something" />
-                          </div>
-                        ))
-                      ) : null
-                    }
-                    <button className='filterBtn' >Apply Filter</button>
+                    </div>
+                    <hr />
+                    <div>
+                      <div>
+                        <h6>Job Type</h6>
+                      </div>
+                      {options.map((option) => (
+                        <div className='jobDiv' key={option.id}>
+                          <label>
+                            {option.label}
+                          </label>
+                          <input
+                            type="checkbox"
+                            className="form-check-input"
+                            checked={option.value}
+                            onChange={() => handleTypeCheckboxChange(option.id)}
+                          />
+                        </div>
+                      ))
+                      }
+                    </div>
+                    <hr />
+                    <div>
+                      <div >
+                        <h6>Category</h6>
+                      </div>
+                      {
+                        categories.length > 0 ? (
+                          categories.map((category, index) => (
+
+                            <div className='contentDiv' key={index}>
+                              <p>{category.categoryName} </p>
+                              <input onChange={() => handleCategoryCheck(categories._id)} type="checkbox" className="form-check-input" id="check2" name="option2" value="something" />
+                            </div>
+                          ))
+                        ) : null
+                      }
+                      <button className='filterBtn' >Apply Filter</button>
+                    </div>
                   </div>
-                </div>
                 </form>
               </Col>
               <Col sm={9} className="content">

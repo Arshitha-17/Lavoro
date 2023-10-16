@@ -28,7 +28,7 @@ const Profile = () => {
                         qualification: res.data.qualification,
                         experience: res.data.experience,
                         skills: res.data.skills,
-                        bio: res.data.bio,
+                        bio: res.data.bio
                     });
                 } catch (error) {
                     console.error("Error fetching user:", error);
