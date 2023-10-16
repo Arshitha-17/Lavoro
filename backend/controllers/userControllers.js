@@ -226,6 +226,13 @@ const jobList = asyncHandler(async (req, res) => {
     res.status(200).json({ jobs })
 })
 
+// Job detail page
+const jobDetailPage= asyncHandler(async(req,res)=>{
+    const jobId = req.params.id;
+    const jobDetail = await Job.findById(jobId)
+    console.log(jobDetail);
+    res.status(200).json(jobDetail)
+})
 
 export {
     authUser,
@@ -237,6 +244,7 @@ export {
     userProfile,
     updateUserProfile,
     jobList,
-    categories
+    categories,
+    jobDetailPage
 
 }

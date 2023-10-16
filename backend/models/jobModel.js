@@ -34,6 +34,14 @@ const jobSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    jobDescription:{
+        type:String,
+        required:false,
+    },
+    qualification:{
+        type:String,
+        required:false
+    }
 
 
 }, {

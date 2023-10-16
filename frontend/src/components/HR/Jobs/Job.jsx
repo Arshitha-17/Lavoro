@@ -19,12 +19,14 @@ const Job = () => {
     const [jobLocation, setJobLocation] = useState('')
     const [lastDate, setLastDate] = useState('')
     const [requirements, setRequirements] = useState('')
+    const [jobDescription, setJobDescription] = useState('')
+    const [qualification, setQualification] = useState('')
     const [allCategories, setAllCategories] = useState([])
 
     const submitHandler = async (e) => {
         e.preventDefault();
         console.log("saved");
-        if (!companyName || !jobRole || !experience || !salary || !jobType || !jobLocation || !lastDate || !requirements) {
+        if (!companyName || !jobRole || !experience || !salary || !jobType || !jobLocation || !lastDate || !requirements || !jobDescription || !qualification) {
             toast.error('All field are required')
             return
         }
@@ -37,6 +39,8 @@ const Job = () => {
             jobLocation,
             lastDate,
             requirements,
+            jobDescription,
+            qualification
         };
         try {
             const res = await usersApi.post('hr/HrJobAdd', jobData)
@@ -52,6 +56,8 @@ const Job = () => {
                 setLastDate('')
                 setRequirements('')
                 setSalary('')
+                setJobDescription('')
+                setQualification('')
             }
 
         } catch (error) {
@@ -156,6 +162,13 @@ const Job = () => {
                                 </Form.Control>
                                 <Form.Control className='my-4 job_input'
                                     type='text'
+                                    value={qualification}
+                                    placeholder='Qualification'
+                                    onChange={(e) => setQualification(e.target.value)}
+                                >
+                                </Form.Control>
+                                <Form.Control className='my-4 job_input'
+                                    type='text'
                                     value={jobType}
                                     placeholder='Job type'
                                     onChange={(e) => setJobType(e.target.value)}
@@ -177,10 +190,18 @@ const Job = () => {
                                 </Form.Control>
                                 <Form.Control className='my-4 job_input'
                                     as='textarea'
-                                    rows={5}
+                                    rows={3}
                                     value={requirements}
                                     placeholder='Requirements'
                                     onChange={(e) => setRequirements(e.target.value)}
+                                >
+                                </Form.Control>
+                                <Form.Control className='my-4 job_input'
+                                    as='textarea'
+                                    rows={5}
+                                    value={jobDescription}
+                                    placeholder='Job Description'
+                                    onChange={(e) => setJobDescription(e.target.value)}
                                 >
                                 </Form.Control>
                             </Form.Group>

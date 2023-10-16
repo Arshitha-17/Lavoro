@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './JobList.css'
 import { Col, Container, Row } from 'react-bootstrap'
 import { BsSave } from "react-icons/bs"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { usersApi } from '../../../axiosApi/axiosInstance'
 import categoryImg from "/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/web-development-programmer-engineering-coding-website-augmented-reality-interface-screens-developer-project-engineer-programming-software-application-design-cartoon-illustration_107791-3863.avif"
 
@@ -12,6 +12,8 @@ const JobList = () => {
   const [jobs, setJobs] = useState([]);
   const [locationFilter, setLocationFilter] = useState('');
   const [checkboxChecked, setCheckboxChecked] = useState(false);
+
+  const navigate = useNavigate()
 
   const [options, setOptions] = useState([
     { id: 1, label: 'Fulltime', value: false },
@@ -199,7 +201,9 @@ const JobList = () => {
                               <BsSave className='icons' />
                             </Link>
                           </div>
-                          <button className='delete'  >Apply</button>
+                          <button onClick={()=>{
+                          navigate(`/jobDetails/${job._id}`)
+                          }} className='apply'  >Apply</button>
                         </div>
                       </div>
                     ))

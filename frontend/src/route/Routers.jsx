@@ -8,6 +8,8 @@ import ForgotScreen from '../screens/Users/ForgotScreen'
 import OtpScreen from '../screens/Users/OtpScreen'
 import ResetPasswordScreen from '../screens/Users/ResetPasswordScreen'
 import JobListingScreen from '../screens/Users/JobListingScreen'
+import UserProfileScreen from '../screens/Users/UserProfileScreen'
+import JobDetailScreen from '../screens/Users/JobDetailScreen'
 
 // --------------HR------------------
 import HRLoginScreen from '../screens/HR/HRLoginScreen'
@@ -28,7 +30,6 @@ import AdminResetPasswordScreen from '../screens/Admins/AdminResetPasswordScreen
 import AdminCategoryScreen from '../screens/Admins/AdminCategoryScreen'
 import AdminUserManageScreen from '../screens/Admins/AdminUserManageScreen'
 import AdminHrManageScreen from '../screens/Admins/AdminHrManageScreen'
-import UserProfileScreen from '../screens/Users/UserProfileScreen'
 
 
 const Routers = () => {
@@ -42,6 +43,7 @@ const Routers = () => {
         <Route path='/resetPassword' element={<ResetPasswordScreen/>} />   
         <Route path='/jobList' element={<JobListingScreen/>} />   
         <Route path='/profile' element={<UserProfileScreen/>} />   
+        <Route path='/jobDetails' element={<JobDetailScreen/>} />   
 
 
 {/*-------------- HR Routes--------------  */}
