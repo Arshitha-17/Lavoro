@@ -19,11 +19,31 @@ const userSchema = mongoose.Schema({
         type:String ,
         required: false
     },
+    image:{
+        type:String,
+        required:false
+
+    },
     isBlock:{
         type:Boolean,
         default:false
-    }
-
+    },
+    qualification:{
+        type:String,
+        default:false
+    },
+    experience:{
+        type:String,
+        default:false
+    },
+    skills:{
+        type:String,
+        default:false
+    },
+    bio:{
+        type:String,
+        default:false
+    },
 },{
     timestamps:true
 })
