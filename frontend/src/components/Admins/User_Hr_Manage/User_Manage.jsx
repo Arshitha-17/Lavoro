@@ -28,7 +28,7 @@ const User_Manage = () => {
       setAllUsers(res.data);
     };
     fetchUser();
-  }, []);
+  }, [handleUserBlock]);
 
   return (
     <div>

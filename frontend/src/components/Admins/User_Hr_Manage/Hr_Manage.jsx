@@ -32,7 +32,7 @@ const Hr_Manage = () => {
 
   useEffect(() => {
     fetchHrData();
-  }, []);
+  }, [handleHrBlock]);
 
   return (
     <div>
