@@ -9,7 +9,7 @@ import "./Otp.css";
 
 const Otp = () => {
   const [otp, setOtp] = useState('');
-  const [timer, setTimer] = useState(60); // Initial countdown time in seconds
+  const [timer, setTimer] = useState(60); 
   const [resendDisabled, setResendDisabled] = useState(false);
   const [alertVisible, setAlertVisible] = useState(false);
 
@@ -22,9 +22,9 @@ const Otp = () => {
       if (timer > 0) {
         setTimer(timer - 1);
       } else {
-        clearInterval(countdownInterval); // Stop the countdown
+        clearInterval(countdownInterval); 
         setResendDisabled(false);
-        setAlertVisible(true); // Display the alert message
+        setAlertVisible(true);
       }
     }, 1000);
 
@@ -39,7 +39,6 @@ const Otp = () => {
 
   const handleResendClick = async () => {
     try {
-      // Send a new OTP (replace with your actual OTP resend logic)
       const res = await usersApi.post('users/forgot', { email });
       if (res.status === 200) {
         startResendTimer();
@@ -53,7 +52,7 @@ const Otp = () => {
     e.preventDefault();
     if (timer === 0) {
       setResendDisabled(false);
-      setAlertVisible(true); // Display the alert message
+      setAlertVisible(true);
       return;
     }
     try {
