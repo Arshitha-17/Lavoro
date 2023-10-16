@@ -157,16 +157,12 @@ const logoutUser = asyncHandler(async (req, res) => {
 //  user profile
 // route GET api/users/profile
 const userProfile = asyncHandler(async (req, res) => {
-    const user = {
-        _id: req.user._id,
-        name: req.user.name,
-        email: req.user.email,
-        qualification: user.qualification,
-        experience: user.experience,
-        skills: user.skills,
-        bio: user.bio,
-        image: user.image
-    }
+    console.log("Has entered the controller");
+    const userId = req.params.id
+    console.log(userId);
+
+    const user =  await User.findById({_id:userId})
+    console.log(user);
     res.status(200).json(user)
 })
 
@@ -176,7 +172,9 @@ const userProfile = asyncHandler(async (req, res) => {
 //  user progile
 // route PUT api/users/profile
 const updateUserProfile = asyncHandler(async (req, res) => {
-    const user = await User.findById(req.user._id);
+    console.log(req.body)
+    const userId = req.params.id
+    const user = await User.findById(userId);
 
     if (user) {
         user.name = req.body.name || user.name;
@@ -187,13 +185,15 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         user.bio = req.body.bio || user.bio;
         user.image = req.body.image || user.image;
 
-        if (req.body.password) {
-            // Hash and update the password
-            const salt = await bcrypt.genSalt(10);
-            user.password = await bcrypt.hash(req.body.password, salt);
-        }
+        // if (req.body.password) {
+        //     // Hash and update the password
+        //     const salt = await bcrypt.genSalt(10);
+        //     user.password = await bcrypt.hash(req.body.password, salt);
+        // }
 
         const updatedUser = await user.save();
+
+        console.log(updatedUser)
 
         res.status(200).json({
             _id: updatedUser._id,

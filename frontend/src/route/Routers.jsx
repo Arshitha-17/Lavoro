@@ -28,6 +28,7 @@ import AdminResetPasswordScreen from '../screens/Admins/AdminResetPasswordScreen
 import AdminCategoryScreen from '../screens/Admins/AdminCategoryScreen'
 import AdminUserManageScreen from '../screens/Admins/AdminUserManageScreen'
 import AdminHrManageScreen from '../screens/Admins/AdminHrManageScreen'
+import UserProfileScreen from '../screens/Users/UserProfileScreen'
 
 
 const Routers = () => {
@@ -40,6 +41,7 @@ const Routers = () => {
         <Route path='/otp' element={<OtpScreen/>} />       
         <Route path='/resetPassword' element={<ResetPasswordScreen/>} />   
         <Route path='/jobList' element={<JobListingScreen/>} />   
+        <Route path='/profile' element={<UserProfileScreen/>} />   
 
 
 {/*-------------- HR Routes--------------  */}

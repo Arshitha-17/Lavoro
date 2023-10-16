@@ -21,7 +21,7 @@ router.post('/forgot',forgotPassword)
 router.post('/otp',otpVerify)
 router.post('/resetPassword',resetPassword)
 router.post('/logout',logoutUser)
-router.route('/profile').get(protect,userProfile).put(protect,updateUserProfile)
+router.route('/profile/:id').get(userProfile).put(updateUserProfile)
 router.get('/jobList',jobList)
 router.get('/categories',categories)
 
