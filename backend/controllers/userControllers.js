@@ -8,6 +8,9 @@ const authUser = asyncHandler(async(req,res)=>{
     const {email,password} = req.body;
     const  user = await User.findOne({email})
     
+    if(user.isBlock===true){
+        return res.status(500).json({message:"You are Blocked"})
+    }
     if(user && (await user.matchPassword(password))){
         generateToken(res,user._id);
         res.status(201).json({
