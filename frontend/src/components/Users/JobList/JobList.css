@@ -1,5 +1,5 @@
 
-.firstDiv{
+.firstDives{
     padding-top: 60px;
     height: 100vh;
 }
@@ -103,3 +103,5 @@ justify-content: space-between ;
     flex: 0 0 calc(33.33% - 30px); /* Adjust the width of each card depending on how many cards you want in a row */
     margin: 0 15px; /* Add margin to space the cards */
   }
+
+  

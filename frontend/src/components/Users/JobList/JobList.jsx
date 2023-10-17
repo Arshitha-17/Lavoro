@@ -12,11 +12,12 @@ const JobList = () => {
   const [jobs, setJobs] = useState([]);
   const [locationFilter, setLocationFilter] = useState('');
   const [checkboxChecked, setCheckboxChecked] = useState(false);
+  const [filteredJobs,setFilteredJobs] = useState([])
 
   const navigate = useNavigate()
 
   const [options, setOptions] = useState([
-    { id: 1, label: 'Fulltime', value: false },
+    { id: 1, label: 'Full Time', value: false },
     { id: 2, label: 'Part time', value: false },
     { id: 3, label: 'Freelance', value: false },
   ]);
@@ -27,38 +28,53 @@ const JobList = () => {
         option.id === id ? { ...option, value: !option.value } : option
       )
     );
-
-    const getSelectedOptions = () => {
-      const selectedOptions = options
-        .filter((option) => option.value)
-        .map((option) => option.label);
-
-      alert('Selected options: ' + selectedOptions.join(', '));
-    };
-    getSelectedOptions()
   };
 
   const handleCategoryCheck = (_id) => {
+    console.log(_id);
     setCategories((prevOption) =>
       prevOption.map((categories) =>
-        categories._id === _id ? { ...categories, values: !categories.values } : categories
+        categories._id === _id ? { ...categories, checked: !categories.checked } : categories
       )
     );
-    const getSelectedOption = () => {
-      const selectedOption = categories
-        .filter((categories) => categories.value)
-        .map((categories) => categories.label);
+  };
 
-      alert('Selected options: ' + selectedOption.join(', '));
-    };
-    getSelectedOption()
+  const filterHandler = (e) => {
+    e.preventDefault();
+    const filteredJobs = jobs.filter((job) => {
+      const locationMatchs = locationFilter ? job.jobLocation.includes(locationFilter) : true;
+      // Check location filter
+      const locationMatch = locationFilter === '' || job.jobLocation === locationFilter;
+  
+      // Check job type filter
+      const jobTypeMatch = options.some((option) => option.value && option.label === job.jobType);
+  
+      // Check category filter
+      const categoryMatch = categories.some((category) => category.checked && category.categoryName === job.jobRole);
+
+      // Return true if all criteria are met
+      return locationMatch && jobTypeMatch && categoryMatch || locationMatchs;
+    });
+
+  
+    // Update the state with filtered jobs
+    setFilteredJobs(filteredJobs);
+  
+    console.log(filteredJobs);
+    console.log("Filter handler");
   };
   // category 
   useEffect(() => {
     const fetchCategory = async () => {
       let res = await usersApi.get('users/categories')
-      setCategories(res.data)
       console.log(res.data);
+      let newCategories = []
+      for(let i=0;i<res.data.length;i++){
+        res.data[i].checked=false
+        newCategories.push(res.data[i])
+      }
+      setCategories(newCategories)
+      console.log(newCategories);
     }
     fetchCategory()
   }, [])
@@ -67,26 +83,23 @@ const JobList = () => {
     const fetchJobs = async () => {
       let res = await usersApi.get('users/jobList')
       setJobs(res.data.jobs)
-
-
-
     }
     fetchJobs()
 
 
   }, [])
 
-  const filteredJobs = jobs.filter((job) => {
-    const locationMatch = locationFilter ? job.jobLocation.includes(locationFilter) : true;
-    const checkboxMatch = checkboxChecked ? job.jobType === 'your-checkbox-value' : true;
+  // const filteredJobs = jobs.filter((job) => {
+  //   const locationMatch = locationFilter ? job.jobLocation.includes(locationFilter) : true;
+  //   const checkboxMatch = checkboxChecked ? job.jobType === 'your-checkbox-value' : true;
 
-    return locationMatch && checkboxMatch;
-  });
+  //   return locationMatch && checkboxMatch;
+  // });
 
   return (
     <div >
       <div className='heightTag'></div>
-      <div className='firstDiv'>
+      <div className='firstDives'>
         <div className='headings'>
           <h1 className='mainhead' >Job Listing</h1>
           <h5 className='subhead' >Delivering Rapid Solutions with Lasting Impression.</h5>
@@ -131,7 +144,7 @@ const JobList = () => {
             <Row>
               <Col className="sidebar m-4">
 
-                <form action="">
+                <form onSubmit={filterHandler}>
                   <div className='maindiv'>
                     <div>
                       <h6>Location</h6>
@@ -174,12 +187,12 @@ const JobList = () => {
 
                             <div className='contentDiv' key={index}>
                               <p>{category.categoryName} </p>
-                              <input onChange={() => handleCategoryCheck(categories._id)} type="checkbox" className="form-check-input" id="check2" name="option2" value="something" />
+                              <input onChange={() => handleCategoryCheck(category._id)} type="checkbox" className="form-check-input" id="check2" name="option2" value="something" />
                             </div>
                           ))
                         ) : null
                       }
-                      <button className='filterBtn' >Apply Filter</button>
+                      <button type='submit' className='filterBtn' >Apply Filter</button>
                     </div>
                   </div>
                 </form>
@@ -187,7 +200,8 @@ const JobList = () => {
               <Col sm={9} className="content">
                 <h3 className='mainHead' >List Job Post</h3>
                 <div className="mainDiv">
-                  {filteredJobs.length > 0 ? (
+                  {
+                    filteredJobs && filteredJobs.length > 0 ? (
                     filteredJobs.map((job, index) => (
                       <div className='subdiv my-2 rounded' key={index}>
                         <h5 className='mainheads'>{job.companyName} </h5>
@@ -203,11 +217,31 @@ const JobList = () => {
                           </div>
                           <button onClick={()=>{
                           navigate(`/jobDetails/${job._id}`)
-                          }} className='apply'  >Apply</button>
+                          }} className='delete'>Apply</button>
                         </div>
                       </div>
                     ))
-                  ) : (
+                  ) : (jobs && jobs.length > 0)?(
+                    jobs.map((job, index) => (
+                      <div className='subdiv my-2 rounded' key={index}>
+                        <h5 className='mainheads'>{job.companyName} </h5>
+                        <div className='subheads '>
+                          <h6 className='sub' >{job.jobRole} </h6>
+                          <h6 className='sub'>{job.jobType} </h6>
+                          <h6 className='sub'>{job.jobLocation} </h6>
+                          <h6 className='sub'>{job.salary} </h6>
+                          <div className='saveIcon'>
+                            <Link to='/saveJobs' >
+                              <BsSave className='icons' />
+                            </Link>
+                          </div>
+                          <button onClick={()=>{
+                          navigate(`/jobDetails/${job._id}`)
+                          }} className='delete'  >Apply</button>
+                        </div>
+                      </div>
+                    ))
+                  ):(
                     <p>No matching jobs found.</p>
                   )}
                 </div>

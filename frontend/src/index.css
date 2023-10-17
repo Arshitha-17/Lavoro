@@ -1,0 +1,23 @@
+/* {filteredJobs.length > 0 ? (
+    filteredJobs.map((job, index) => (
+      <div className='subdiv my-2 rounded' key={index}>
+        <h5 className='mainheads'>{job.companyName} </h5>
+        <div className='subheads '>
+          <h6 className='sub' >{job.jobRole} </h6>
+          <h6 className='sub'>{job.jobType} </h6>
+          <h6 className='sub'>{job.jobLocation} </h6>
+          <h6 className='sub'>{job.salary} </h6>
+          <div className='saveIcon'>
+            <Link to='/saveJobs' >
+              <BsSave className='icons' />
+            </Link>
+          </div>
+          <button onClick={()=>{
+          navigate(`/jobDetails/${job._id}`)
+          }} className='apply'  >Apply</button>
+        </div>
+      </div>
+    ))
+  ) : (
+    <p>No matching jobs found.</p>
+  )} */

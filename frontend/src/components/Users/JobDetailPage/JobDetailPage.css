@@ -1,0 +1,95 @@
+.header {
+    padding-top: 45px;
+    text-align: center;
+
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* first div */
+
+.firstDiv {
+    display: flex;
+    /* justify-content: space-between; */
+    padding: 50px;
+    padding-bottom: 10px;
+    padding-top: 0px;
+}
+
+.jobDetailDiv1 {
+    background-color: #196568;
+    color: white;
+    padding: 50px;
+    margin: 25px;
+    width: 40%;
+    border-radius: 25px;
+}
+
+.jobDetailDiv2 {
+    background-color: #196568;
+    color: white;
+    padding: 50px;
+    margin: 25px;
+    width: 40%;
+    border-radius: 25px;
+}
+
+.sencondDiv {
+    display: flex;
+    /* justify-content: space-between; */
+    padding: 50px;
+    padding-top: 10px;
+
+
+}
+
+
+.jobDetailDiv3 {
+    background-color: #196568;
+    color: white;
+    padding: 50px;
+    margin: 25px;
+    width: 40%;
+    border-radius: 25px;
+    
+}
+
+.jobDetailDiv4{
+    padding-top: 10px !important;
+    background-color: #196568;
+    color: white;
+    padding: 50px;
+    margin: 25px;
+    width: 40%;
+    border-radius: 25px;
+}
+
+.jobSubdetails{
+   padding-right: 25px;
+   font-weight: normal;
+}
+
+.compName{
+    padding-bottom: 8px;
+    padding-top: 5px;
+    text-align: center;
+}
+
+.subheaders{
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.applybtnDiv{
+    text-align: center;
+}
+
+.applybtn{
+    background-color: white;
+    border-radius: 90px;
+    border: solid white;
+    width: 150px;
+}

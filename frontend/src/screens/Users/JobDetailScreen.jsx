@@ -5,3 +5,4 @@ const JobDetailScreen = () => {
   )
 }
 export default JobDetailScreen
+ 

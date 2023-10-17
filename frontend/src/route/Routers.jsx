@@ -43,7 +43,7 @@ const Routers = () => {
         <Route path='/resetPassword' element={<ResetPasswordScreen/>} />   
         <Route path='/jobList' element={<JobListingScreen/>} />   
         <Route path='/profile' element={<UserProfileScreen/>} />   
-        <Route path='/jobDetails' element={<JobDetailScreen/>} />   
+        <Route path='/jobDetails/:jobId' element={<JobDetailScreen/>} />   
 
 
 {/*-------------- HR Routes--------------  */}
