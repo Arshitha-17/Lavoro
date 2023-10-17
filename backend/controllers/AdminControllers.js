@@ -117,7 +117,7 @@ const category = asyncHandler(async (req, res) => {
 
 // get category
 const getCategories = asyncHandler(async (req, res) => {
-    const categories = await Category.find({})
+    const categories = await Category.find({deleted:false})
     res.status(200).json(categories);
 })
 
@@ -125,7 +125,9 @@ const getCategories = asyncHandler(async (req, res) => {
 const deleteCategory = asyncHandler(async (req, res) => {
     const { id } = req.params;
     console.log(id);
-    const category = await Category.findByIdAndDelete(id)
+    const category = await Category.findById(id)
+    category.deleted=true
+    category.save()
     res.status(200).json({ message: 'Delete Successfully' })
     console.log(id);
 })

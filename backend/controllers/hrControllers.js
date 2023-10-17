@@ -129,7 +129,7 @@ const HrResetPassword = asyncHandler(async (req, res) => {
 
 const getCategories = asyncHandler(async(req,res)=>{
     
-    const jobCategory = await Category.find({})
+    const jobCategory = await Category.find({deleted:false})
     res.status(200).json(jobCategory)
 })
 
