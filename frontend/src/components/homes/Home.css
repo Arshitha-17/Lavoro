@@ -24,6 +24,12 @@
   .cardTitle{
     font-size:medium !important;
     text-align: center;
+    text-decoration: none !important;
+   
+  }
+  .TitleLink{
+    text-decoration: none !important;
+    color: #075658;
   }
 
   .cards{
@@ -31,3 +37,4 @@
  margin-right: 15px;
  margin-top: 10px;
   }
+

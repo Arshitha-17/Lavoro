@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './JobList.css'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Card, Col, Container, Row } from 'react-bootstrap'
 import { BsSave } from "react-icons/bs"
 import { Link, useNavigate } from 'react-router-dom'
 import { usersApi } from '../../../axiosApi/axiosInstance'
@@ -97,7 +97,7 @@ const JobList = () => {
           <h1 className='mainhead' >Job Listing</h1>
           <h5 className='subhead' >Delivering Rapid Solutions with Lasting Impression.</h5>
         </div>
-        <div className='searchbar '>
+        {/* <div className='searchbar '>
           <form className="form-inline my-2 my-lg-0">
             <div className=" input-group">
               <input
@@ -111,21 +111,26 @@ const JobList = () => {
               </div>
             </div>
           </form>
-        </div>
-        {/* <div className="display-flex">
-          {categories.length > 0 ? (
-            categories.map((category, index) => (
-              <div className="cardMain" key={index}>
-                <div className="card" style={{ width: '18rem' }}>
-                  <img className="card-img-top" src={categoryImg} alt="Card image cap" />
-                  <div className="card-body">
-                    <h5 className="card-title">{category.categoryName}</h5>
-                  </div>
-                </div>
-              </div>
-            ))
-          ) : null}
         </div> */}
+        
+        <div className='cardMainDivs '>
+          {
+            categories.length > 0 ? (
+              categories.map((category, index) => (
+                <Card className='cards' style={{ width: '14rem', height: '20rem' }} key={index} >
+                  <Card.Img variant="top"
+                    src={`http://localhost:5000/images/${category.image}`}
+                   />
+                  <Card.Body>
+                    <Link className='TitleLink' to="/jobList">
+                    <Card.Title className='cardTitle'>{category.categoryName} </Card.Title>
+                    </Link>
+                  </Card.Body>
+                </Card>
+              ))
+            ) : null
+          }
+        </div>
 
       </div>
       <div className='jobListDiv' >

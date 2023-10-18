@@ -2,7 +2,8 @@
 import { useEffect, useState } from 'react';
 import './Home.css';
 import { usersApi } from '../../axiosApi/axiosInstance';
-import { Button, Card } from 'react-bootstrap';
+import {  Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 
@@ -35,7 +36,9 @@ const Home = () => {
                     src={`http://localhost:5000/images/${category.image}`}
                    />
                   <Card.Body>
+                    <Link className='TitleLink' to="/jobList">
                     <Card.Title className='cardTitle'>{category.categoryName} </Card.Title>
+                    </Link>
                   </Card.Body>
                 </Card>
               ))
