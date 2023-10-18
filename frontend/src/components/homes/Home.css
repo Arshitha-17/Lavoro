@@ -8,7 +8,9 @@
     margin-left: 10px; 
   } */
 
-
+.maindiv{
+  height: 100vh;
+}
   .homeHeadDiv{
     padding-top: 55px;
     color: white !important;
@@ -38,3 +40,19 @@
  margin-top: 10px;
   }
 
+
+  /* Job list div start */
+
+  .jobListDivs{
+    height: 100vh;
+    padding: 0px;
+    margin: 0px;
+    background-color: black;
+  }
+
+  .listdiv{
+    padding: 20px;
+    color: white;
+  }
+
+  

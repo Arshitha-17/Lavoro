@@ -14,7 +14,7 @@ h1 {
     display: flex;
     /* justify-content: space-between; */
     padding: 50px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
     padding-top: 0px;
 }
 
@@ -31,6 +31,7 @@ h1 {
     background-color: #196568;
     color: white;
     padding: 50px;
+    
     margin: 25px;
     width: 40%;
     border-radius: 25px;
@@ -40,7 +41,7 @@ h1 {
     display: flex;
     /* justify-content: space-between; */
     padding: 50px;
-    padding-top: 10px;
+    padding-top: 5px;
 
 
 }
