@@ -9,7 +9,7 @@ import "./Otp.css";
 
 const Otp = () => {
   const [otp, setOtp] = useState('');
-  const [timer, setTimer] = useState(60); 
+  const [timer, setTimer] = useState(20); 
   const [resendDisabled, setResendDisabled] = useState(false);
   const [alertVisible, setAlertVisible] = useState(false);
 
@@ -34,7 +34,7 @@ const Otp = () => {
   const startResendTimer = () => {
     setResendDisabled(true);
     setAlertVisible(false);
-    setTimer(60);
+    setTimer(20);
   };
 
   const handleResendClick = async () => {

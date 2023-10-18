@@ -32,7 +32,7 @@ const JobDetailPage = () => {
             </div>
 
             <div>
-                <p className=' p-3 text-white' >{jobDetail.createdAt.slice(0, 10)} by {jobDetail.companyName} </p>
+                <p className=' p-3 text-white' >{jobDetail.createdAt ?jobDetail.createdAt.slice(0, 10):jobDetail.createdAt }   by {jobDetail.companyName} </p>
             </div>
             <div className='firstDiv' >
                 <div className='jobDetailDiv1'>
@@ -90,7 +90,7 @@ const JobDetailPage = () => {
                    <p>{jobDetail.experience} </p>
                    </div>
                    <div>
-                   <p>{jobDetail.lastDate.slice(0, 10)} </p>
+                   <p>{jobDetail.lastDate?jobDetail.lastDate.slice(0, 10):jobDetail.lastDate} </p>
                    </div>
                    <div>
                    <p>{jobDetail.jobType} </p>

@@ -162,7 +162,8 @@ const JobList = () => {
                         <h6>Job Type</h6>
                       </div>
                       {options.map((option) => (
-                        <div className='jobDiv' key={option.id}>
+                       <div className='jobtype' >
+                         <div className='jobDiv' key={option.id}>
                           <label>
                             {option.label}
                           </label>
@@ -173,6 +174,7 @@ const JobList = () => {
                             onChange={() => handleTypeCheckboxChange(option.id)}
                           />
                         </div>
+                       </div>
                       ))
                       }
                     </div>
