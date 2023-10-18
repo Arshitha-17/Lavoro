@@ -12,28 +12,37 @@ const Category = () => {
   const [allCategories, setAllCategories] = useState([])
   const [editCategoryModalVisible, setEditCategoryModalVisible] = useState(false);
   const [editedCategory, setEditedCategory] = useState({ id: '', name: '' });
+  const [categoryImage, setCategoryImage] = useState(null);
 
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setCategoryImage(file);
+  };
 
   const addCategory = async () => {
-
     try {
+      const formData = new FormData();
+      formData.append('categoryName', newCategory);
+      formData.append('categoryImage', categoryImage);
 
-      let res = await usersApi.post('admin/adminCategory', { categoryName: newCategory })
-      console.log(res)
+      let res = await usersApi.post('admin/adminCategory', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
       if (res.data.message) {
-        toast.success("Successfully added")
+        toast.success('Successfully added');
       }
-      setNewCategory('')
-      setShowModal(false)
-      setAdded(true)
-
+      setNewCategory('');
+      setCategoryImage(null);
+      setShowModal(false);
+      setAdded(true);
     } catch (error) {
-
-      return toast.error(error.response.data.message)
-
-
+      return toast.error(error.response.data.message);
     }
-  }
+  };
 
 
   // delete
@@ -77,7 +86,7 @@ const Category = () => {
       toast.error('Error Occurred');
     }
   };
-  
+
 
   // get method
   useEffect(() => {
@@ -144,6 +153,10 @@ const Category = () => {
               value={newCategory}
               onChange={(e) => setNewCategory(e.target.value)}
             />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Category Image</Form.Label>
+            <Form.Control type="file" onChange={handleImageChange} accept="image/*" />
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>

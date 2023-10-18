@@ -95,17 +95,16 @@ const AdminResetPassword = asyncHandler(async (req, res) => {
 // admin/category
 const category = asyncHandler(async (req, res) => {
     const { categoryName } = req.body;
+    const { file } = req; 
+
     console.log(req.body);
     try {
-        // Check if any category already exists with a similar name
         const existingCategory = await Category.findOne({ categoryName: { $regex: new RegExp(categoryName, 'i') } });
-
         if (existingCategory) {
             return res.status(400).json({ message: "Category already added" });
         }
 
-        // If the category doesn't exist, create and save it
-        const categories = new Category({ categoryName });
+        const categories = new Category({ categoryName, image: file.filename });
         await categories.save();
 
         return res.status(201).json({ message: "Category added successfully" });

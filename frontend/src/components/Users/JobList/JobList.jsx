@@ -4,14 +4,13 @@ import { Col, Container, Row } from 'react-bootstrap'
 import { BsSave } from "react-icons/bs"
 import { Link, useNavigate } from 'react-router-dom'
 import { usersApi } from '../../../axiosApi/axiosInstance'
-import categoryImg from "/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/web-development-programmer-engineering-coding-website-augmented-reality-interface-screens-developer-project-engineer-programming-software-application-design-cartoon-illustration_107791-3863.avif"
 
 
 const JobList = () => {
   const [categories, setCategories] = useState([])
   const [jobs, setJobs] = useState([]);
   const [locationFilter, setLocationFilter] = useState('');
-  const [checkboxChecked, setCheckboxChecked] = useState(false);
+  // const [checkboxChecked, setCheckboxChecked] = useState(false);
   const [filteredJobs,setFilteredJobs] = useState([])
 
   const navigate = useNavigate()
@@ -31,7 +30,6 @@ const JobList = () => {
   };
 
   const handleCategoryCheck = (_id) => {
-    console.log(_id);
     setCategories((prevOption) =>
       prevOption.map((categories) =>
         categories._id === _id ? { ...categories, checked: !categories.checked } : categories
@@ -59,22 +57,17 @@ const JobList = () => {
   
     // Update the state with filtered jobs
     setFilteredJobs(filteredJobs);
-  
-    console.log(filteredJobs);
-    console.log("Filter handler");
   };
   // category 
   useEffect(() => {
     const fetchCategory = async () => {
       let res = await usersApi.get('users/categories')
-      console.log(res.data);
       let newCategories = []
       for(let i=0;i<res.data.length;i++){
         res.data[i].checked=false
         newCategories.push(res.data[i])
       }
       setCategories(newCategories)
-      console.log(newCategories);
     }
     fetchCategory()
   }, [])

@@ -1,4 +1,19 @@
 import express from "express"
+import multer from 'multer';
+
+
+const storage = multer.diskStorage({
+     destination: (req, file, cb) => {
+       cb(null, 'backend/public/images');
+     },
+     filename: (req, file, cb) => {
+       cb(null, `${Date.now()}-${file.originalname}`);
+     },
+   });
+   
+   const upload = multer({ storage });
+   
+
 import { authAdmin,
      AdminForgotPassword,
      AdminOtp,
@@ -21,7 +36,11 @@ adminRouter.post('/authAdmin',authAdmin)
 adminRouter.post('/adminForgot',AdminForgotPassword)
 adminRouter.post('/AdminOtp',AdminOtp)
 adminRouter.post('/AdminResetPassword',AdminResetPassword)
-adminRouter.post('/adminCategory',category)
+
+// Route to add a new category with an image
+adminRouter.post('/adminCategory', upload.single('categoryImage'), category);
+
+
 adminRouter.delete('/adminCategory/:id',deleteCategory)
 adminRouter.get('/adminCategory',getCategories)
 adminRouter.put('/adminCategory/:id',editCategory)
