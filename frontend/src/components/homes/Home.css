@@ -1,9 +1,17 @@
-.searchBar {
+/* .searchBar {
     display: flex;
-    align-items: center; /* Align items vertically center */
+    align-items: center; 
   }
   
-  /* Add margin to the search button */
+
   .searchBar button {
-    margin-left: 10px; /* Adjust the margin as needed */
+    margin-left: 10px; 
+  } */
+
+
+  .homeHeadDiv{
+    padding-top: 55px;
+    color: white !important;
+    text-align: center;
+    width: 100%;
   }
