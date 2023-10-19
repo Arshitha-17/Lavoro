@@ -4,6 +4,8 @@ import generateToken from '../util/generateToken.js';
 import { sendOtpEmail } from './SendEmail/sendOtpEmail.js'
 import Job from '../models/jobModel.js'
 import Category from '../models/category.js'
+import Application from '../models/applicationModel.js';
+
 
 
 const authUser = asyncHandler(async (req, res) => {
@@ -19,7 +21,6 @@ const authUser = asyncHandler(async (req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
-
         })
     } else {
         res.status(401);
@@ -158,7 +159,7 @@ const logoutUser = asyncHandler(async (req, res) => {
 // route GET api/users/profile
 const userProfile = asyncHandler(async (req, res) => {
     const userId = req.params.id
-    const user =  await User.findById({_id:userId})
+    const user = await User.findById({ _id: userId })
     res.status(200).json(user)
 })
 
@@ -180,12 +181,12 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         user.skills = req.body.skills || user.skills;
         user.bio = req.body.bio || user.bio;
 
-  
+
         if (req.file) {
             const resumeFilePath = req.file.path;
             console.log("Uploaded Resume Path:", resumeFilePath);
 
-            user.resume = req.file.filename; 
+            user.resume = req.file.filename;
         }
 
         const updatedUser = await user.save();
@@ -198,15 +199,12 @@ const updateUserProfile = asyncHandler(async (req, res) => {
             experience: updatedUser.experience,
             skills: updatedUser.skills,
             bio: updatedUser.bio,
-            resume: updatedUser.resume, 
+            resume: updatedUser.resume,
         });
     } else {
         res.status(404).json({ message: 'User not found' });
     }
 });
-
-
-
 
 
 // category list
@@ -223,12 +221,29 @@ const jobList = asyncHandler(async (req, res) => {
 })
 
 // Job detail page
-const jobDetailPage= asyncHandler(async(req,res)=>{
+const jobDetailPage = asyncHandler(async (req, res) => {
     const jobId = req.params.id;
     const jobDetail = await Job.findById(jobId)
-    console.log(jobDetail);
     res.status(200).json(jobDetail)
 })
+
+// job apply 
+const sendApplication = asyncHandler(async (req, res) => {
+    const { jobId, userId } = req.params
+
+    const application = await Application.create({
+        userId: userId,
+        jobId: jobId,
+    })
+console.log(application);
+
+
+
+
+
+
+})
+
 
 export {
     authUser,
@@ -241,6 +256,7 @@ export {
     updateUserProfile,
     jobList,
     categories,
-    jobDetailPage
+    jobDetailPage,
+    sendApplication
 
 }

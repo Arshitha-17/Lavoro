@@ -9,10 +9,13 @@ const JobDetailPage = () => {
     const [jobDetail, setJobDetail] = useState({})
 
     const { jobId } = useParams();
-    // console.log(jobId);
+   
+    const user =  JSON.parse(localStorage.getItem('userInfo'))
 
 
-    // const jobId = req
+    const submitHandler =async ()=>{
+       const res = await usersApi.post(`users/jobDetails/${jobId}/${user._id}`)
+    }
 
     useEffect(() => {
         const fetchJob = async () => {
@@ -23,6 +26,8 @@ const JobDetailPage = () => {
         fetchJob()
 
     }, [])
+
+
 
     return (
         <div>
@@ -100,7 +105,7 @@ const JobDetailPage = () => {
                     </div>
                     </div>
                     <div className='applybtnDiv'>
-                        <button className='applybtn'  >Apply</button>
+                        <button className='applybtn' onClick={submitHandler}  >Apply</button>
                     </div>
                     
                 </div>

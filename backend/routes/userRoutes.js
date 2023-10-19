@@ -12,7 +12,8 @@ import { authUser,
     resetPassword,
     jobList,
     categories,
-    jobDetailPage
+    jobDetailPage,
+    sendApplication
  } from "../controllers/userControllers.js"
 
 const router = express.Router()
@@ -43,6 +44,7 @@ router.route('/profile/:id').get(userProfile).put(upload.single('resume'), updat
 router.get('/jobList',jobList)
 router.get('/categories',categories)
 router.get('/jobDetails/:id',jobDetailPage)
+router.post('/jobDetails/:jobId/:userId',sendApplication)
 
 export default router
 
