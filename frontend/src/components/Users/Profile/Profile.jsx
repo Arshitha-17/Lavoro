@@ -12,7 +12,8 @@ import { toast } from 'react-toastify'
 const Profile = () => {
     const [userDetails, setUserDetails] = useState({});
     const [editedDetails, setEditedDetails] = useState({});
-    
+    const [resumeFile, setResumeFile] = useState(null);
+
     useEffect(() => {
         let user = JSON.parse(localStorage.getItem("userInfo"));
         if (user && user._id) {
@@ -38,6 +39,11 @@ const Profile = () => {
         }
     }, []);
 
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        setResumeFile(file);
+    };
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setEditedDetails({ ...editedDetails, [name]: value });
@@ -47,16 +53,37 @@ const Profile = () => {
     const handleSave = async () => {
         try {
             const user = JSON.parse(localStorage.getItem("userInfo"));
-            const updatedUser = await usersApi.put(`/users/profile/${user._id}`, editedDetails);
+            const formData = new FormData();
+
+            formData.append("name", editedDetails.name);
+            formData.append("email", editedDetails.email);
+            formData.append("qualification", editedDetails.qualification);
+            formData.append("experience", editedDetails.experience);
+            formData.append("skills", editedDetails.skills);
+            formData.append("bio", editedDetails.bio);
+
+            // Check if a resume file is selected and append it to the form data
+            if (resumeFile) {
+                formData.append("resume", resumeFile);
+            }
+
+            const updatedUser = await usersApi.put(`/users/profile/${user._id}`, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+
             setUserDetails(updatedUser.data);
-           toast.success("Profile Update Successfully")
-            
+            toast.success("Profile Update Successfully");
+
         } catch (error) {
             console.error("Error updating profile:", error);
         }
     };
 
-      
+
+
+
     return (
         <div>
             <Container fluid>
@@ -119,6 +146,10 @@ const Profile = () => {
                                     <Form.Group className="mb-3" controlId="formBasicBio">
                                         <Form.Label className='fields'>Bio</Form.Label>
                                         <Form.Control as="textarea" rows={3} name="bio" value={editedDetails.bio} onChange={handleInputChange} />
+                                    </Form.Group>
+                                    <Form.Group className="mb-3" controlId="formBasicResume">
+                                        <Form.Label className='fields'>Upload Resume (PDF)</Form.Label>
+                                        <Form.Control type="file" name="resume" accept=".pdf" onChange={handleFileChange} />
                                     </Form.Group>
                                     <Button variant="primary" onClick={handleSave}>
                                         Save

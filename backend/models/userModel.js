@@ -19,11 +19,6 @@ const userSchema = mongoose.Schema({
         type:String ,
         required: false
     },
-    image:{
-        type:String,
-        required:false
-
-    },
     isBlock:{
         type:Boolean,
         default:false
@@ -44,6 +39,10 @@ const userSchema = mongoose.Schema({
         type:String,
         default:false
     },
+    resume:{
+        type:String,
+     
+    }
 },{
     timestamps:true
 })
