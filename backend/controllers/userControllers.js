@@ -229,21 +229,26 @@ const jobDetailPage = asyncHandler(async (req, res) => {
 
 // job apply 
 const sendApplication = asyncHandler(async (req, res) => {
-    const { jobId, userId } = req.params
 
+    const { jobId, userId } = req.params
+    
     const application = await Application.create({
         userId: userId,
         jobId: jobId,
     })
-console.log(application);
-
-
-
-
-
+    res.status(200).json({message:"Thank You For Your Application We Will Get Back You Soon ! 🥰"})
 
 })
 
+
+const checkApplicationStatus = asyncHandler(async (req, res) => {
+    const { jobId, userId } = req.params;
+
+    // Check if the user has applied for the job
+    const application = await Application.findOne({ userId, jobId });
+
+    res.status(200).json({ applied: !!application });
+});
 
 export {
     authUser,
@@ -257,6 +262,7 @@ export {
     jobList,
     categories,
     jobDetailPage,
-    sendApplication
+    sendApplication,
+    checkApplicationStatus
 
 }
