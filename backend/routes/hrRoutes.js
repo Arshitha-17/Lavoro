@@ -24,8 +24,8 @@ HRrouter.post('/HrJobAdd',jobAdding)
 HRrouter.get('/getCategories',getCategories)
 HRrouter.get('/HrJobList',jobList)
 HRrouter.delete('/HrJobList/:id',deleteJob)
-HRrouter.route('/HrProfile/:id').get(hrProfile).put(updateHrProfile);
-
+HRrouter.get('/HrProfile/:id',hrProfile)
+HRrouter.put('/HrProfile/:id',updateHrProfile);
 
 export default HRrouter
 

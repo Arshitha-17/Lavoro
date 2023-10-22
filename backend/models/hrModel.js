@@ -22,6 +22,18 @@ const hrSchema = mongoose.Schema({
     isBlock:{
         type:Boolean,
         default:false
+    },
+    companyName:{
+        type:String,
+        
+    },
+    companyAddress:{
+        type:String,
+        
+    },
+    description:{
+        type:String,
+        
     }
 
 },{

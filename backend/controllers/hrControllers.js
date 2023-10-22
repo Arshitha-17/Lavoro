@@ -185,7 +185,7 @@ const hrProfile = asyncHandler(async (req, res) => {
 
 
 
-//  hr progile
+//  hr profile
 // route PUT api/hr/profile
 
 const updateHrProfile = asyncHandler(async (req, res) => {
@@ -198,8 +198,6 @@ const updateHrProfile = asyncHandler(async (req, res) => {
         hr.companyName = req.body.companyName || hr.companyName;
         hr.companyAddress = req.body.companyAddress || hr.companyAddress;
         hr.description = req.body.description || hr.description;
-
-        
         const updatedHr = await hr.save();
 
         res.status(200).json({
