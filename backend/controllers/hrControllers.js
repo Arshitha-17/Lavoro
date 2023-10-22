@@ -173,6 +173,51 @@ const deleteJob = asyncHandler(async(req,res)=>{
 
 
 
+//   hr profile
+// route GET api/users/profile
+const hrProfile = asyncHandler(async (req, res) => {
+    const hrId = req.params.id
+    const hr = await Hr.findById({ _id: hrId }) 
+    console.log(hr);
+    res.status(200).json(hr)
+})
+
+
+
+
+//  hr progile
+// route PUT api/hr/profile
+
+const updateHrProfile = asyncHandler(async (req, res) => {
+    const hrId = req.params.id;
+    const hr = await Hr.findById(hrId);
+
+    if (hr) {
+        hr.name = req.body.name || hr.name;
+        hr.email = req.body.email || hr.email;
+        hr.companyName = req.body.companyName || hr.companyName;
+        hr.companyAddress = req.body.companyAddress || hr.companyAddress;
+        hr.description = req.body.description || hr.description;
+
+        
+        const updatedHr = await hr.save();
+
+        res.status(200).json({
+            _id: updatedHr._id,
+            name: updatedHr.name,
+            email: updatedHr.email,
+            companyName: updatedHr.companyName,
+            companyAddress: updatedHr.companyAddress,
+            description: updatedHr.description,
+        });
+    } else {
+        res.status(404).json({ message: 'Hr not found' });
+    }
+});
+
+
+
+
 
 export {
     authHr,
@@ -183,5 +228,7 @@ export {
     getCategories,
     jobAdding,
     jobList,
-    deleteJob
+    deleteJob,
+    hrProfile,
+    updateHrProfile
 }
