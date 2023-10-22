@@ -54,5 +54,12 @@
     padding: 20px;
     color: white;
   }
+.viewMore{
+  text-align: end;
 
-  
+}
+  .viewMoreLink{
+    color: white;
+    text-decoration: none;
+  }
+

@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import './Home.css';
 import { usersApi } from '../../axiosApi/axiosInstance';
-import { Card } from 'react-bootstrap';
+import { Card, NavLink } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { BsSave } from "react-icons/bs"
 const Home = () => {
@@ -87,7 +87,11 @@ const Home = () => {
               ))
             ) : null
           }
+          <NavLink className='viewMore' >
+           <Link className='viewMoreLink'  to="/jobList" > view more...</Link>
+          </NavLink>
         </div>
+
       </div>
     </>
 
