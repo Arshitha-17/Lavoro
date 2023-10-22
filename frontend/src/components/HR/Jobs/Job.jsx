@@ -23,6 +23,10 @@ const Job = () => {
     const [qualification, setQualification] = useState('')
     const [allCategories, setAllCategories] = useState([])
 
+    let hr = JSON.parse(localStorage.getItem("HRInfo"));
+    const hrId = hr._id;
+   
+
     const submitHandler = async (e) => {
         e.preventDefault();
         console.log("saved");
@@ -40,8 +44,10 @@ const Job = () => {
             lastDate,
             requirements,
             jobDescription,
-            qualification
+            qualification,
+            hrId:hrId
         };
+        
         try {
             const res = await usersApi.post('hr/HrJobAdd', jobData)
             if (res.status === 200) {

@@ -137,7 +137,7 @@ const getCategories = asyncHandler(async(req,res)=>{
 // Job Uploading
 const jobAdding = asyncHandler(async (req, res) => {
 
-    const { companyName, jobRole, experience, salary, jobType, jobLocation, lastDate, requirements,jobDescription,qualification } = req.body
+    const { companyName, jobRole, experience, salary, jobType, jobLocation, lastDate, requirements,jobDescription,qualification,hrId } = req.body
     console.log(req.body);
     const job = await Job.create({
         companyName,
@@ -149,7 +149,8 @@ const jobAdding = asyncHandler(async (req, res) => {
         lastDate,
         requirements,
         jobDescription,
-        qualification
+        qualification,
+        hrId
     })
 
     return res.status(200).json({message:'Job Add Successfully', job})

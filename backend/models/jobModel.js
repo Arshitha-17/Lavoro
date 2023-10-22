@@ -41,6 +41,11 @@ const jobSchema = mongoose.Schema({
     qualification:{
         type:String,
         required:false
+    },
+    hrId:{
+        type: mongoose.Schema.Types.ObjectId,
+        default:false,
+        ref:"Hr"
     }
 
 
