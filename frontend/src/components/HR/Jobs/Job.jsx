@@ -80,7 +80,7 @@ const Job = () => {
             setAllCategories(res.data)
         }
         fetchCategories()
-    }, [])
+    },[])
     return (
         <Container fluid>
             <Row>
