@@ -222,7 +222,7 @@ const aggregateJobId = async (hr_id_passed) => {
         const result = await Application.aggregate([
             {
                 $lookup: {
-                    from: 'jobs', // Replace with the actual collection name of your Job model
+                    from: 'jobs', 
                     localField: 'jobId',
                     foreignField: '_id',
                     as: 'jobDetails',
