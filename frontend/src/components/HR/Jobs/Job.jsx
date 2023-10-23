@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Nav, Form, Button } from 'react-bootstrap';
 import './Job.css'; // Import your CSS file
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import HrProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg'; // Replace with the actual image path
 import { AiOutlineUser, AiOutlineMessage, AiOutlineUnorderedList, } from 'react-icons/ai'
 import { IoMdNotificationsOutline } from 'react-icons/io'
@@ -22,10 +22,20 @@ const Job = () => {
     const [jobDescription, setJobDescription] = useState('')
     const [qualification, setQualification] = useState('')
     const [allCategories, setAllCategories] = useState([])
+    const navigate = useNavigate()
 
-    let hr = JSON.parse(localStorage.getItem("HRInfo"));
-    const hrId = hr._id;
-   
+  
+    // Check if HR is logged in
+    const hr = JSON.parse(localStorage.getItem("HRInfo"));
+
+    useEffect(() => {
+        if (!hr) {
+            navigate('/hr/login');
+        }
+    }, [navigate, hr]);
+
+
+    const hrId = hr ? hr._id : null;
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -75,12 +85,14 @@ const Job = () => {
 
     useEffect(() => {
         const fetchCategories = async () => {
-            let res = await usersApi.get('hr/getCategories')
-            console.log(res.data);
-            setAllCategories(res.data)
-        }
-        fetchCategories()
-    },[])
+            if (hr) {
+                const res = await usersApi.get('hr/getCategories');
+                setAllCategories(res.data);
+            }
+        };
+        fetchCategories();
+    }, [hr]);
+
     return (
         <Container fluid>
             <Row>
