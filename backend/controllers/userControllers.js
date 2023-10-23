@@ -5,6 +5,7 @@ import { sendOtpEmail } from './SendEmail/sendOtpEmail.js'
 import Job from '../models/jobModel.js'
 import Category from '../models/category.js'
 import Application from '../models/applicationModel.js';
+import mongoose from 'mongoose';
 
 
 
@@ -231,12 +232,12 @@ const jobDetailPage = asyncHandler(async (req, res) => {
 const sendApplication = asyncHandler(async (req, res) => {
 
     const { jobId, userId } = req.params
-    
+
     const application = await Application.create({
         userId: userId,
         jobId: jobId,
     })
-    res.status(200).json({message:"Thank You For Your Application We Will Get Back You Soon ! 🥰"})
+    res.status(200).json({ message: "Thank You For Your Application We Will Get Back You Soon ! 🥰" })
 
 })
 
@@ -249,6 +250,63 @@ const checkApplicationStatus = asyncHandler(async (req, res) => {
 
     res.status(200).json({ applied: !!application });
 });
+
+
+// aggregate application list user side
+const aggregateFunction =async (userId_passed) => {
+    try {
+        const result = await Application.aggregate([
+            {
+                $lookup:{
+                    from:"users",
+                    localField:"userId",
+                    foreignField: "_id",
+                    as : "userDetails",
+                },
+            },{
+                $unwind:"$userDetails"
+            },
+            {
+                $lookup:{
+                    from:"jobs",
+                    localField:"jobId",
+                    foreignField:"_id",
+                    as:"jobDetails"
+                }
+            },
+            {
+                $unwind:"$jobDetails"
+            },
+            {
+                $match :{
+                    'userDetails._id':new mongoose.Types.ObjectId(userId_passed)
+                }
+            },
+        ])
+        return result
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+// application list user side
+const applicationList = asyncHandler(async (req, res) => {
+    const userId = req.params.id
+    console.log(userId);
+    const result = await aggregateFunction(userId)
+    console.log(result);
+   if(result){
+    return  res.status(200).json({result})
+   }else{
+    return res.status(401).json({message:"Application not fount"})
+   }
+
+
+
+})
+
+
+
 
 export {
     authUser,
@@ -263,6 +321,7 @@ export {
     categories,
     jobDetailPage,
     sendApplication,
-    checkApplicationStatus
+    checkApplicationStatus,
+    applicationList
 
 }

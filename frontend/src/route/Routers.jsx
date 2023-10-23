@@ -10,6 +10,7 @@ import ResetPasswordScreen from '../screens/Users/ResetPasswordScreen'
 import JobListingScreen from '../screens/Users/JobListingScreen'
 import UserProfileScreen from '../screens/Users/UserProfileScreen'
 import JobDetailScreen from '../screens/Users/JobDetailScreen'
+import ApplicationScreen from '../screens/Users/ApplicationScreen'
 
 // --------------HR------------------
 import HRLoginScreen from '../screens/HR/HRLoginScreen'
@@ -46,6 +47,7 @@ const Routers = () => {
         <Route path='/jobList' element={<JobListingScreen/>} />   
         <Route path='/profile' element={<UserProfileScreen/>} />   
         <Route path='/jobDetails/:jobId' element={<JobDetailScreen/>} />   
+        <Route path='/applications' element={<ApplicationScreen/>} />   
 
 
 {/*-------------- HR Routes--------------  */}

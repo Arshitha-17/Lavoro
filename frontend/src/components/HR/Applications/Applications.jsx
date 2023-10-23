@@ -38,7 +38,7 @@ const Applications = () => {
             navigate('/hr/login')
             
         }
-    }, [])
+    },[])
 
 
 

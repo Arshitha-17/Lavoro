@@ -14,7 +14,8 @@ import { authUser,
     categories,
     jobDetailPage,
     sendApplication,
-    checkApplicationStatus
+    checkApplicationStatus,
+    applicationList
  } from "../controllers/userControllers.js"
 
 const router = express.Router()
@@ -47,6 +48,7 @@ router.get('/categories',categories)
 router.get('/jobDetails/:id',jobDetailPage)
 router.post('/jobDetails/:jobId/:userId',sendApplication)
 router.post('/jobDetails/:jobId/:userId',checkApplicationStatus)
+router.get('/application/:id',applicationList)
 
 export default router
 
