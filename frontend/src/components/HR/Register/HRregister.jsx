@@ -8,7 +8,7 @@ import { validateRegistrationForm } from "./formValidation"; // Import the valid
 import { toast } from "react-toastify";
 
 const HRregister = () => {
-  const userInfo = localStorage.getItem("userInfo");
+  const userInfo = localStorage.getItem("HRInfo");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

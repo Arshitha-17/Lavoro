@@ -44,10 +44,11 @@
   /* Job list div start */
 
   .jobListDivs{
-    height: 100vh;
+    /* height: 100vh; */
     padding: 0px;
     margin: 0px;
     background-color: black;
+   
   }
 
   .listdiv{

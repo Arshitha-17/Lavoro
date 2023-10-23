@@ -1,0 +1,30 @@
+.applicationMainDiv{
+    display: flex;
+    padding: 10px;
+    
+}
+.applicationCard{
+    margin-right: 10px
+}
+
+.userName{
+    text-align: center;
+    padding-bottom: 7px;
+}
+
+.acceptBtn{
+    border-radius: 90px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+}
+
+.rejectBtn{
+    margin: 25px;
+    border-radius: 90px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+}
