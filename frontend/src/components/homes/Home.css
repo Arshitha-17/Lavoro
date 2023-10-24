@@ -8,59 +8,141 @@
     margin-left: 10px; 
   } */
 
-.maindiv{
+.maindiv {
   height: 100vh;
 }
-  .homeHeadDiv{
-    padding-top: 55px;
-    color: white !important;
-    text-align: center;
-    width: 100%;
-  }
+
+.homeHeadDiv {
+  padding-top: 55px;
+  color: white !important;
+  text-align: center;
+  width: 100%;
+}
+
 /* card style */
-  .cardMainDivs{
-    display: flex;
-    padding: 50px;
-  }
+.cardMainDivs {
+  display: flex;
+  padding: 50px;
+}
 
-  .cardTitle{
-    font-size:medium !important;
-    text-align: center;
-    text-decoration: none !important;
-   
-  }
-  .TitleLink{
-    text-decoration: none !important;
-    color: #075658;
-  }
+.cardTitle {
+  font-size: medium !important;
+  text-align: center;
+  text-decoration: none !important;
 
-  .cards{
- margin-left: 15px;
- margin-right: 15px;
- margin-top: 10px;
-  }
+}
+
+.TitleLink {
+  text-decoration: none !important;
+  color: #075658;
+}
+
+.cards {
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 10px;
+}
 
 
-  /* Job list div start */
+/* Job list div start */
 
-  .jobListDivs{
-    height: 100vh;
-    padding: 0px;
-    margin: 0px;
-    background-color: black;
-   
-  }
+.jobListDivs {
+  height: 100vh;
+  padding: 0px;
+  margin: 0px;
+  background-color: black;
 
-  .listdiv{
-    padding: 20px;
-    color: white;
-  }
-.viewMore{
+}
+
+.listdiv {
+  padding: 20px;
+  color: white;
+}
+
+.viewMore {
   text-align: end;
 
 }
-  .viewMoreLink{
-    color: white;
-    text-decoration: none;
-  }
+
+.viewMoreLink {
+  color: white;
+  text-decoration: none;
+}
+
+/* 3rd div */
+/* .thirdMainDiv{
+  height: 100vh;
+} */
+
+.headDiv {
+ margin-bottom: 0px;
+ padding-bottom: 0px;
+  padding: 20px;
+  color: white;
+  font-family: 'Times New Roman', Times, serifd;
+  font-weight: bold;
+}
+
+.mainheadDiv {
+  padding: 0px;
+  margin: 0px;
+  color: white;
+  margin: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 42px;
+  font-family: 'Times New Roman', Times, serifd;
+}
+
+.imgDiv1{
+  padding-left: 70px;
+  padding-bottom: 20px;
+}
+.img1 {
+  border-radius: 25px 0px 25px 0px ;
+  width: 190px;
+  height: 150px;
+}
+
+
+.imgDivMain{
+  display: flex;
+}
+
+.imgDiv2{
+  padding-left: 90px;
+  padding-bottom: 20px;
+
+}
+.img2 {
+  border-radius:  0px 25px 0px 25px ;
+  width: 140px;
+  height: 100px;
+}
+.img3 {
+  border-radius:  0px 25px 0px 25px ;
+  width: 190px;
+  height: 240px;
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+.Coldiv{
+  margin: 40px;
+  background-color: white;
+ padding-top: 1px;
+ padding-bottom: 5px;
+ border-radius: 25px 0px 25px 0px;
+}
+.div4{
+  margin: 50px;
+  margin-left: 50px;
+  color: #075658;
+  width: 500px;
+}
+
+
+.footerMainDiv{
+  background-color: black;
+  height: auto;
+}
 
