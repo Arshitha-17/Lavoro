@@ -11,7 +11,10 @@ const applicationSchema = mongoose.Schema({
         default:false,
         ref:"Job"
     },
-   
+    status:{
+        default:false,
+        type:String
+    }
 
 },{
     timestamps:true
