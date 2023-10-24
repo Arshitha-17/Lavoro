@@ -15,6 +15,7 @@ const getAppliedStatusFromLocalStorage = (jobId) => {
 const JobDetailPage = () => {
     const [jobDetail, setJobDetail] = useState({});
     const [applied, setApplied] = useState(false);
+    const [status, setStatus] = useState(false)
 
     const navigate = useNavigate();
     const { jobId } = useParams();
@@ -38,15 +39,22 @@ const JobDetailPage = () => {
         }
 
         if (!applied) {
-            const res = await usersApi.post(`users/jobDetails/${jobId}/${user._id}`);
-            toast.success(res.data.message);
-            setApplied(true);
+            try {
+                const res = await usersApi.post(`users/jobDetails/${jobId}/${user._id}`, {
+                    status: 'pending...',
+                });
 
-            // Set the applied status in local storage
-            setAppliedStatusInLocalStorage(jobId, true);
+                toast.success(res.data.message);
+                setApplied(true);
+
+
+                setAppliedStatusInLocalStorage(jobId, true);
+            } catch (error) {
+
+                toast.error("An error occurred while applying for the job.");
+            }
         }
     };
-
     useEffect(() => {
         const fetchJob = async () => {
             const res = await usersApi.get(`users/jobDetails/${jobId}`);

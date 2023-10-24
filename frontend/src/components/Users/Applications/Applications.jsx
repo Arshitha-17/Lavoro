@@ -85,7 +85,7 @@ const Applications = () => {
                                     <Card.Text>Job Applied: {application.jobDetails.jobRole} </Card.Text>
                                     <Card.Text>Salary: {application.jobDetails.salary} </Card.Text>
                                     <Card.Text>Qualification: {application.jobDetails.qualification} </Card.Text>
-                                    <Card.Text>Status: </Card.Text>
+                                    <Card.Text >Status: <strong className='status'>{application.status} </strong> </Card.Text>
                                 </Card.Body>
                             </Card>
                                     ))

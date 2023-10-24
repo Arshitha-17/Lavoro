@@ -1,3 +1,7 @@
 .applicationMainDivs{
     display: flex;
 }
+
+.status{
+    color: rgb(14, 152, 170);
+}

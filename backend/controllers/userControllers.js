@@ -231,11 +231,14 @@ const jobDetailPage = asyncHandler(async (req, res) => {
 // job apply 
 const sendApplication = asyncHandler(async (req, res) => {
 
-    const { jobId, userId } = req.params
+    const { jobId, userId } = req.params;
+    const { status } = req.body;
 
     const application = await Application.create({
         userId: userId,
         jobId: jobId,
+        status: status,
+       
     })
     res.status(200).json({ message: "Thank You For Your Application We Will Get Back You Soon ! 🥰" })
 
