@@ -217,7 +217,7 @@ const categories = asyncHandler(async (req, res) => {
 
 const jobList = asyncHandler(async (req, res) => {
     const jobs = await Job.find({})
-    console.log(jobs);
+   
     res.status(200).json({ jobs })
 })
 
@@ -292,9 +292,8 @@ const aggregateFunction =async (userId_passed) => {
 // application list user side
 const applicationList = asyncHandler(async (req, res) => {
     const userId = req.params.id
-    console.log(userId);
+ 
     const result = await aggregateFunction(userId)
-    console.log(result);
    if(result){
     return  res.status(200).json({result})
    }else{

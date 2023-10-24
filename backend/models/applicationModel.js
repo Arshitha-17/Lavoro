@@ -10,7 +10,8 @@ const applicationSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         default:false,
         ref:"Job"
-    }
+    },
+   
 
 },{
     timestamps:true

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Form, Button } from 'react-bootstrap';
 import { AiOutlineUser, AiOutlineMessage, AiOutlineUnorderedList } from 'react-icons/ai';
 import { MdLogout, MdWorkOutline } from 'react-icons/md';
+import { TiTick} from 'react-icons/ti';
 import { NavLink } from 'react-router-dom';
 import UserProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg';
 import "./Profile.css"
@@ -106,6 +107,10 @@ const Profile = () => {
                                 <div className='heads'>
                                     <div><MdWorkOutline /></div>
                                     <NavLink to="/JobList" className='head'>List Job</NavLink>
+                                </div>
+                                <div className='heads'>
+                                    <div><TiTick /></div>
+                                    <NavLink to="/applications" className='head'>Applications</NavLink>
                                 </div>
                                 <div className='heads'>
                                     <div><AiOutlineUnorderedList /></div>
