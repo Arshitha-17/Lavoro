@@ -10,7 +10,9 @@ import { authHr,
     deleteJob,
     hrProfile,
     updateHrProfile,
-    applicationList} from "../controllers/hrControllers.js"
+    applicationList,
+    acceptApplication,
+    rejectApplication} from "../controllers/hrControllers.js"
 
 const HRrouter = express.Router()
 
@@ -28,6 +30,8 @@ HRrouter.delete('/HrJobList/:id',deleteJob)
 HRrouter.get('/HrProfile/:id',hrProfile)
 HRrouter.put('/HrProfile/:id',updateHrProfile);
 HRrouter.post("/HrApplications/:id",applicationList)
+HRrouter.put("/acceptApplication/:id",acceptApplication)
+HRrouter.put("/rejectApplication/:id",rejectApplication)
 
 export default HRrouter
 

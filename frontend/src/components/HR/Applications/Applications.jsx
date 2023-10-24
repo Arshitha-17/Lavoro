@@ -34,14 +34,21 @@ const Applications = () => {
                 }
             }
             fetchHr()
-        }else{
+        } else {
             navigate('/hr/login')
-            
+
         }
-    },[])
+    }, [])
 
-
-
+    const handleAccept = async (applicationId) => {
+        const res =  await usersApi.put(`/hr/acceptApplication/${applicationId}`)
+        toast.success(res.data.message)
+    };
+    
+    const handleReject = async (applicationId) => {
+        const res =  await usersApi.put(`/hr/rejectApplication/${applicationId}`)
+        toast.success(res.data.message)       
+    };
 
     return (
         <div>
@@ -84,34 +91,34 @@ const Applications = () => {
                         </div>
                     </Col>
                     <Col sm={9} className="content">
-                       
-
-                            <div className='applicationMainDiv'>
-                                {
-                                    applications.length > 0 ? (
-                                        applications.map((application, index) => (
 
 
-                                            <Card className='applicationCard' style={{ width: '18rem' }} key={index}>
-                                                <Card.Body>
-                                                    <Card.Title className='userName' >{application.userDetails.name} </Card.Title>
-                                                    <Card.Text>Job Applied: {application.jobDetails.jobRole} </Card.Text>
-                                                    <Card.Text>Qualification: {application.userDetails.qualification} </Card.Text>
-                                                    <Card.Text>Experience: {application.userDetails.experience} </Card.Text>
-                                                    <Card.Text>Skills: {application.userDetails.skills} </Card.Text>
-                                                    {/* <embed src={`http://localhost:5000/resume/${application.userDetails.resume}`} type="application/pdf" width="100%" height="500px" /> */}
-                                                    <a href={`http://localhost:5000/resume/${application.userDetails.resume}`} target="_blank" rel="noopener noreferrer">View Resume</a>
-                                                    <div>
-                                                  
-                                                        <Button className='acceptBtn' variant="success">Accept</Button>
-                                                        <Button className='rejectBtn' variant="danger">Reject</Button>
-                                                    </div>
-                                                </Card.Body>
-                                            </Card>
-                                        ))
-                                    ) : null
-                                }
-                            </div>
+                        <div className='applicationMainDiv'>
+                            {
+                                applications.length > 0 ? (
+                                    applications.map((application, index) => (
+
+
+                                        <Card className='applicationCard' style={{ width: '18rem' }} key={index}>
+                                            <Card.Body>
+                                                <Card.Title className='userName' >{application.userDetails.name} </Card.Title>
+                                                <Card.Text>Job Applied: {application.jobDetails.jobRole} </Card.Text>
+                                                <Card.Text>Qualification: {application.userDetails.qualification} </Card.Text>
+                                                <Card.Text>Experience: {application.userDetails.experience} </Card.Text>
+                                                <Card.Text>Skills: {application.userDetails.skills} </Card.Text>
+                                                {/* <embed src={`http://localhost:5000/resume/${application.userDetails.resume}`} type="application/pdf" width="100%" height="500px" /> */}
+                                                <a href={`http://localhost:5000/resume/${application.userDetails.resume}`} target="_blank" rel="noopener noreferrer">View Resume</a>
+                                                <div>
+
+                                                <Button className='acceptBtn' variant="success" onClick={() => handleAccept(application._id)}>Accept</Button>
+                                                <Button className='rejectBtn' variant="danger" onClick={() => handleReject(application._id)}>Reject</Button>
+                                                </div>
+                                            </Card.Body>
+                                        </Card>
+                                    ))
+                                ) : null
+                            }
+                        </div>
                     </Col>
                 </Row>
             </Container>

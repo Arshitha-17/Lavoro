@@ -8,13 +8,12 @@ const applicationSchema = mongoose.Schema({
     },
     jobId:{
         type: mongoose.Schema.Types.ObjectId,
-        default:false,
         ref:"Job"
     },
-    status:{
-        default:false,
-        type:String
-    }
+    status: {
+        default: null,
+        type: String,
+    },
 
 },{
     timestamps:true

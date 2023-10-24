@@ -222,7 +222,7 @@ const aggregateJobId = async (hr_id_passed) => {
         const result = await Application.aggregate([
             {
                 $lookup: {
-                    from: 'jobs', 
+                    from: 'jobs',
                     localField: 'jobId',
                     foreignField: '_id',
                     as: 'jobDetails',
@@ -258,15 +258,33 @@ const aggregateJobId = async (hr_id_passed) => {
 const applicationList = asyncHandler(async (req, res) => {
     const hrId = req.params.id
     const result = await aggregateJobId(hrId)
-   if(result){
-   return res.status(200).json({result})
-   }else{
-    return res.status(401).json({message:"Application fetch error"})
-   }
+    if (result) {
+        return res.status(200).json({ result })
+    } else {
+        return res.status(401).json({ message: "Application fetch error" })
+    }
 
 })
 
+const acceptApplication = asyncHandler(async (req, res) => {
+    const applicationId = req.params.id
+    const application = await Application.findById(applicationId)
+    application.status = "Application Accept"
+    await application.save();
+    return res.status(200).json({ message: "Application Accept" })
 
+});
+
+
+const rejectApplication = asyncHandler(async (req, res) => {
+    const applicationId = req.params.id
+    const application = await Application.findById(applicationId)
+    application.status = "Application Rejected"
+    const reject = await application.save();
+    console.log(reject);
+    return res.status(200).json({ message: "Application Rejected" })
+
+});
 
 export {
     authHr,
@@ -280,5 +298,7 @@ export {
     deleteJob,
     hrProfile,
     updateHrProfile,
-    applicationList
+    applicationList,
+    acceptApplication,
+    rejectApplication
 }
