@@ -102,6 +102,7 @@ const Applications = () => {
                                                     {/* <embed src={`http://localhost:5000/resume/${application.userDetails.resume}`} type="application/pdf" width="100%" height="500px" /> */}
                                                     <a href={`http://localhost:5000/resume/${application.userDetails.resume}`} target="_blank" rel="noopener noreferrer">View Resume</a>
                                                     <div>
+                                                  
                                                         <Button className='acceptBtn' variant="success">Accept</Button>
                                                         <Button className='rejectBtn' variant="danger">Reject</Button>
                                                     </div>
