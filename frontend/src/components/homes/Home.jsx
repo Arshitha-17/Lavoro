@@ -9,6 +9,8 @@ const Home = () => {
 
   const [allCategories, setAllCategories] = useState([])
   const [jobs, setJobs] = useState([])
+  const [currentPage, setCurrentPage] = useState(1); 
+  const itemsPerPage = 4; 
 
   const navigate = useNavigate()
 
@@ -28,6 +30,14 @@ const Home = () => {
     }
     fetchJobs()
   }, [])
+
+    // Function to handle pagination
+    const paginateJobs = (page) => {
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      return jobs.slice(startIndex, endIndex);
+    }
+  
 
   return (
     <>
@@ -65,30 +75,31 @@ const Home = () => {
         </div>
         <div className="mainDiv">
           {
-            jobs.length > 0 ? (
-              jobs.map((job, index) => (
-                <div className='subdiv my-2 rounded' key={index}>
-                  <h5 className='mainheads'>{job.companyName} </h5>
-                  <div className='subheads '>
-                    <h6 className='sub' >{job.jobRole} </h6>
-                    <h6 className='sub'>{job.jobType} </h6>
-                    <h6 className='sub'>{job.jobLocation} </h6>
-                    <h6 className='sub'>{job.salary} </h6>
-                    <div className='saveIcon'>
-                      <Link to='/saveJobs' >
-                        <BsSave className='icons' />
-                      </Link>
-                    </div>
-                    <button onClick={() => {
-                      navigate(`/jobDetails/${job._id}`)
-                    }} className='delete'  >Apply</button>
+            // Use the paginated jobs
+            paginateJobs(currentPage).map((job, index) => (
+              <div className='subdiv my-2 rounded' key={index}>
+                <h5 className='mainheads'>{job.companyName} </h5>
+                <div className='subheads '>
+                  <h6 className='sub' >{job.jobRole} </h6>
+                  <h6 className='sub'>{job.jobType} </h6>
+                  <h6 className='sub'>{job.jobLocation} </h6>
+                  <h6 className='sub'>{job.salary} </h6>
+                  <div className='saveIcon'>
+                    <Link to='/saveJobs' >
+                      <BsSave className='icons' />
+                    </Link>
                   </div>
+                  <button onClick={() => {
+                    navigate(`/jobDetails/${job._id}`)
+                  }} className='delete'  >Apply</button>
                 </div>
-              ))
-            ) : null
+              </div>
+            ))
           }
-          <NavLink className='viewMore' >
-           <Link className='viewMoreLink'  to="/jobList" > view more...</Link>
+          <NavLink className='viewMore'>
+            <Link className='viewMoreLink' to="/jobList">
+              View more...
+            </Link>
           </NavLink>
         </div>
 
