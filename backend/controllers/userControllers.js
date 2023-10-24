@@ -12,7 +12,9 @@ import mongoose from 'mongoose';
 const authUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email })
-
+    if (!user) {
+        return res.status(404).json({ message: "Invalid email or password" })
+    }
     if (user.isBlock === true) {
         return res.status(500).json({ message: "You are Blocked" })
     }
@@ -79,20 +81,20 @@ const forgotPassword = asyncHandler(async (req, res) => {
 
     await user.save();
 
-    // const emailSent = await sendOtpEmail(user.email,otp)
-    // if(emailSent){
-    //         res.status(200).json({ otp });
-    //     }else{
-    //           res.status(500).json({message:'Failed to send email'})
-    //         }
+    const emailSent = await sendOtpEmail(user.email,otp)
+    if(emailSent){
+            res.status(200).json({ otp });
+        }else{
+              res.status(500).json({message:'Failed to send email'})
+            }
 
     // ----------------remove this and uncomment above code 
-    const emailSent = true
-    if (emailSent) {
-        res.status(200).json({ message: 'OTP Send' });
-    } else {
-        res.status(500).json({ message: 'Failed to send email' })
-    }
+    // const emailSent = true
+    // if (emailSent) {
+    //     res.status(200).json({ message: 'OTP Send' });
+    // } else {
+    //     res.status(500).json({ message: 'Failed to send email' })
+    // }
 })
 
 
@@ -217,7 +219,7 @@ const categories = asyncHandler(async (req, res) => {
 
 const jobList = asyncHandler(async (req, res) => {
     const jobs = await Job.find({})
-   
+
     res.status(200).json({ jobs })
 })
 
@@ -238,7 +240,7 @@ const sendApplication = asyncHandler(async (req, res) => {
         userId: userId,
         jobId: jobId,
         status: status,
-       
+
     })
     res.status(200).json({ message: "Thank You For Your Application We Will Get Back You Soon ! 🥰" })
 
@@ -256,33 +258,33 @@ const checkApplicationStatus = asyncHandler(async (req, res) => {
 
 
 // aggregate application list user side
-const aggregateFunction =async (userId_passed) => {
+const aggregateFunction = async (userId_passed) => {
     try {
         const result = await Application.aggregate([
             {
-                $lookup:{
-                    from:"users",
-                    localField:"userId",
+                $lookup: {
+                    from: "users",
+                    localField: "userId",
                     foreignField: "_id",
-                    as : "userDetails",
+                    as: "userDetails",
                 },
-            },{
-                $unwind:"$userDetails"
+            }, {
+                $unwind: "$userDetails"
             },
             {
-                $lookup:{
-                    from:"jobs",
-                    localField:"jobId",
-                    foreignField:"_id",
-                    as:"jobDetails"
+                $lookup: {
+                    from: "jobs",
+                    localField: "jobId",
+                    foreignField: "_id",
+                    as: "jobDetails"
                 }
             },
             {
-                $unwind:"$jobDetails"
+                $unwind: "$jobDetails"
             },
             {
-                $match :{
-                    'userDetails._id':new mongoose.Types.ObjectId(userId_passed)
+                $match: {
+                    'userDetails._id': new mongoose.Types.ObjectId(userId_passed)
                 }
             },
         ])
@@ -295,13 +297,13 @@ const aggregateFunction =async (userId_passed) => {
 // application list user side
 const applicationList = asyncHandler(async (req, res) => {
     const userId = req.params.id
- 
+
     const result = await aggregateFunction(userId)
-   if(result){
-    return  res.status(200).json({result})
-   }else{
-    return res.status(401).json({message:"Application not fount"})
-   }
+    if (result) {
+        return res.status(200).json({ result })
+    } else {
+        return res.status(401).json({ message: "Application not fount" })
+    }
 
 
 

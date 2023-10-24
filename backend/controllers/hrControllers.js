@@ -8,25 +8,29 @@ import Application from '../models/applicationModel.js'
 import mongoose from 'mongoose';
 
 const authHr = asyncHandler(async (req, res) => {
-
     const { email, password } = req.body;
-    const hr = await Hr.findOne({ email })
-    if (hr.isBlock === true) {
-        return res.status(500).json({ message: "You Are Blocked" })
+    const hr = await Hr.findOne({ email });
+
+    if (!hr) {
+        return res.status(401).json({ message: "Invalid email or password" });
     }
 
-    if (hr && (await hr.matchPassword(password))) {
+    if (hr.isBlock === true) {
+        return res.status(500).json({ message: "You Are Blocked" });
+    }
+
+    if (await hr.matchPassword(password)) {
         generateToken(res, hr._id);
         res.status(201).json({
             _id: hr._id,
             name: hr.name,
             email: hr.email,
-        })
+        });
     } else {
-        res.status(401);
-        throw new Error(`Invalid email or password`)
+        res.status(401).json({ message: "Invalid email or password" });
     }
 });
+
 
 // hr register 
 // route POST /api/hr/register
