@@ -1,0 +1,48 @@
+
+
+/* 2nd div */
+
+.secondDiv{
+    height: 400px;
+    background-color: black !important;
+}
+.divContainer{
+    justify-content: space-evenly;
+    display: flex;
+
+}
+.secondDivHeader{
+    padding-top: 20px;
+    color: white;
+    text-align: center;
+   
+}
+.accountDiv{
+    text-align: center;
+    padding-top: 50px;
+    color: white;
+    width:300px;
+    margin: 10px;
+}
+
+.img{
+    
+    width: 140px;
+    height: 100px;
+}
+
+.profileDiv{
+    text-align: center;
+    padding-top: 50px;
+    color: white;
+    width:300px;
+    margin: 10px;
+}
+
+.teamDiv{
+    text-align: center;
+    padding-top: 50px;
+    color: white;
+    width:300px;
+    margin: 10px;
+}
