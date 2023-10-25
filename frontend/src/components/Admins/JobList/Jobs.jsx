@@ -86,7 +86,7 @@ const Job = () => {
                                             <h6 className='sub'>{job.jobLocation} </h6>
                                             <h6 className='sub'>{job.salary} </h6>
                                             <h6 className='sub'>{job.experience} </h6>
-                                            <button className='delete' onClick={()=>deleteJob(job._id)} >Delete</button>
+                                            {/* <button className='delete' onClick={()=>deleteJob(job._id)} >Delete</button> */}
                                         </div>
                                     </div>
                                 ))
