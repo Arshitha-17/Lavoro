@@ -6,6 +6,7 @@ import Category from '../models/category.js';
 import User from '../models/userModel.js';
 import Hr from '../models/hrModel.js';
 import { assign } from 'nodemailer/lib/shared/index.js';
+import Job from '../models/jobModel.js'
 
 //  admin/auth
 const authAdmin = asyncHandler(async (req, res) => {
@@ -200,6 +201,23 @@ const HrBlock = asyncHandler(async(req,res)=>{
     }
 })
 
+
+// job list
+
+const jobList = asyncHandler(async(req,res)=>{
+    console.log("hedsfuyhga");
+    const jobs = await Job.find({})
+    if(jobs){
+
+       return res.status(200).json({jobs})
+    }else{
+        return res.status(404).json({message:"no job found"})
+    }
+
+
+})
+
+
 export {
     authAdmin,
     AdminForgotPassword,
@@ -212,5 +230,6 @@ export {
     UserBlock,
     allUsers,
     HrBlock,
-    allHr
+    allHr,
+    jobList
 }

@@ -22,13 +22,13 @@ const AdminHeader = () => {
             <Navbar.Toggle aria-controls='basic-navbar-nav' />
             <Navbar.Collapse id='basic-navbar-nav' >
                     <Nav className='ms-auto mx-auto ' > {/* Use mx-auto class for centering */}
-                    <LinkContainer to='/' >
+                    <LinkContainer to='/admin/jobList' >
                     <Nav.Link className=' text-white me-5'><h5>Dashboard</h5></Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to='/admin/jobs'>
+                    <LinkContainer to='/admin/user_manage'>
                         <Nav.Link  className=' text-white me-5'><h5>User</h5></Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to='/admin/profile'>
+                    <LinkContainer to='/admin/hr_manage'>
                         <Nav.Link  className=' text-white me-5'><h5>Hr</h5></Nav.Link>
                     </LinkContainer>
                     <LinkContainer to='/admin/contact'>

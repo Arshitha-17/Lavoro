@@ -33,6 +33,7 @@ import AdminResetPasswordScreen from '../screens/Admins/AdminResetPasswordScreen
 import AdminCategoryScreen from '../screens/Admins/AdminCategoryScreen'
 import AdminUserManageScreen from '../screens/Admins/AdminUserManageScreen'
 import AdminHrManageScreen from '../screens/Admins/AdminHrManageScreen'
+import AdminJobListScreen from '../screens/Admins/AdminJobListScreen'
 
 
 const Routers = () => {
@@ -71,6 +72,7 @@ const Routers = () => {
 <Route path='/admin/categories' element={<AdminCategoryScreen/> } />
 <Route path='/admin/user_manage' element={<AdminUserManageScreen/> } />
 <Route path='/admin/hr_manage' element={<AdminHrManageScreen/> } />
+<Route path='/admin/jobList' element={<AdminJobListScreen/> } />
 
     </Routes>
   )
