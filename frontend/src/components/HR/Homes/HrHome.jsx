@@ -46,7 +46,7 @@ const HrHome = () => {
                       src={`http://localhost:5000/images/${category.image}`}
                     />
                     <Card.Body>
-                      <Link className='TitleLink' to="/jobList">
+                      <Link className='TitleLink' to="/hr/jobList">
                         <Card.Title className='cardTitle'>{category.categoryName} </Card.Title>
                       </Link>
                     </Card.Body>
@@ -72,12 +72,12 @@ const HrHome = () => {
         </div>
         <div className='profileDiv'>
           <img className='img' src={userImg} alt="Small Image" />
-          <h6>Create Account</h6>
+          <h6>Complete your profile</h6>
           <p>It's very easy to open an account and start your journey.</p>
         </div>
         <div className='teamDiv'>
           <img className='img' src={teamImg} alt="Small Image" />
-          <h6>Create Account</h6>
+          <h6>Build your team</h6>
           <p>It's very easy to open an account and start your journey.</p>
         </div>
         </div>
