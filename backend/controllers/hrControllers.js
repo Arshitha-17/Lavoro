@@ -5,6 +5,7 @@ import { HrSendOtpEmail } from './SendEmail/HrSendOtpEmail.js'
 import Job from '../models/jobModel.js';
 import Category from '../models/category.js'
 import Application from '../models/applicationModel.js'
+
 import mongoose from 'mongoose';
 
 const authHr = asyncHandler(async (req, res) => {
@@ -285,10 +286,19 @@ const rejectApplication = asyncHandler(async (req, res) => {
     const application = await Application.findById(applicationId)
     application.status = "Application Rejected"
     const reject = await application.save();
-    console.log(reject);
+  
     return res.status(200).json({ message: "Application Rejected" })
 
 });
+
+// getHrDetails
+
+const getHrDetails = asyncHandler(async(req,res)=>{
+    const hrId = req.params.id
+    const hrDetails = await Hr.findOne({_id:hrId})
+    res.status(200).json({hrDetails})
+})
+
 
 export {
     authHr,
@@ -304,5 +314,6 @@ export {
     updateHrProfile,
     applicationList,
     acceptApplication,
-    rejectApplication
+    rejectApplication,
+    getHrDetails
 }

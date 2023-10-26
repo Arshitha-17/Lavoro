@@ -12,6 +12,7 @@ import { toast } from 'react-toastify';
 
 const Job = () => {
     const [companyName, setCompanyName] = useState('')
+    const [hrData, setHrDetails] = useState('')
     const [jobRole, setJobRole] = useState('')
     const [experience, setExperience] = useState('')
     const [salary, setSalary] = useState('')
@@ -64,7 +65,7 @@ const Job = () => {
                 console.log(res);
                 toast.success(res.data.message)
                 setAllCategories('')
-                setCompanyName('')
+               
                 setExperience('')
                 setJobLocation('')
                 setJobType('')
@@ -81,6 +82,16 @@ const Job = () => {
         }
 
     }
+
+    useEffect(()=>{
+        const fetchHr = async ()=>{
+            // console.log(hr);
+            const res = await usersApi.get(`hr/getHrDetails/${hr._id}`)
+            console.log((res.data.hrDetails));
+            setHrDetails(res.data.hrDetails)
+        }
+        fetchHr()
+    },[])
 
 
     useEffect(() => {
@@ -141,9 +152,9 @@ const Job = () => {
                             <Form.Group className='form_group' >
                                 <Form.Control className='my-4 job_input '
                                     type='text'
-                                    value={companyName}
-                                    placeholder='Company Name'
-                                    onChange={(e) => setCompanyName(e.target.value)}
+                                    value={hrData.companyName}
+                                    
+                                   
                                 >
                                 </Form.Control>
                                 <Form.Control
