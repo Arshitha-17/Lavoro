@@ -120,26 +120,34 @@ const JobList = () => {
                     <div>
                       <div>
                         <h6>Job Type</h6>
-                        <input
-                          type="text"
-                          className="locationInput input form-control"
-                          placeholder="part Time/Full Time/Freelance"
+                        <select
+                          className="form-select"
                           value={jobTypeFilter}
                           onChange={(e) => setJobTypeFilter(e.target.value)}
-                        />
+                        >
+                          <option value="">Select Job Type</option>
+                          <option value="Full Time">Full Time</option>
+                          <option value="Part Time">Part Time</option>
+                          <option value="Freelance">Freelance</option>
+                        </select>
                       </div>
                     </div>
                     <hr />
                     <div>
                       <div>
                         <h6>Job Role</h6>
-                        <input
-                          type="text"
-                          className="locationInput input form-control"
-                          placeholder="Type your job"
+                        <select
+                          className="form-select"
                           value={categoryFilter}
                           onChange={(e) => setCategoryFilter(e.target.value)}
-                        />
+                        >
+                          <option value="">Select Job Role</option>
+                          {categories.map((category) => (
+                            <option key={category._id} value={category.categoryName}>
+                              {category.categoryName}
+                            </option>
+                          ))}
+                        </select>
                       </div>
                       <hr />
                       <div>
