@@ -7,87 +7,50 @@ import { usersApi } from '../../../axiosApi/axiosInstance'
 
 
 const JobList = () => {
-  const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState([]);
   const [jobs, setJobs] = useState([]);
   const [locationFilter, setLocationFilter] = useState('');
-  // const [checkboxChecked, setCheckboxChecked] = useState(false);
-  const [filteredJobs,setFilteredJobs] = useState([])
-
-  const navigate = useNavigate()
-
-  const [options, setOptions] = useState([
-    { id: 1, label: 'Full Time', value: false },
-    { id: 2, label: 'Part time', value: false },
-    { id: 3, label: 'Freelance', value: false },
-  ]);
-
-  const handleTypeCheckboxChange = (id) => {
-    setOptions((prevOptions) =>
-      prevOptions.map((option) =>
-        option.id === id ? { ...option, value: !option.value } : option
-      )
-    );
-  };
-
-  const handleCategoryCheck = (_id) => {
-    setCategories((prevOption) =>
-      prevOption.map((categories) =>
-        categories._id === _id ? { ...categories, checked: !categories.checked } : categories
-      )
-    );
-  };
+  const [jobTypeFilter, setJobTypeFilter] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState('');
+  const [companyFilter, setCompanyFilter] = useState('');
+  const [filteredJobs, setFilteredJobs] = useState([]);
+  const navigate = useNavigate();
 
   const filterHandler = (e) => {
     e.preventDefault();
     const filteredJobs = jobs.filter((job) => {
-      const locationMatchs = locationFilter ? job.jobLocation.includes(locationFilter) : true;
-      // Check location filter
-      const locationMatch = locationFilter === '' || job.jobLocation === locationFilter;
-  
-      // Check job type filter
-      const jobTypeMatch = options.some((option) => option.value && option.label === job.jobType);
-  
-      // Check category filter
-      const categoryMatch = categories.some((category) => category.checked && category.categoryName === job.jobRole);
-
-      // Return true if all criteria are met
-      return locationMatch && jobTypeMatch && categoryMatch || locationMatchs;
+      const locationMatch = locationFilter
+        ? job.jobLocation.includes(locationFilter)
+        : true;
+      const jobTypeMatch = jobTypeFilter === '' || job.jobType.includes(jobTypeFilter);
+      const categoryMatch = categoryFilter === '' || job.jobRole.includes(categoryFilter);
+      const companyMatch = companyFilter === '' || job.companyName.includes(companyFilter);
+      return locationMatch && jobTypeMatch && categoryMatch && companyMatch;
     });
 
-  
-    // Update the state with filtered jobs
     setFilteredJobs(filteredJobs);
   };
-  // category 
+
   useEffect(() => {
     const fetchCategory = async () => {
-      let res = await usersApi.get('users/categories')
-      let newCategories = []
-      for(let i=0;i<res.data.length;i++){
-        res.data[i].checked=false
-        newCategories.push(res.data[i])
+      let res = await usersApi.get('users/categories');
+      let newCategories = [];
+      for (let i = 0; i < res.data.length; i++) {
+        res.data[i].checked = false;
+        newCategories.push(res.data[i]);
       }
-      setCategories(newCategories)
-    }
-    fetchCategory()
-  }, [])
+      setCategories(newCategories);
+    };
+    fetchCategory();
+  }, []);
 
   useEffect(() => {
     const fetchJobs = async () => {
-      let res = await usersApi.get('users/jobList')
-      setJobs(res.data.jobs)
-    }
-    fetchJobs()
-
-
-  }, [])
-
-  // const filteredJobs = jobs.filter((job) => {
-  //   const locationMatch = locationFilter ? job.jobLocation.includes(locationFilter) : true;
-  //   const checkboxMatch = checkboxChecked ? job.jobType === 'your-checkbox-value' : true;
-
-  //   return locationMatch && checkboxMatch;
-  // });
+      let res = await usersApi.get('users/jobList');
+      setJobs(res.data.jobs);
+    };
+    fetchJobs();
+  }, []);
 
   return (
     <div >
@@ -112,7 +75,7 @@ const JobList = () => {
             </div>
           </form>
         </div> */}
-        
+
         <div className='cardMainDivs '>
           {
             categories.length > 0 ? (
@@ -120,10 +83,10 @@ const JobList = () => {
                 <Card className='cards' style={{ width: '14rem', height: '20rem' }} key={index} >
                   <Card.Img variant="top"
                     src={`http://localhost:5000/images/${category.image}`}
-                   />
+                  />
                   <Card.Body>
                     <Link className='TitleLink' to="/jobList">
-                    <Card.Title className='cardTitle'>{category.categoryName} </Card.Title>
+                      <Card.Title className='cardTitle'>{category.categoryName} </Card.Title>
                     </Link>
                   </Card.Body>
                 </Card>
@@ -133,115 +96,127 @@ const JobList = () => {
         </div>
 
       </div>
-      <div className='jobListDiv' >
+      <div className="jobListDiv">
         <div>
-          <h5 className='filterhead text-white' >Filter</h5>
+          <h5 className="filterhead text-white">Filter</h5>
         </div>
-        <div className='contents' >
+        <div className="contents">
           <Container fluid>
             <Row>
               <Col className="sidebar m-4">
-
                 <form onSubmit={filterHandler}>
-                  <div className='maindiv'>
+                  <div className="maindiv">
                     <div>
                       <h6>Location</h6>
                       <input
                         type="text"
                         className="locationInput input form-control"
                         placeholder="Type location"
+                        value={locationFilter}
                         onChange={(e) => setLocationFilter(e.target.value)}
                       />
-
                     </div>
                     <hr />
                     <div>
                       <div>
                         <h6>Job Type</h6>
+                        <input
+                          type="text"
+                          className="locationInput input form-control"
+                          placeholder="part Time/Full Time/Freelance"
+                          value={jobTypeFilter}
+                          onChange={(e) => setJobTypeFilter(e.target.value)}
+                        />
                       </div>
-                      {options.map((option) => (
-                       <div className='jobtype' >
-                         <div className='jobDiv' key={option.id}>
-                          <label>
-                            {option.label}
-                          </label>
-                          <input
-                            type="checkbox"
-                            className="form-check-input"
-                            checked={option.value}
-                            onChange={() => handleTypeCheckboxChange(option.id)}
-                          />
-                        </div>
-                       </div>
-                      ))
-                      }
                     </div>
                     <hr />
                     <div>
-                      <div >
-                        <h6>Category</h6>
+                      <div>
+                        <h6>Job Role</h6>
+                        <input
+                          type="text"
+                          className="locationInput input form-control"
+                          placeholder="Type your job"
+                          value={categoryFilter}
+                          onChange={(e) => setCategoryFilter(e.target.value)}
+                        />
                       </div>
-                      {
-                        categories.length > 0 ? (
-                          categories.map((category, index) => (
-
-                            <div className='contentDiv' key={index}>
-                              <p>{category.categoryName} </p>
-                              <input onChange={() => handleCategoryCheck(category._id)} type="checkbox" className="form-check-input" id="check2" name="option2" value="something" />
-                            </div>
-                          ))
-                        ) : null
-                      }
-                      <button type='submit' className='filterBtn' >Apply Filter</button>
+                      <hr />
+                      <div>
+                        <div>
+                          <h6>Company Name</h6>
+                          <input
+                            type="text"
+                            className="locationInput input form-control"
+                            placeholder="Type company "
+                            value={companyFilter}
+                            onChange={(e) => setCompanyFilter(e.target.value)}
+                          />
+                        </div>
+                      </div>
+                      <div className='applyfilterbtn'>
+                        <button type="submit" className="filterBtn">
+                          Apply Filter
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </form>
               </Col>
               <Col sm={9} className="content">
-                <h3 className='mainHead' >List Job Post</h3>
+                <h3 className="mainHead">List Job Post</h3>
                 <div className="mainDiv">
-                  {
-                    filteredJobs && filteredJobs.length > 0 ? (
+                  {filteredJobs && filteredJobs.length > 0 ? (
                     filteredJobs.map((job, index) => (
-                      <div className='subdiv my-2 rounded' key={index}>
-                        <h5 className='mainheads'>{job.companyName} </h5>
-                        <div className='subheads '>
-                          <h6 className='sub' >{job.jobRole} </h6>
-                          <h6 className='sub'>{job.jobType} </h6>
-                          <h6 className='sub'>{job.jobLocation} </h6>
-                          <h6 className='sub'>{job.salary} </h6>
-                          <div className='saveIcon'>
-                            <Link to='/saveJobs' >
-                              <BsSave className='icons' />
+                      <div className="subdiv my-2 rounded" key={index}>
+                        <h5 className="mainheads">{job.companyName}</h5>
+                        <div className="subheads">
+                          <h6 className="sub">{job.jobRole}</h6>
+                          <h6 className="sub">{job.jobType}</h6>
+                          <h6 className="sub">{job.jobLocation}</h6>
+                          <h6 className="sub">{job.salary}</h6>
+                          <div className="saveIcon">
+                            <Link to="/saveJobs">
+                              <BsSave className="icons" />
                             </Link>
                           </div>
-                          <button onClick={()=>{
-                          navigate(`/jobDetails/${job._id}`)
-                          }} className='delete'>Apply</button>
+                          <button
+                            onClick={() => {
+                              navigate(`/jobDetails/${job._id}`);
+                            }}
+                            className="delete"
+                          >
+                            Apply
+                          </button>
                         </div>
                       </div>
                     ))
-                  ) : (jobs && jobs.length > 0)?(
+                  ) : jobs && jobs.length > 0 ? (
                     jobs.map((job, index) => (
-                      <div className='subdiv my-2 rounded' key={index}>
-                        <h5 className='mainheads'>{job.companyName} </h5>
-                        <div className='subheads '>
-                          <h6 className='sub' >{job.jobRole} </h6>
-                          <h6 className='sub'>{job.jobType} </h6>
-                          <h6 className='sub'>{job.jobLocation} </h6>
-                          <h6 className='sub'>{job.salary} </h6>
-                          <div className='saveIcon'>
-                            <Link to='/saveJobs' >
-                              <BsSave className='icons' />
+                      <div className="subdiv my-2 rounded" key={index}>
+                        <h5 className="mainheads">{job.companyName}</h5>
+                        <div className="subheads">
+                          <h6 className="sub">{job.jobRole}</h6>
+                          <h6 className="sub">{job.jobType}</h6>
+                          <h6 className="sub">{job.jobLocation}</h6>
+                          <h6 className="sub">{job.salary}</h6>
+                          <div className="saveIcon">
+                            <Link to="/saveJobs">
+                              <BsSave className="icons" />
                             </Link>
                           </div>
-                          <button onClick={()=>{
-                          navigate(`/jobDetails/${job._id}`)
-                          }} className='delete'  >Apply</button>
+                          <button
+                            onClick={() => {
+                              navigate(`/jobDetails/${job._id}`);
+                            }}
+                            className="delete"
+                          >
+                            Apply
+                          </button>
                         </div>
                       </div>
                     ))
-                  ):(
+                  ) : (
                     <p>No matching jobs found.</p>
                   )}
                 </div>

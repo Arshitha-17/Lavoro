@@ -53,7 +53,7 @@
    font-weight: bold;
    height: 35px;
    border: 0px;
-   border-radius: 10px;
+   /* border-radius: 20px; */
 
 
 }
@@ -80,8 +80,10 @@ justify-content: space-between ;
 }
 
 .locationInput{
-    padding: 5px;
-    border-radius: 10px;
+    font-size: 15px !important;
+    padding: 8px !important;
+
+    line-height: 0.5 !important;
 }
 
 .saveIcon{
@@ -109,4 +111,6 @@ justify-content: space-between ;
     margin: 0 15px; /* Add margin to space the cards */
   }
 
-  
+  .applyfilterbtn{
+    padding-top: 15px;
+  }
