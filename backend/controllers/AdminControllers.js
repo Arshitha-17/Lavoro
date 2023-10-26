@@ -205,7 +205,7 @@ const HrBlock = asyncHandler(async(req,res)=>{
 // job list
 
 const jobList = asyncHandler(async(req,res)=>{
-    console.log("hedsfuyhga");
+ 
     const jobs = await Job.find({})
     if(jobs){
 
