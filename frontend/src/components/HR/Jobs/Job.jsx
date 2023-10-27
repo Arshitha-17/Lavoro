@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 
 
 const Job = () => {
+    
     const [companyName, setCompanyName] = useState('')
     const [hrData, setHrDetails] = useState('')
     const [jobRole, setJobRole] = useState('')
@@ -18,13 +19,29 @@ const Job = () => {
     const [salary, setSalary] = useState('')
     const [jobType, setJobType] = useState('')
     const [jobLocation, setJobLocation] = useState('')
-    const [lastDate, setLastDate] = useState('')
     const [requirements, setRequirements] = useState('')
     const [jobDescription, setJobDescription] = useState('')
     const [qualification, setQualification] = useState('')
     const [allCategories, setAllCategories] = useState([])
     const navigate = useNavigate()
+    
+    // last date
+    const getCurrentDate = ()=>{
+        const today = new Date()
+        const year = today.getFullYear()
+        let month = (today.getMonth()+1).toString()
 
+        if(month.length===1){
+            month = "0" +month;
+        }
+        let day = today.getDate().toString();
+        if(day.length===1){
+            day = "0" + day
+        }
+        return `${year}-${month}-${day}`
+    }
+
+    const [lastDate, setLastDate] = useState(getCurrentDate());
   
     // Check if HR is logged in
     const hr = JSON.parse(localStorage.getItem("HRInfo"));
@@ -70,7 +87,7 @@ const Job = () => {
                 setJobLocation('')
                 setJobType('')
                 setJobRole('')
-                setLastDate('')
+                setLastDate(getCurrentDate())
                 setRequirements('')
                 setSalary('')
                 setJobDescription('')
@@ -103,6 +120,10 @@ const Job = () => {
         };
         fetchCategories();
     }, [hr]);
+
+
+ 
+
 
     return (
         <Container fluid>
@@ -213,8 +234,8 @@ const Job = () => {
                                 <Form.Control className='my-4 job_input'
                                     type='date'
                                     value={lastDate}
-                                    placeholder='Last apply date'
                                     onChange={(e) => setLastDate(e.target.value)}
+                                    min={getCurrentDate()}
                                 >
                                 </Form.Control>
                                 <Form.Control className='my-4 job_input'
