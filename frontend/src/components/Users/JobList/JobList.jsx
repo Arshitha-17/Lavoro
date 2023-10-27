@@ -14,6 +14,8 @@ const JobList = () => {
   const [categoryFilter, setCategoryFilter] = useState('');
   const [companyFilter, setCompanyFilter] = useState('');
   const [filteredJobs, setFilteredJobs] = useState([]);
+const [isFilterApplied,setIsFilterApplied] = useState(false)
+
   const navigate = useNavigate();
 
   const filterHandler = (e) => {
@@ -29,6 +31,18 @@ const JobList = () => {
     });
 
     setFilteredJobs(filteredJobs);
+    setIsFilterApplied(true)
+  };
+
+  const removeFilterHandler = () => {
+
+    setFilteredJobs([])
+    setIsFilterApplied(false)
+    setCategoryFilter("")
+    setCompanyFilter("")
+    setJobTypeFilter("")
+    setLocationFilter("")
+
   };
 
   useEffect(() => {
@@ -52,6 +66,8 @@ const JobList = () => {
     fetchJobs();
   }, []);
 
+
+
   return (
     <div >
       <div className='heightTag'></div>
@@ -60,21 +76,6 @@ const JobList = () => {
           <h1 className='mainhead' >Job Listing</h1>
           <h5 className='subhead' >Delivering Rapid Solutions with Lasting Impression.</h5>
         </div>
-        {/* <div className='searchbar '>
-          <form className="form-inline my-2 my-lg-0">
-            <div className=" input-group">
-              <input
-                type="text"
-                className="input form-control"
-                placeholder="Your job title or keyword"
-                onChange={(e) => setLocationFilter(e.target.value)}
-              />
-              <div className="input-group-append">
-                <button className="button btn " type="button">Search</button>
-              </div>
-            </div>
-          </form>
-        </div> */}
 
         <div className='cardMainDivs '>
           {
@@ -125,7 +126,7 @@ const JobList = () => {
                           value={jobTypeFilter}
                           onChange={(e) => setJobTypeFilter(e.target.value)}
                         >
-                          <option value="">Select Job Type</option>
+                          <option value="" disabled>Select Job Type</option>
                           <option value="Full Time">Full Time</option>
                           <option value="Part Time">Part Time</option>
                           <option value="Freelance">Freelance</option>
@@ -141,7 +142,7 @@ const JobList = () => {
                           value={categoryFilter}
                           onChange={(e) => setCategoryFilter(e.target.value)}
                         >
-                          <option value="">Select Job Role</option>
+                          <option value="" disabled >Select Job Role</option>
                           {categories.map((category) => (
                             <option key={category._id} value={category.categoryName}>
                               {category.categoryName}
@@ -162,11 +163,21 @@ const JobList = () => {
                           />
                         </div>
                       </div>
-                      <div className='applyfilterbtn'>
-                        <button type="submit" className="filterBtn">
-                          Apply Filter
-                        </button>
+                      <div className='filter'>
+                        <div className='applyfilterbtn'>
+                          <button type="submit" className="filterBtn">
+                            Apply Filter
+                          </button>
+                        </div>
+                        {isFilterApplied && (
+                          <div className="removefilter">
+                            <button type="button" className="removefilterBtn" onClick={removeFilterHandler}>
+                              Remove Filter
+                            </button>
+                          </div>
+                        )}
                       </div>
+
                     </div>
                   </div>
                 </form>

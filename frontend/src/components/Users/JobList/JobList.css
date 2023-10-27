@@ -113,4 +113,29 @@ justify-content: space-between ;
 
   .applyfilterbtn{
     padding-top: 15px;
+    padding-right: 25px !important;
+  }
+
+.filter{
+    display: flex;
+  
+}
+
+  .removefilter{
+   
+    padding-top: 15px;
+    padding-left: 5px !important;
+  }
+
+  .removefilterBtn{
+    background: linear-gradient(to bottom, #ffffff,#525050); 
+   
+    color: rgb(0, 0, 0);
+
+   height: 35px;
+   border: 0px;
+
+   /* border-radius: 20px; */
+   
+  
   }
