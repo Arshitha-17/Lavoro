@@ -308,8 +308,6 @@ const applicationList = asyncHandler(async (req, res) => {
 })
 
 
-
-
 export {
     authUser,
     registerUser,

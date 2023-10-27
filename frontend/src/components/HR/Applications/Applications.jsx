@@ -10,6 +10,7 @@ import { usersApi } from '../../../axiosApi/axiosInstance';
 import { toast } from 'react-toastify'
 
 
+
 const Applications = () => {
     const [applications, setApplications] = useState({})
     const navigate = useNavigate()
@@ -41,14 +42,42 @@ const Applications = () => {
     }, [])
 
     const handleAccept = async (applicationId) => {
-        const res =  await usersApi.put(`/hr/acceptApplication/${applicationId}`)
-        toast.success(res.data.message)
+        const res = await usersApi.put(`/hr/acceptApplication/${applicationId}`);
+        toast.success(res.data.message);
+
+        // Update the status for the accepted application
+        setApplications((prevApplications) =>
+            prevApplications.map((application) => {
+                if (application._id === applicationId) {
+                    return {
+                        ...application,
+                        status: 'Application Accept',
+                    };
+                }
+                return application;
+            })
+        );
     };
-    
+
     const handleReject = async (applicationId) => {
-        const res =  await usersApi.put(`/hr/rejectApplication/${applicationId}`)
-        toast.success(res.data.message)       
+        const res = await usersApi.put(`/hr/rejectApplication/${applicationId}`);
+        toast.success(res.data.message);
+
+        // Update the status for the rejected application
+        setApplications((prevApplications) =>
+            prevApplications.map((application) => {
+                if (application._id === applicationId) {
+                    return {
+                        ...application,
+                        status: 'Application Rejected',
+                    };
+                }
+                return application;
+            })
+        );
     };
+
+
 
     return (
         <div>
@@ -93,31 +122,37 @@ const Applications = () => {
                     <Col sm={9} className="content">
 
 
-                        <div className='applicationMainDiv'>
-                            {
-                                applications.length > 0 ? (
-                                    applications.map((application, index) => (
-
-
-                                        <Card className='applicationCard' style={{ width: '18rem' }} key={index}>
-                                            <Card.Body>
-                                                <Card.Title className='userName' >{application.userDetails.name} </Card.Title>
-                                                <Card.Text>Job Applied: {application.jobDetails.jobRole} </Card.Text>
-                                                <Card.Text>Qualification: {application.userDetails.qualification} </Card.Text>
-                                                <Card.Text>Experience: {application.userDetails.experience} </Card.Text>
-                                                <Card.Text>Skills: {application.userDetails.skills} </Card.Text>
-                                                {/* <embed src={`http://localhost:5000/resume/${application.userDetails.resume}`} type="application/pdf" width="100%" height="500px" /> */}
-                                                <a href={`http://localhost:5000/resume/${application.userDetails.resume}`} target="_blank" rel="noopener noreferrer">View Resume</a>
-                                                <div>
-
-                                                <Button className='acceptBtn' variant="success" onClick={() => handleAccept(application._id)}>Accept</Button>
-                                                <Button className='rejectBtn' variant="danger" onClick={() => handleReject(application._id)}>Reject</Button>
-                                                </div>
-                                            </Card.Body>
-                                        </Card>
-                                    ))
-                                ) : null
-                            }
+                        <div className="applicationMainDiv">
+                            {applications.length > 0 ? (
+                                applications.map((application, index) => (
+                                    <Card className="applicationCard" style={{ width: '18rem' }} key={index}>
+                                        <Card.Body>
+                                            <Card.Title className="userName">{application.userDetails.name}</Card.Title>
+                                            <Card.Text>Job Applied: {application.jobDetails.jobRole}</Card.Text>
+                                            <Card.Text>Qualification: {application.userDetails.qualification}</Card.Text>
+                                            <Card.Text>Experience: {application.userDetails.experience}</Card.Text>
+                                            <Card.Text>Skills: {application.userDetails.skills}</Card.Text>
+                                            <a href={`http://localhost:5000/resume/${application.userDetails.resume}`} target="_blank" rel="noopener noreferrer">
+                                                View Resume
+                                            </a>
+                                            <div>
+                                                {application.status === 'pending' ? (
+                                                    <div>
+                                                        <Button className="acceptBtn" variant="success" onClick={() => handleAccept(application._id)}>
+                                                            Accept
+                                                        </Button>
+                                                        <Button className="rejectBtn" variant="danger" onClick={() => handleReject(application._id)}>
+                                                            Reject
+                                                        </Button>
+                                                    </div>
+                                                ) : (
+                                                    <p  style={{ color: application.status === 'Application Rejected' ? 'red' : 'green' }} >Status: {application.status} </p>
+                                                )}
+                                            </div>
+                                        </Card.Body>
+                                    </Card>
+                                ))
+                            ) : null}
                         </div>
                     </Col>
                 </Row>
