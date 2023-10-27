@@ -14,8 +14,6 @@ import { toast } from 'react-toastify'
 const Applications = () => {
     const [applications, setApplications] = useState({})
     const navigate = useNavigate()
-
-
     useEffect(() => {
         const hr = JSON.parse(localStorage.getItem("HRInfo"))
         if (hr && hr._id) {
@@ -44,8 +42,6 @@ const Applications = () => {
     const handleAccept = async (applicationId) => {
         const res = await usersApi.put(`/hr/acceptApplication/${applicationId}`);
         toast.success(res.data.message);
-
-        // Update the status for the accepted application
         setApplications((prevApplications) =>
             prevApplications.map((application) => {
                 if (application._id === applicationId) {
@@ -62,8 +58,6 @@ const Applications = () => {
     const handleReject = async (applicationId) => {
         const res = await usersApi.put(`/hr/rejectApplication/${applicationId}`);
         toast.success(res.data.message);
-
-        // Update the status for the rejected application
         setApplications((prevApplications) =>
             prevApplications.map((application) => {
                 if (application._id === applicationId) {
