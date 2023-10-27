@@ -305,8 +305,6 @@ const applicationList = asyncHandler(async (req, res) => {
         return res.status(401).json({ message: "Application not fount" })
     }
 
-
-
 })
 
 
