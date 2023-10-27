@@ -41,7 +41,7 @@ const JobDetailPage = () => {
         if (!applied) {
             try {
                 const res = await usersApi.post(`users/jobDetails/${jobId}/${user._id}`, {
-                    status: 'pending...',
+                    status: 'pending',
                 });
 
                 toast.success(res.data.message);

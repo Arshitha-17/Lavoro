@@ -114,8 +114,6 @@ const Applications = () => {
                         </div>
                     </Col>
                     <Col sm={9} className="content">
-
-
                         <div className="applicationMainDiv">
                             {applications.length > 0 ? (
                                 applications.map((application, index) => (
@@ -140,7 +138,8 @@ const Applications = () => {
                                                         </Button>
                                                     </div>
                                                 ) : (
-                                                    <p  style={{ color: application.status === 'Application Rejected' ? 'red' : 'green' }} >Status: {application.status} </p>
+                                                    
+                                                    <p>Status: <strong  style={{ color: application.status === 'Application Rejected' ? 'red' : 'green' }}>{application.status} </strong>  </p>
                                                 )}
                                             </div>
                                         </Card.Body>
