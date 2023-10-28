@@ -11,40 +11,40 @@ import { toast } from 'react-toastify';
 
 
 const Job = () => {
-    
-    const [companyName, setCompanyName] = useState('')
-    const [hrData, setHrDetails] = useState('')
-    const [jobRole, setJobRole] = useState('')
-    const [experience, setExperience] = useState('')
-    const [salary, setSalary] = useState('')
-    const [jobType, setJobType] = useState('')
-    const [jobLocation, setJobLocation] = useState('')
-    const [requirements, setRequirements] = useState('')
-    const [jobDescription, setJobDescription] = useState('')
-    const [qualification, setQualification] = useState('')
-    const [allCategories, setAllCategories] = useState([])
-    const navigate = useNavigate()
-    
-    // last date
-    const getCurrentDate = ()=>{
-        const today = new Date()
-        const year = today.getFullYear()
-        let month = (today.getMonth()+1).toString()
 
-        if(month.length===1){
-            month = "0" +month;
+    const [companyName, setCompanyName] = useState('');
+    const [hrData, setHrDetails] = useState({});
+    const [jobRole, setJobRole] = useState('');
+    const [experience, setExperience] = useState('');
+    const [salary, setSalary] = useState('');
+    const [jobType, setJobType] = useState('');
+    const [jobLocation, setJobLocation] = useState('');
+    const [requirements, setRequirements] = useState('');
+    const [jobDescription, setJobDescription] = useState('');
+    const [qualification, setQualification] = useState('');
+    const [allCategories, setAllCategories] = useState([]);
+    const navigate = useNavigate();
+
+    // last date
+    const getCurrentDate = () => {
+        const today = new Date();
+        const year = today.getFullYear();
+        let month = (today.getMonth() + 1).toString();
+
+        if (month.length === 1) {
+            month = '0' + month;
         }
         let day = today.getDate().toString();
-        if(day.length===1){
-            day = "0" + day
+        if (day.length === 1) {
+            day = '0' + day;
         }
-        return `${year}-${month}-${day}`
-    }
+        return `${year}-${month}-${day}`;
+    };
 
     const [lastDate, setLastDate] = useState(getCurrentDate());
-  
+
     // Check if HR is logged in
-    const hr = JSON.parse(localStorage.getItem("HRInfo"));
+    const hr = JSON.parse(localStorage.getItem('HRInfo'));
 
     useEffect(() => {
         if (!hr) {
@@ -52,16 +52,27 @@ const Job = () => {
         }
     }, [navigate, hr]);
 
-
     const hrId = hr ? hr._id : null;
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        console.log("saved");
-        if (!companyName || !jobRole || !experience || !salary || !jobType || !jobLocation || !lastDate || !requirements || !jobDescription || !qualification) {
-            toast.error('All field are required')
-            return
+
+        if (
+            !companyName ||
+            !jobRole ||
+            !experience ||
+            !salary ||
+            !jobType ||
+            !jobLocation ||
+            !lastDate ||
+            !requirements ||
+            !jobDescription ||
+            !qualification
+        ) {
+            toast.error('All fields are required');
+            return;
         }
+
         const jobData = {
             companyName,
             jobRole,
@@ -73,42 +84,47 @@ const Job = () => {
             requirements,
             jobDescription,
             qualification,
-            hrId:hrId
+            hrId,
         };
-        
-        try {
-            const res = await usersApi.post('hr/HrJobAdd', jobData)
-            if (res.status === 200) {
-                console.log(res);
-                toast.success(res.data.message)
-                setAllCategories('')
-               
-                setExperience('')
-                setJobLocation('')
-                setJobType('')
-                setJobRole('')
-                setLastDate(getCurrentDate())
-                setRequirements('')
-                setSalary('')
-                setJobDescription('')
-                setQualification('')
-            }
 
+        try {
+            const res = await usersApi.post('hr/HrJobAdd', jobData);
+
+            if (res.status === 200) {
+                toast.success(res.data.message);
+                setJobRole('');
+                setExperience('');
+                setJobLocation('');
+                setJobType('');
+                setSalary('');
+                setJobDescription('');
+                setQualification('');
+                setLastDate(getCurrentDate());
+                setRequirements('');
+            }
         } catch (error) {
             console.error('Error saving job:', error);
         }
+    };
 
-    }
+    useEffect(() => {
+        const fetchHr = async () => {
+            const res = await usersApi.get(`hr/getHrDetails/${hr._id}`);
+            setHrDetails(res.data.hrDetails);
+            setCompanyName(res.data.hrDetails.companyName);
+        };
+        fetchHr();
+    }, [hr]);
 
-    useEffect(()=>{
-        const fetchHr = async ()=>{
-            // console.log(hr);
-            const res = await usersApi.get(`hr/getHrDetails/${hr._id}`)
-            console.log((res.data.hrDetails));
-            setHrDetails(res.data.hrDetails)
-        }
-        fetchHr()
-    },[])
+    useEffect(() => {
+        const fetchCategories = async () => {
+            if (hr) {
+                const res = await usersApi.get('hr/getCategories');
+                setAllCategories(res.data);
+            }
+        };
+        fetchCategories();
+    }, [hr]);
 
 
     useEffect(() => {
@@ -122,7 +138,7 @@ const Job = () => {
     }, [hr]);
 
 
- 
+
 
 
     return (
@@ -165,19 +181,16 @@ const Job = () => {
                     </div>
                 </Col>
                 <Col sm={9} className="content">
-                    {/* Main content goes here */}
-                    <h3 className='head text-white '>Post Job</h3>
-                    <div className='form_div '>
-
+                    <h3 className="head text-white">Post Job</h3>
+                    <div className="form_div">
                         <Form onSubmit={submitHandler}>
-                            <Form.Group className='form_group' >
-                                <Form.Control className='my-4 job_input '
-                                    type='text'
-                                    value={hrData.companyName}
-                                    
-                                   
-                                >
-                                </Form.Control>
+                            <Form.Group className="form_group">
+                                <Form.Control
+                                    className="my-4 job_input"
+                                    type="text"
+                                    value={companyName}
+                                    disabled
+                                />
                                 <Form.Control
                                     as="select"
                                     className="my-4 job_input"
@@ -185,77 +198,87 @@ const Job = () => {
                                     value={jobRole}
                                     onChange={(e) => setJobRole(e.target.value)}
                                 >
-                                    <option disabled hidden value="">Select a Job Role</option>
-                                    {
-                                        allCategories.length > 0 ? (
-                                            allCategories.map((category, index) => (
-                                                <option key={index} value={category.categoryName}>{category.categoryName}</option>
-                                            ))
-                                        ) : null
-                                    }
-
+                                    <option disabled hidden value="">
+                                        Select a Job Role
+                                    </option>
+                                    {allCategories.length > 0 ? (
+                                        allCategories.map((category, index) => (
+                                            <option key={index} value={category.categoryName}>
+                                                {category.categoryName}
+                                            </option>
+                                        ))
+                                    ) : null}
                                 </Form.Control>
-
-                                <Form.Control className='my-4 job_input'
-                                    type='text'
+                                <Form.Control
+                                    className="my-4 job_input"
+                                    type="text"
+                                    name="experience"
                                     value={experience}
-                                    placeholder='Experience/Fresher '
+                                    placeholder="Experience/Fresher"
                                     onChange={(e) => setExperience(e.target.value)}
-                                >
-                                </Form.Control>
-                                <Form.Control className='my-4 job_input'
-                                    type='text'
+                                />
+                                <Form.Control
+                                    className="my-4 job_input"
+                                    type="text"
+                                    name="salary"
                                     value={salary}
-                                    placeholder='Salary'
+                                    placeholder="Salary"
                                     onChange={(e) => setSalary(e.target.value)}
-                                >
-                                </Form.Control>
-                                <Form.Control className='my-4 job_input'
-                                    type='text'
+                                />
+                                <Form.Control
+                                    className="my-4 job_input"
+                                    type="text"
+                                    name="qualification"
                                     value={qualification}
-                                    placeholder='Qualification'
+                                    placeholder="Qualification"
                                     onChange={(e) => setQualification(e.target.value)}
-                                >
-                                </Form.Control>
-                                <Form.Control className='my-4 job_input'
-                                    type='text'
+                                />
+                                <Form.Control
+                                    className="my-4 job_input"
+                                    type="text"
+                                    name="jobType"
                                     value={jobType}
-                                    placeholder='Job type'
+                                    placeholder="Job type"
                                     onChange={(e) => setJobType(e.target.value)}
-                                >
-                                </Form.Control>
-                                <Form.Control className='my-4 job_input'
-                                    type='text'
+                                />
+                                <Form.Control
+                                    className="my-4 job_input"
+                                    type="text"
+                                    name="jobLocation"
                                     value={jobLocation}
-                                    placeholder='Job location'
+                                    placeholder="Job location"
                                     onChange={(e) => setJobLocation(e.target.value)}
-                                >
-                                </Form.Control>
-                                <Form.Control className='my-4 job_input'
-                                    type='date'
+                                />
+                                <Form.Control
+                                    className="my-4 job_input"
+                                    type="date"
+                                    name="lastDate"
                                     value={lastDate}
                                     onChange={(e) => setLastDate(e.target.value)}
                                     min={getCurrentDate()}
-                                >
-                                </Form.Control>
-                                <Form.Control className='my-4 job_input'
-                                    as='textarea'
+                                />
+                                <Form.Control
+                                    className="my-4 job_input"
+                                    as="textarea"
                                     rows={3}
+                                    name="requirements"
                                     value={requirements}
-                                    placeholder='Requirements'
+                                    placeholder="Requirements"
                                     onChange={(e) => setRequirements(e.target.value)}
-                                >
-                                </Form.Control>
-                                <Form.Control className='my-4 job_input'
-                                    as='textarea'
+                                />
+                                <Form.Control
+                                    className="my-4 job_input"
+                                    as="textarea"
                                     rows={5}
+                                    name="jobDescription"
                                     value={jobDescription}
-                                    placeholder='Job Description'
+                                    placeholder="Job Description"
                                     onChange={(e) => setJobDescription(e.target.value)}
-                                >
-                                </Form.Control>
+                                />
                             </Form.Group>
-                            <Button type='submit' className='addButton'>Save</Button>
+                            <Button type="submit" className="addButton">
+                                Save
+                            </Button>
                         </Form>
                     </div>
                 </Col>
