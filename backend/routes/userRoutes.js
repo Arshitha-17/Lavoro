@@ -43,7 +43,7 @@ router.post('/otp',otpVerify)
 router.post('/resetPassword',resetPassword)
 router.post('/logout',logoutUser)
 router.route('/profile/:id').get(userProfile).put(upload.single('resume'), updateUserProfile);
-router.get('/jobList',jobList)
+router.get('/jobList/:id',jobList)
 router.get('/categories',categories)
 router.get('/jobDetails/:id',jobDetailPage)
 router.post('/jobDetails/:jobId/:userId',sendApplication)

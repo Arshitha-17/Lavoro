@@ -218,7 +218,10 @@ const categories = asyncHandler(async (req, res) => {
 // Job list 
 
 const jobList = asyncHandler(async (req, res) => {
+    // const application = await 
+    console.log(req.params.id);
     const jobs = await Job.find({})
+
 
     res.status(200).json({ jobs })
 })
@@ -249,12 +252,11 @@ const sendApplication = asyncHandler(async (req, res) => {
 
 const checkApplicationStatus = asyncHandler(async (req, res) => {
     const { jobId, userId } = req.params;
-
-    // Check if the user has applied for the job
     const application = await Application.findOne({ userId, jobId });
-
     res.status(200).json({ applied: !!application });
 });
+
+
 
 
 // aggregate application list user side

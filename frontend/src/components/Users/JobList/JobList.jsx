@@ -17,6 +17,8 @@ const JobList = () => {
 const [isFilterApplied,setIsFilterApplied] = useState(false)
 
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("userInfo"))
+ 
 
   const filterHandler = (e) => {
     e.preventDefault();
@@ -60,7 +62,7 @@ const [isFilterApplied,setIsFilterApplied] = useState(false)
 
   useEffect(() => {
     const fetchJobs = async () => {
-      let res = await usersApi.get('users/jobList');
+      let res = await usersApi.get(`users/jobList/${user._id}`);
       setJobs(res.data.jobs);
     };
     fetchJobs();
