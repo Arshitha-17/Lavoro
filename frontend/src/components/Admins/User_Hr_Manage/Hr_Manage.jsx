@@ -1,6 +1,7 @@
 import { Table, Button } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import { usersApi } from '../../../axiosApi/axiosInstance';
+import "./User_Hr_Manage.css"
 
 const Hr_Manage = () => {
   const [allHr, setAllHr] = useState([]);
@@ -36,8 +37,8 @@ const Hr_Manage = () => {
 
   return (
     <div>
-      <h4>Hr details</h4>
-      <div>
+      <h4 className='Userheading'>Hr details</h4>
+      <div className='tableMainDiv'>
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -55,7 +56,12 @@ const Hr_Manage = () => {
                   <td>{hr.name}</td>
                   <td>{hr.email}</td>
                   <td>
-                    <Button onClick={() => handleHrBlock(hr._id)}>
+                    <Button className='blockUnblockbtn' onClick={() => handleHrBlock(hr._id)} 
+                     style={{
+                      backgroundColor: hr.isBlock ? 'red' : 'green',
+                      color: 'white', // You can adjust the text color
+                    }}>
+                     
                       {hr.isBlock ? 'Unblock' : 'Block'}
                     </Button>
                   </td>
