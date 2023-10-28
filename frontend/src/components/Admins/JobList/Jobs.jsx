@@ -44,10 +44,10 @@ const Job = () => {
                             <h2>Name</h2>
                         </div>
                         <div className='sidebar-headings'>
-                            <div className='heads'>
+                            {/* <div className='heads'>
                                 <div><AiOutlineUser /> </div>
                                 <NavLink to="/admin/profile" className='head'>Profile</NavLink>
-                            </div>
+                            </div> */}
                             <div className='heads'>
                                 <div><AiOutlineMessage /> </div>
                                 <NavLink to="/admin/hr_manage" className='head'>Hr Details</NavLink>
