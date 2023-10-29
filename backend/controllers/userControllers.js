@@ -6,6 +6,7 @@ import Job from '../models/jobModel.js'
 import Category from '../models/category.js'
 import Application from '../models/applicationModel.js';
 import mongoose from 'mongoose';
+import SavedJobs from '../models/userSavedJobs.js';
 
 
 
@@ -228,7 +229,7 @@ const jobList = asyncHandler(async (req, res) => {
     const applications = await Application.find({userId})
     const applicationJobIds = applications.map(application => application.jobId);
     const jobs = await Job.find({ _id: { $nin: applicationJobIds } });
-    console.log(jobs);
+  
     res.status(200).json({ jobs })
 })
 
@@ -312,6 +313,32 @@ const applicationList = asyncHandler(async (req, res) => {
 })
 
 
+// save jobs
+const saveJobs = asyncHandler(async (req, res) => {
+    console.log(req.params.jobId);
+    const userId = req.params.id;
+    const jobId = req.params.jobId;
+  
+    const save = await SavedJobs.findOne({ jobId });
+  
+    if (save) { // Check if save is not null
+      console.log(save.jobId.toString());
+  
+      if (save.jobId.toString() === jobId) {
+        return res.status(401).json({ message: "Already Saved" });
+      }
+    }
+  
+    const savedJobs = SavedJobs.create({
+      userId: userId,
+      jobId: jobId,
+    });
+  
+    res.status(200).json({ message: "Saved Successfully" });
+  });
+  
+
+
 export {
     authUser,
     registerUser,
@@ -327,6 +354,7 @@ export {
     sendApplication,
     checkApplicationStatus,
     applicationList,
-    getJobs
+    getJobs,
+    saveJobs
 
 }

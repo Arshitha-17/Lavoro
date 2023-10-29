@@ -4,7 +4,7 @@ import { Card, Col, Container, Row } from 'react-bootstrap'
 import { BsSave } from "react-icons/bs"
 import { Link, useNavigate } from 'react-router-dom'
 import { usersApi } from '../../../axiosApi/axiosInstance'
-
+import {toast} from "react-toastify"
 
 const JobList = () => {
   const [categories, setCategories] = useState([]);
@@ -14,12 +14,12 @@ const JobList = () => {
   const [categoryFilter, setCategoryFilter] = useState('');
   const [companyFilter, setCompanyFilter] = useState('');
   const [filteredJobs, setFilteredJobs] = useState([]);
-const [isFilterApplied,setIsFilterApplied] = useState(false)
-
+  const [isFilterApplied, setIsFilterApplied] = useState(false)
+ 
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("userInfo"))
-  useEffect(()=>{
-    if(!user){
+  useEffect(() => {
+    if (!user) {
 
       navigate('/login')
     }
@@ -66,8 +66,6 @@ const [isFilterApplied,setIsFilterApplied] = useState(false)
   }, []);
 
 
-
-
   useEffect(() => {
     const fetchJobs = async () => {
       let res = await usersApi.get(`users/jobList/${user._id}`);
@@ -76,6 +74,24 @@ const [isFilterApplied,setIsFilterApplied] = useState(false)
     fetchJobs();
   }, []);
 
+
+
+
+
+const handleSaveJobs = async(jobId)=>{
+ 
+  const res = await usersApi.post(`users/saveJobs/${jobId}/${user._id}`)
+  
+  console.log(res.status);
+
+  if (res.status === 404) {
+    toast.error("Already saved");
+  } else if (res.status ===200) {
+    toast.success("Saved Successfully");
+  } else {
+    toast.error("An error occurred");
+  }
+};
 
 
   return (
@@ -230,7 +246,7 @@ const [isFilterApplied,setIsFilterApplied] = useState(false)
                           <h6 className="sub">{job.jobLocation}</h6>
                           <h6 className="sub">{job.salary}</h6>
                           <div className="saveIcon">
-                            <Link to="/saveJobs">
+                            <Link  onClick={()=> handleSaveJobs(job._id)} >
                               <BsSave className="icons" />
                             </Link>
                           </div>
