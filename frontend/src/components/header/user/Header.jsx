@@ -3,9 +3,25 @@ import {FaSignOutAlt } from 'react-icons/fa';
 import logoImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/WhatsApp Image 2023-09-26 at 8.21.43 PM-PhotoRoom.png-PhotoRoom.png'; 
 import './Header.css'
 import {LinkContainer} from 'react-router-bootstrap'
+import {toast} from "react-toastify"
 
 const Header = () => {
 
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+
+  const handleLogout = () => {
+   
+    localStorage.removeItem('userInfo');
+    toast.success('Logout successful!', {
+      position: 'top-right',
+      autoClose: 3000, 
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  };
 
   
     return (
@@ -41,18 +57,25 @@ const Header = () => {
                         <Nav.Link  className=' text-white me-5'><h5>Contact</h5></Nav.Link>
                     </LinkContainer>
                     </Nav>
-                    <LinkContainer to='/login'>
-                    <Nav.Link >
-                      <Button className='me-2 login-button' style={{'borderRadius':'90px' }}>Login</Button>
-                      </Nav.Link>
-                    </LinkContainer>
-                    <LinkContainer to='/logout'>
-                    <Nav.Link >
-                        <FaSignOutAlt className='logout' style={{height:'30px'}} />
-                    </Nav.Link>
-                    </LinkContainer>
-            </Navbar.Collapse>
-        </Navbar>
+                    {userInfo ? ( // Check if user is logged in (userInfo exists in localStorage)
+            <>
+              <FaSignOutAlt
+                className='logout'
+                style={{ height: '30px' }}
+                onClick={handleLogout}
+              />
+            </>
+          ) : (
+            <>
+              <LinkContainer to='/login'>
+                <Nav.Link>
+                  <Button className='me-2 login-button' style={{ borderRadius: '90px' }}>Login</Button>
+                </Nav.Link>
+              </LinkContainer>
+            </>
+          )}
+        </Navbar.Collapse>
+      </Navbar>
       </header>
     );
 };

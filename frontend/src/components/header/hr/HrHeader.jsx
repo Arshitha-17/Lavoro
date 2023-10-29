@@ -4,7 +4,15 @@ import logoImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/fro
 import './HrHeader.css'
 import { LinkContainer } from 'react-router-bootstrap';
 import { IoIosNotificationsOutline } from 'react-icons/io'
+import { toast } from 'react-toastify';
 const HrHeader = () => {
+
+  const hrInfo = JSON.parse(localStorage.getItem("HRInfo"))
+
+  const handleLogout = () => {
+    localStorage.removeItem("HRInfo");
+    toast.success("Logout Successfully")
+  }
 
   return (
     <header>
@@ -36,21 +44,19 @@ const HrHeader = () => {
               <Nav.Link className=' text-white me-5'><h5>Jobs</h5></Nav.Link>
             </LinkContainer>
           </Nav>
-          <LinkContainer className='not' to='/hr/applications'>
-            <Nav.Link className='notifiIcon' >
-              <IoIosNotificationsOutline id='icons' />
-            </Nav.Link>
-          </LinkContainer>
-          <LinkContainer to='/hr/login'>
-            <Nav.Link >
-              <Button className='me-2 login-button' style={{ 'borderRadius': '90px' }}>Login</Button>
-            </Nav.Link>
-          </LinkContainer>
-          <LinkContainer to='/hr/logout'>
-            <Nav.Link >
-              <FaSignOutAlt className='logout' style={{ height: '30px' }} />
-            </Nav.Link>
-          </LinkContainer>
+          {hrInfo ? (
+            <>
+              <FaSignOutAlt onClick={handleLogout} className='logout' style={{ height: '30px' }} />
+            </>
+          ) : (
+
+            <LinkContainer to='/hr/login'>
+              <Nav.Link >
+                <Button className='me-2 login-button' style={{ 'borderRadius': '90px' }}>Login</Button>
+              </Nav.Link>
+            </LinkContainer>
+          )
+          }
         </Navbar.Collapse>
       </Navbar>
     </header>
