@@ -224,20 +224,11 @@ const getJobs = asyncHandler(async (req, res) => {
 })
 
 const jobList = asyncHandler(async (req, res) => {
-
     const userId = req.params.id;
-
     const applications = await Application.find({userId})
     const applicationJobIds = applications.map(application => application.jobId);
-    // console.log(applicationJobIds);
-
-
-    console.log("its me job");
     const jobs = await Job.find({ _id: { $nin: applicationJobIds } });
-
     console.log(jobs);
-
-
     res.status(200).json({ jobs })
 })
 
@@ -250,18 +241,14 @@ const jobDetailPage = asyncHandler(async (req, res) => {
 
 // job apply 
 const sendApplication = asyncHandler(async (req, res) => {
-
     const { jobId, userId } = req.params;
     const { status } = req.body;
-
     const application = await Application.create({
         userId: userId,
         jobId: jobId,
         status: status,
-
     })
     res.status(200).json({ message: "Thank You For Your Application We Will Get Back You Soon ! 🥰" })
-
 })
 
 
