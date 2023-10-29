@@ -3,10 +3,14 @@ import {FaSignOutAlt } from 'react-icons/fa';
 import logoImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/WhatsApp Image 2023-09-26 at 8.21.43 PM-PhotoRoom.png-PhotoRoom.png'; 
 import './Header.css'
 import {LinkContainer} from 'react-router-bootstrap'
+
 const Header = () => {
+
+
   
     return (
       
+
       <header className='headertag'>
       <Navbar className='navbarStyle' variant='dark' expand='lg' collapseOnSelect>
         <LinkContainer to='/' >

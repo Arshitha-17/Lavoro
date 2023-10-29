@@ -15,7 +15,8 @@ import { authUser,
     jobDetailPage,
     sendApplication,
     checkApplicationStatus,
-    applicationList
+    applicationList,
+    getJobs
  } from "../controllers/userControllers.js"
 
 const router = express.Router()
@@ -43,6 +44,7 @@ router.post('/otp',otpVerify)
 router.post('/resetPassword',resetPassword)
 router.post('/logout',logoutUser)
 router.route('/profile/:id').get(userProfile).put(upload.single('resume'), updateUserProfile);
+router.get('/homepageJobList',getJobs)
 router.get('/jobList/:id',jobList)
 router.get('/categories',categories)
 router.get('/jobDetails/:id',jobDetailPage)

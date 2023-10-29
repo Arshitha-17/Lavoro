@@ -18,7 +18,12 @@ const [isFilterApplied,setIsFilterApplied] = useState(false)
 
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("userInfo"))
- 
+  useEffect(()=>{
+    if(!user){
+
+      navigate('/login')
+    }
+  })
 
   const filterHandler = (e) => {
     e.preventDefault();
@@ -59,6 +64,9 @@ const [isFilterApplied,setIsFilterApplied] = useState(false)
     };
     fetchCategory();
   }, []);
+
+
+
 
   useEffect(() => {
     const fetchJobs = async () => {

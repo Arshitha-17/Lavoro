@@ -29,7 +29,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchJobs = async () => {
-      const res = await usersApi.get('users/jobList')
+      const res = await usersApi.get('users/homepageJobList')
       setJobs(res.data.jobs)
     }
     fetchJobs()

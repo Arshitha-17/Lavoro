@@ -81,12 +81,12 @@ const forgotPassword = asyncHandler(async (req, res) => {
 
     await user.save();
 
-    const emailSent = await sendOtpEmail(user.email,otp)
-    if(emailSent){
-            res.status(200).json({ otp });
-        }else{
-              res.status(500).json({message:'Failed to send email'})
-            }
+    const emailSent = await sendOtpEmail(user.email, otp)
+    if (emailSent) {
+        res.status(200).json({ otp });
+    } else {
+        res.status(500).json({ message: 'Failed to send email' })
+    }
 
     // ----------------remove this and uncomment above code 
     // const emailSent = true
@@ -217,10 +217,25 @@ const categories = asyncHandler(async (req, res) => {
 })
 // Job list 
 
-const jobList = asyncHandler(async (req, res) => {
-    // const application = await 
-    console.log(req.params.id);
+
+const getJobs = asyncHandler(async (req, res) => {
     const jobs = await Job.find({})
+    res.status(200).json({ jobs })
+})
+
+const jobList = asyncHandler(async (req, res) => {
+
+    const userId = req.params.id;
+
+    const applications = await Application.find({userId})
+    const applicationJobIds = applications.map(application => application.jobId);
+    // console.log(applicationJobIds);
+
+
+    console.log("its me job");
+    const jobs = await Job.find({ _id: { $nin: applicationJobIds } });
+
+    console.log(jobs);
 
 
     res.status(200).json({ jobs })
@@ -324,6 +339,7 @@ export {
     jobDetailPage,
     sendApplication,
     checkApplicationStatus,
-    applicationList
+    applicationList,
+    getJobs
 
 }
