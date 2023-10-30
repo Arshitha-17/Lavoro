@@ -1,8 +1,19 @@
 .applicationMainDiv{
     display: flex;
     padding: 10px;
-    
+    flex-wrap: wrap;
 }
+
+
+.applicationCard {
+    width: 23%; /* Adjust the width as needed */
+    display: inline-block;
+    margin: 10px;
+  }
+  
+  
+  
+
 .applicationCard{
     margin-right: 10px
 }

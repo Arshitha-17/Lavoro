@@ -26,7 +26,8 @@ import { authAdmin,
      HrBlock,
      allUsers,
      allHr ,
-     jobList    
+     jobList,
+     getTotalApplications    
      } from "../controllers/AdminControllers.js"
 
 const adminRouter = express.Router()
@@ -50,6 +51,7 @@ adminRouter.post('/HrBlock/:id',HrBlock)
 adminRouter.get('/allUsers',allUsers)
 adminRouter.get('/allHr',allHr)
 adminRouter.get('/jobList',jobList)
+adminRouter.get('/applications',getTotalApplications)
 
 
 export default adminRouter

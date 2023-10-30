@@ -7,6 +7,7 @@ import User from '../models/userModel.js';
 import Hr from '../models/hrModel.js';
 import { assign } from 'nodemailer/lib/shared/index.js';
 import Job from '../models/jobModel.js'
+import Applications from "../models/applicationModel.js"
 
 //  admin/auth
 const authAdmin = asyncHandler(async (req, res) => {
@@ -213,8 +214,48 @@ const jobList = asyncHandler(async(req,res)=>{
     }else{
         return res.status(404).json({message:"no job found"})
     }
+})
 
+// Aggregate Applications
 
+// Total applications
+const getTotalApplications = asyncHandler(async(req,res)=>{
+    try {
+        const pipeline = [
+          {
+            $group: {
+              _id: '$jobId',
+              applications: { $push: '$$ROOT' },
+            },
+          },
+          {
+            $lookup: {
+              from: 'jobs', 
+              localField: '_id',
+              foreignField: '_id',
+              as: 'jobDetails',
+            },
+          },
+          {
+            $unwind: '$jobDetails',
+          },
+          {
+            $project: {
+              _id: 0,
+              jobId: '$_id',
+              jobDetails: 1,
+              applications: 1,
+            },
+          },
+        ];
+    
+        const result = await Applications.aggregate(pipeline);
+  
+        res.status(200).json({result})
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+      }
 })
 
 
@@ -231,5 +272,7 @@ export {
     allUsers,
     HrBlock,
     allHr,
-    jobList
+    jobList,
+    getTotalApplications
+    
 }
