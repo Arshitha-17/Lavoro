@@ -34,6 +34,7 @@ import AdminCategoryScreen from '../screens/Admins/AdminCategoryScreen'
 import AdminUserManageScreen from '../screens/Admins/AdminUserManageScreen'
 import AdminHrManageScreen from '../screens/Admins/AdminHrManageScreen'
 import AdminJobListScreen from '../screens/Admins/AdminJobListScreen'
+import SavedJobsScreen from '../screens/Users/SavedJobsScreen'
 
 
 const Routers = () => {
@@ -49,6 +50,7 @@ const Routers = () => {
         <Route path='/profile' element={<UserProfileScreen/>} />   
         <Route path='/jobDetails/:jobId' element={<JobDetailScreen/>} />   
         <Route path='/applications' element={<ApplicationScreen/>} />   
+        <Route path='/savedJobs' element={<SavedJobsScreen/>} />   
 
 
 {/*-------------- HR Routes--------------  */}

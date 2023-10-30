@@ -335,7 +335,58 @@ const saveJobs = asyncHandler(async (req, res) => {
   
     res.status(200).json({ message: "Saved Successfully" });
   });
-  
+
+
+
+//   aggregate
+
+const aggregateSavedJobs =async (userId_passed)=>{
+
+    try {
+        const result = await SavedJobs.aggregate([
+            {
+                $lookup: {
+                    from: "users",
+                    localField: "userId",
+                    foreignField: "_id",
+                    as: "userDetails",
+                },
+            }, {
+                $unwind: "$userDetails"
+            },
+            {
+                $lookup: {
+                    from: "jobs",
+                    localField: "jobId",
+                    foreignField: "_id",
+                    as: "jobDetails"
+                }
+            },
+            {
+                $unwind: "$jobDetails"
+            },
+            {
+                $match: {
+                    'userDetails._id': new mongoose.Types.ObjectId(userId_passed)
+                }
+            },
+        ])
+        return result
+    } catch (error) {
+        console.error(error)
+    }
+
+}
+
+//   get Saved Jobs
+
+const getSaveJobs = asyncHandler(async(req,res)=>{
+    const userId = req.params.id;
+    const result = await aggregateSavedJobs(userId)
+
+    res.status(200).json({result})
+
+})
 
 
 export {
@@ -354,6 +405,7 @@ export {
     checkApplicationStatus,
     applicationList,
     getJobs,
-    saveJobs
+    saveJobs,
+    getSaveJobs
 
 }
