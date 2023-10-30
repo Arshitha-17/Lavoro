@@ -79,18 +79,14 @@ const JobList = () => {
 
 
 const handleSaveJobs = async(jobId)=>{
- 
-  const res = await usersApi.post(`users/saveJobs/${jobId}/${user._id}`)
-  
-  console.log(res.status);
-
-  if (res.status === 404) {
-    toast.error("Already saved");
-  } else if (res.status ===200) {
-    toast.success("Saved Successfully");
-  } else {
-    toast.error("An error occurred");
+  try {
+    const res = await usersApi.post(`users/saveJobs/${jobId}/${user._id}`)
+    toast.success(res.data.message);
+  } catch (error) {
+    toast.error(error.response.data.message);
   }
+ 
+
 };
 
 

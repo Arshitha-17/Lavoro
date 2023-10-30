@@ -322,7 +322,6 @@ const saveJobs = asyncHandler(async (req, res) => {
     const save = await SavedJobs.findOne({ jobId });
   
     if (save) { // Check if save is not null
-      console.log(save.jobId.toString());
   
       if (save.jobId.toString() === jobId) {
         return res.status(401).json({ message: "Already Saved" });
