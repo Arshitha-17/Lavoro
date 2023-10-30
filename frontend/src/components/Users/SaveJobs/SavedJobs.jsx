@@ -2,13 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Form, Button } from 'react-bootstrap';
 import { AiOutlineUser, AiOutlineMessage, AiOutlineUnorderedList } from 'react-icons/ai';
 import { MdLogout, MdWorkOutline } from 'react-icons/md';
-import { BsSave } from "react-icons/bs"
 import { TiTick} from 'react-icons/ti';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import UserProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg';
 import "./SavedJobs.css"
 import { usersApi } from '../../../axiosApi/axiosInstance';
-import { toast } from 'react-toastify'
 
 
 const SavedJobs = () => {
