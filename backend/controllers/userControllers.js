@@ -315,7 +315,7 @@ const applicationList = asyncHandler(async (req, res) => {
 
 // save jobs
 const saveJobs = asyncHandler(async (req, res) => {
-    console.log(req.params.jobId);
+  
     const userId = req.params.id;
     const jobId = req.params.jobId;
   
@@ -383,7 +383,6 @@ const aggregateSavedJobs =async (userId_passed)=>{
 const getSaveJobs = asyncHandler(async(req,res)=>{
     const userId = req.params.id;
     const result = await aggregateSavedJobs(userId)
-
     res.status(200).json({result})
 
 })
