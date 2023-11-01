@@ -12,6 +12,10 @@ import UserProfileScreen from '../screens/Users/UserProfileScreen'
 import JobDetailScreen from '../screens/Users/JobDetailScreen'
 import ApplicationScreen from '../screens/Users/ApplicationScreen'
 import SavedJobsScreen from '../screens/Users/SavedJobsScreen'
+import ChatScreen from '../screens/Users/ChatScreen'
+
+
+
 
 // --------------HR------------------
 import HRLoginScreen from '../screens/HR/HRLoginScreen'
@@ -38,6 +42,11 @@ import AdminJobListScreen from '../screens/Admins/AdminJobListScreen'
 import AdminApplicationScreen from '../screens/Admins/AdminApplicationScree'
 
 
+// Chat 
+
+import UserChatScreen from '../screens/Users/ChatScreen'
+
+
 const Routers = () => {
   return (
     <Routes>
@@ -52,8 +61,7 @@ const Routers = () => {
         <Route path='/jobDetails/:jobId' element={<JobDetailScreen/>} />   
         <Route path='/applications' element={<ApplicationScreen/>} />   
         <Route path='/savedJobs' element={<SavedJobsScreen/>} />   
-
-
+     
 {/*-------------- HR Routes--------------  */}
         <Route path='/hr/login' element={<HRLoginScreen/> } />
         <Route path='/hr/register' element={<HRRegisterScreen/> } />
@@ -77,6 +85,12 @@ const Routers = () => {
 <Route path='/admin/hr_manage' element={<AdminHrManageScreen/> } />
 <Route path='/admin/jobList' element={<AdminJobListScreen/> } />
 <Route path='/admin/applications' element={<AdminApplicationScreen/> } />
+
+
+{/* Chat */}
+
+<Route path='/chats' element={<UserChatScreen/>} />
+
 
     </Routes>
   )

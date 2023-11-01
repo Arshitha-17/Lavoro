@@ -5,7 +5,7 @@ const chatRoom = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId ,
         ref:"User"
     },
-    seller:{
+    hr:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Hr"
     },
