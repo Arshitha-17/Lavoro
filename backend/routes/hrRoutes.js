@@ -15,6 +15,9 @@ import { authHr,
     rejectApplication,
     getHrDetails} from "../controllers/hrControllers.js"
 
+
+    import chatController from "../controllers/chatController.js"
+
 const HRrouter = express.Router()
 
 // import { protect } from "../middleware/authMiddleware.js"
@@ -34,6 +37,17 @@ HRrouter.post("/HrApplications/:id",applicationList)
 HRrouter.put("/acceptApplication/:id",acceptApplication)
 HRrouter.put("/rejectApplication/:id",rejectApplication)
 HRrouter.get('/getHrDetails/:id',getHrDetails)
+
+
+
+// chat routes
+
+HRrouter.get("/get-hr-rooms",chatController.getHrRoom)
+HRrouter.post('/sendChat/:chatId/:sender/:type', chatController.chatSend)
+HRrouter.get("/get-room-messages/:roomid", chatController.getMessage)
+
+
+
 
 export default HRrouter
 

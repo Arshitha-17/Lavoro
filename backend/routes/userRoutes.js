@@ -21,6 +21,9 @@ import { authUser,
     getSaveJobs
  } from "../controllers/userControllers.js"
 
+
+ import chatController from '../controllers/chatController.js' 
+
 const router = express.Router()
 
 
@@ -55,6 +58,16 @@ router.post('/jobDetails/:jobId/:userId',checkApplicationStatus)
 router.get('/application/:id',applicationList)
 router.post('/saveJobs/:jobId/:id',saveJobs)
 router.get('/saveJobs/:id',getSaveJobs)
+
+
+// chat routes
+
+router.get("/getRooms/:user",chatController.getRoom)
+router.post("/get-or-createroom/:user/:hr",chatController.createRoom)
+router.post('/sendChat/:chatId/:sender/:type', chatController.chatSend)
+router.get("/get-room-messages/:roomid", chatController.getMessage)
+
+
 
 export default router
 

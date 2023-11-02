@@ -10,7 +10,6 @@ const port = process.env.PORT || 5000
 import userRoutes from "./routes/userRoutes.js"
 import hrRoutes from "./routes/hrRoutes.js"
 import adminRoutes from './routes/adminRoutes.js'
-import chatRoutes from './routes/chatRoutes.js'
 
 
 connectDB()
@@ -30,7 +29,6 @@ app.use(cors({
 app.use('/api/users',userRoutes)
 app.use('/api/hr',hrRoutes)
 app.use('/api/admin',adminRoutes)
-app.use('/api/chats',chatRoutes)
 
 app.get('/',(req,res)=>res.send("server is ready"))
 
