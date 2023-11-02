@@ -1,0 +1,98 @@
+.chatMainDiv {
+    height: 100vh;
+    margin: 15px;
+    border-radius: 10px;
+}
+
+.userListDiv {
+    width: 50%;
+    background-color: #064c4e;
+    height: 80vh;
+    overflow-y: auto;
+    border-right: 2px solid white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.chatSubDiv {
+    background-color: rgb(250, 246, 246);
+    border-radius: 9px;
+    padding: 10px;
+}
+
+.chatDiv {
+    border-radius: 10px;
+    width: 50%;
+    background-color: #064c4e;
+    padding: 10px;
+}
+
+.nameDiv{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+}
+
+.chatContainer{
+    margin: 10px;
+    padding: 12px;
+    background-color: rgb(255, 255, 255);
+    height: 55vh;
+    overflow-y: auto;
+}
+
+.messageContainerRight{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+.messageRight{
+    background-color: rgb(212, 207, 207);
+    width: fit-content;
+    padding: 5px;
+    border-radius: 5px 5px  0px 5px;
+}
+
+.messageContainerLeft{
+    display: flex;
+    width: 100%;
+}
+.messageLeft{
+    background-color:  rgb(212, 207, 207);
+    width: fit-content;
+    padding: 5px;
+    border-radius: 5px 5px 5px 0px ;
+}
+
+.messageInput{
+    background-color: yellow;
+    margin: 10px;
+}
+
+.messageForm{
+    width: 100%;  
+    display: flex; 
+    background-color: rgb(108, 8, 167);
+}
+
+.inputMessage{
+    width: 90%;
+   
+}
+
+.inputBox{
+    border-radius: 5px 0px 0px 5px;
+    width: 100%;
+    height: 100%;
+}
+
+.submitButtonDiv{
+    width: 10%;
+    border-radius: 0px 5px 5px 0px;
+}
+
+.submitButton{
+    width: 100%;
+}
+
