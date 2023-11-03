@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./UserChats.css"
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { usersApi } from '../../../axiosApi/axiosInstance'
 const UserChats = () => {
 
@@ -9,15 +9,29 @@ const UserChats = () => {
   const [chats, setChats] = useState([])
   const [content, setContent] = useState('')
   const [messageSend, setMessageSend] = useState(false)
-
+  const [hrName, setHrName] = useState('')
   const userInfo = JSON.parse(localStorage.getItem("userInfo"))
   const navigate = useNavigate()
+
+  const { roomId } = useParams()
 
   useEffect(() => {
     if (!userInfo) {
       navigate('/login')
     }
-  },[])
+  }, [])
+
+
+
+
+
+
+  useEffect(() => {
+    if (roomId !== 'allchats') {
+      setchatId(roomId);
+    }
+  }, [chatId]);
+
 
   const sendHandler = async (e) => {
     e.preventDefault()
@@ -62,7 +76,7 @@ const UserChats = () => {
       }
     }
     fetchMessages()
-  }, [chatId,messageSend])
+  }, [chatId, messageSend])
 
 
 
@@ -75,7 +89,7 @@ const UserChats = () => {
           <div className='userListDiv'>
             {rooms.length > 0 ? (
               rooms.map((chat, index) => (
-                <div className='chatSubDiv m-3' key={index} onClick={() => setchatId(chat._id)} >
+                <div className='chatSubDiv m-3' key={index} onClick={() => {setchatId(chat._id); setHrName(chat.hr.name)}} >
                   <h5>{chat.hr.name} </h5>
                 </div>
               ))
@@ -89,7 +103,7 @@ const UserChats = () => {
             {
               (chatId) ? (
                 <>
-                  <div className='nameDiv'> <h4>Arshitha</h4></div>
+                  <div className='nameDiv'> <h4>{hrName}</h4></div>
                   <div className='chatContainer'>
                     {
                       (chats && chats.length > 0) ? (

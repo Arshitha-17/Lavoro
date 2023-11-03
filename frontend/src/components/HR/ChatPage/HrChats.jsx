@@ -9,7 +9,7 @@ const HrChats = () => {
   const [chats, setChats] = useState([])
   const [content, setContent] = useState('')
   const [messageSend,setMessageSend] = useState(false)
-
+  const [userName, setUserName] = useState('')
 
   const hrInfo = JSON.parse(localStorage.getItem("HRInfo"))
 
@@ -77,7 +77,7 @@ const HrChats = () => {
           <div className='userListDiv'>
             {rooms.length > 0 ? (
               rooms.map((chat, index) => (
-                <div className='chatSubDiv m-3' key={index} onClick={() => setchatId(chat._id)} >
+                <div className='chatSubDiv m-3' key={index} onClick={() =>{ (setchatId(chat._id)); setUserName(chat.user.name) }} >
                   <h5>{chat.user.name} </h5>
                 </div>
               ))
@@ -88,7 +88,7 @@ const HrChats = () => {
             )}
           </div>
           <div className='chatDiv'>
-            <div className='nameDiv'> <h4>Arshitha</h4></div>
+            <div className='nameDiv'> <h4>{userName}</h4></div>
             <div className='chatContainer'>
               {
                 (chats && chats.length > 0) ? (

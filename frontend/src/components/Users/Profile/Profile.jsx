@@ -102,7 +102,7 @@ const Profile = () => {
                                 </div>
                                 <div className='heads'>
                                     <div><AiOutlineMessage /></div>
-                                    <NavLink to="/chats" className='head'>Message</NavLink>
+                                    <NavLink to="/chats/allchats" className='head'>Message</NavLink>
                                 </div>
                                 <div className='heads'>
                                     <div><MdWorkOutline /></div>

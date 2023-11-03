@@ -79,7 +79,6 @@ const JobDetailPage = () => {
     const sendMessageToHR = async ()=>{
         if(jobDetail.hrId){
             const res = await usersApi.post(`/users/get-or-createroom/${user._id}/${jobDetail.hrId}`)
-            // console.log(res.data.roomDetails);
             navigate(`/chats/${res.data.roomDetails._id}`)
         }
     }
