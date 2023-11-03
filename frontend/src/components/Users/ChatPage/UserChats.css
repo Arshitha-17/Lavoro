@@ -18,6 +18,7 @@
     background-color: rgb(250, 246, 246);
     border-radius: 9px;
     padding: 10px;
+    cursor: pointer;
 }
 
 .chatDiv {

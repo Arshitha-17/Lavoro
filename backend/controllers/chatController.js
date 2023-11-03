@@ -25,7 +25,7 @@ const chatController = {
             }
 
             const roomDetails = await ChatRoom.findOne({ _id: chatRoom._id })
-                .populate({ path: "hr", select: "name _id" });
+                .populate({ path: "hr", select: "name _id companyName" });
             console.log(roomDetails);
             res.status(200).json({ roomDetails })
 
@@ -66,7 +66,7 @@ const chatController = {
                     path: "room",
                     populate: [
                         { path: "user", select: "_id name email" },
-                        { path: "hr", select: "_id name email" }
+                        { path: "hr", select: "_id name email companyName" }
                     ],
                 },
             ]);
@@ -86,7 +86,7 @@ const chatController = {
         const { user } = req.params
 
         const rooms = await ChatRoom.find({ user: user }).populate({
-            path: "hr", select: "_id name email"
+            path: "hr", select: "_id name email companyName"
         })
         if (rooms) {
             res.status(200).json({ rooms })
@@ -115,6 +115,7 @@ const chatController = {
 
     getMessage: asynHandler(async (req, res) => {
         console.log("Inside room messages");
+        console.log(req.params.roomid);
         const { roomid } = req.params
         try {
             const message = await ChatMessage.find({ room: roomid }).sort({ createdAt: 1 })
