@@ -8,20 +8,27 @@ const HrChats = () => {
   const [chatId, setchatId] = useState('')
   const [chats, setChats] = useState([])
   const [content, setContent] = useState('')
+  const [messageSend,setMessageSend] = useState(false)
 
 
   const hrInfo = JSON.parse(localStorage.getItem("HRInfo"))
-  
+
   const navigate = useNavigate()
 
  
 
-  const sendHandler = ()=>{
+  const sendHandler = async(e)=>{
+    e.preventDefault()
     if(content ===''){
       return toast.error("Can't enter empty content")
     }
     try {
-      
+      const res = await usersApi.post(`/hr/sendChat/${chatId}/${hrInfo._id}/Hr`,{content})
+      if(res){
+        setContent('')
+        setMessageSend(true)
+        
+      }
     } catch (error) {
       console.log(error);
     }
@@ -48,10 +55,11 @@ const HrChats = () => {
       console.log(res.data.message);
       if (res) {
         setChats(res.data.message)
+        setMessageSend(false)
       }
     }
     fetchMessages()
-  }, [chatId])
+  }, [chatId,messageSend])
 
 
 
@@ -103,12 +111,12 @@ const HrChats = () => {
               }
             </div>
             <div className='messageInput'>
-              <form className='messageForm'>
+              <form className='messageForm' onSubmit={sendHandler}>
                 <div className='inputMessage'>
                   <input value={content} type="text" className='inputBox' onChange={(e)=> setContent(e.target.value)} />
                 </div>
                 <div className='submitButtonDiv'>
-                  <button type="submit" onClick={()=> sendHandler} className="submitButton btn btn-primary">Send</button>
+                  <button type="submit"  className="submitButton btn btn-primary">Send</button>
                 </div>
               </form>
             </div>

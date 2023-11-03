@@ -13,11 +13,14 @@ const UserChats = () => {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"))
   const navigate = useNavigate()
 
-  // console.log(chatId);
+  useEffect(() => {
+    if (!userInfo) {
+      navigate('/login')
+    }
+  },[])
 
   const sendHandler = async (e) => {
     e.preventDefault()
-    console.log(content);
     if (content === '') {
       return toast.error("Can't enter empty content")
     }
@@ -63,11 +66,6 @@ const UserChats = () => {
 
 
 
-  useEffect(() => {
-    if (!userInfo) {
-      navigate('/login')
-    }
-  })
 
 
   return (
