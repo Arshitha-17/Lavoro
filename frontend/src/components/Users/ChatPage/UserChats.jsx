@@ -5,11 +5,36 @@ import { usersApi } from '../../../axiosApi/axiosInstance'
 const UserChats = () => {
 
   const [rooms, setRooms] = useState([])
-const [roomid ,setRoomId]  = useState('')
-
+  const [chatId, setchatId] = useState('')
+  const [chats, setChats] = useState([])
+  const [content, setContent] = useState('')
+  const [messageSend, setMessageSend] = useState(false)
 
   const userInfo = JSON.parse(localStorage.getItem("userInfo"))
   const navigate = useNavigate()
+
+  // console.log(chatId);
+
+  const sendHandler = async (e) => {
+    e.preventDefault()
+    console.log(content);
+    if (content === '') {
+      return toast.error("Can't enter empty content")
+    }
+    try {
+      const res = await usersApi.post(`/users/sendChat/${chatId}/${userInfo._id}/User`, { content })
+      if (res) {
+        console.log(res.data);
+        setContent('')
+        setMessageSend(true)
+
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
 
   useEffect(() => {
@@ -23,17 +48,18 @@ const [roomid ,setRoomId]  = useState('')
     }
   }, [])
 
-  useEffect(()=>{
-    console.log(roomid);
-    let fetchMessages = async()=>{
-      let res = await usersApi.get(`/users/get-room-messages/${roomid}`)
-      console.log(res.data);
-      if(res){
-        setRoomId(res.data)
+  useEffect(() => {
+
+    let fetchMessages = async () => {
+      let res = await usersApi.get(`/users/get-room-messages/${chatId}`)
+      console.log(res.data.message);
+      if (res) {
+        setChats(res.data.message)
+        setMessageSend(false)
       }
     }
     fetchMessages()
-  },[roomid])
+  }, [chatId,messageSend])
 
 
 
@@ -48,11 +74,10 @@ const [roomid ,setRoomId]  = useState('')
     <div>
       <div className='chatMainDiv'>
         <div className='d-flex'>
-
           <div className='userListDiv'>
             {rooms.length > 0 ? (
               rooms.map((chat, index) => (
-                <div className='chatSubDiv m-3' key={index} onClick={ ()=> setRoomId(chat._id)} >
+                <div className='chatSubDiv m-3' key={index} onClick={() => setchatId(chat._id)} >
                   <h5>{chat.hr.name} </h5>
                 </div>
               ))
@@ -63,30 +88,52 @@ const [roomid ,setRoomId]  = useState('')
             )}
           </div>
           <div className='chatDiv'>
-            <div className='nameDiv'> <h4>Arshitha</h4> </div>
-            <div className='chatContainer'>
-              <div className='messageContainerRight my-2'>
-                <div className='messageRight'>
-                  <h6 >Niraj Mannabudhiiiiii</h6>
+            {
+              (chatId) ? (
+                <>
+                  <div className='nameDiv'> <h4>Arshitha</h4></div>
+                  <div className='chatContainer'>
+                    {
+                      (chats && chats.length > 0) ? (
+                        chats.map((chat, index) => (
+                          (chat.senderType === "User") ? (
+                            <div className='messageContainerRight my-2' key={index}>
+                              <div className='messageRight'>
+                                <h6 >{chat.content} </h6>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className='messageContainerLeft my-2' key={index}>
+                              <div className='messageLeft'>
+                                <h6 >{chat.content} </h6>
+                              </div>
+                            </div>
+                          )
+                        ))
+                      ) : (
+                        <div className='noChatDiv'>
+                          <p>No Chats</p>
+                        </div>
+                      )
+                    }
+                  </div>
+                  <div className='messageInput'>
+                    <form className='messageForm' onSubmit={sendHandler}>
+                      <div className='inputMessage'>
+                        <input value={content} type="text" className='inputBox' onChange={(e) => setContent(e.target.value)} />
+                      </div>
+                      <div className='submitButtonDiv'>
+                        <button type="submit" className="submitButton btn btn-primary">Send</button>
+                      </div>
+                    </form>
+                  </div>
+                </>
+              ) : (
+                <div className='noChatDiv'>
+                  <p>No Chats</p>
                 </div>
-              </div>
-              <div className='messageContainerLeft my-2'>
-                <div className='messageLeft'>
-                  <h6 >Niraj Mannabudhiiiiii</h6>
-                </div>
-              </div>
-
-            </div>
-            <div className='messageInput'>
-              <form className='messageForm'>
-                <div className='inputMessage'>
-                  <input type="text" className='inputBox' />
-                </div>
-                <div className='submitButtonDiv'>
-                  <button type="submit" className="submitButton btn btn-primary">Send</button>
-                </div>
-              </form>
-            </div>
+              )
+            }
           </div>
         </div>
       </div>

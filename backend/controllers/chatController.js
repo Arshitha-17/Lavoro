@@ -7,9 +7,7 @@ import ChatRoom from "../models/chatRoom.js";
 const chatController = {
     createRoom: asynHandler(async (req, res) => {
         try {
-            console.log("inside Create room");
             const { user, hr } = req.params
-            console.log(req.params.user);
             let chatRoom = await ChatRoom.findOne({
                 user: user,
                 hr, hr
@@ -26,7 +24,6 @@ const chatController = {
 
             const roomDetails = await ChatRoom.findOne({ _id: chatRoom._id })
                 .populate({ path: "hr", select: "name _id companyName" });
-            console.log(roomDetails);
             res.status(200).json({ roomDetails })
 
         } catch (error) {
@@ -37,7 +34,10 @@ const chatController = {
 
     // chat send
     chatSend: asynHandler(async (req, res) => {
+        console.log("Send a message brooo");
         try {
+            console.log(req.body);
+            console.log(req.params);
             const { content } = req.body
             const { chatId, sender, type } = req.params
 
@@ -97,8 +97,9 @@ const chatController = {
     }),
 
     // hr get room
-
     getHrRoom: asynHandler(async (req, res) => {
+        console.log("hey Hr");
+        console.log(req.params.hr);
         const { hr } = req.params;
         const rooms = await ChatRoom.find({ hr: hr }).populate({
             path: "user", select: "_id name email"

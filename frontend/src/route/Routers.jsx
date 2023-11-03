@@ -45,6 +45,7 @@ import AdminApplicationScreen from '../screens/Admins/AdminApplicationScree'
 // Chat 
 
 import UserChatScreen from '../screens/Users/ChatScreen'
+import HRChatcreen from '../screens/HR/HRChatScreen'
 
 
 const Routers = () => {
@@ -90,6 +91,7 @@ const Routers = () => {
 {/* Chat */}
 
 <Route path='/chats' element={<UserChatScreen/>} />
+<Route path='/hr/chats' element={<HRChatcreen />} />
 
 
     </Routes>
