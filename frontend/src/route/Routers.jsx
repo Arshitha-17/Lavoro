@@ -90,7 +90,7 @@ const Routers = () => {
 
 {/* Chat */}
 
-<Route path='/chats' element={<UserChatScreen/>} />
+<Route path='/chats/:roomId' element={<UserChatScreen/>} />
 <Route path='/hr/chats' element={<HRChatcreen />} />
 
 

@@ -16,6 +16,7 @@ const JobDetailPage = () => {
     const [jobDetail, setJobDetail] = useState({});
     const [applied, setApplied] = useState(false);
     const [status, setStatus] = useState(false)
+    
 
     const navigate = useNavigate();
     const { jobId } = useParams();
@@ -75,15 +76,29 @@ const JobDetailPage = () => {
     }, [jobId]);
 
 
+    const sendMessageToHR = async ()=>{
+        if(jobDetail.hrId){
+            const res = await usersApi.post(`/users/get-or-createroom/${user._id}/${jobDetail.hrId}`)
+            // console.log(res.data.roomDetails);
+            navigate(`/chats/${res.data.roomDetails._id}`)
+        }
+    }
+
+
     return (
         <div>
             <div className='header text-white'>
                 <h1>Job Details</h1>
                 <h5>Here will be your company job details & requirements</h5>
             </div>
+            <div className='messageMain '>
 
             <div>
                 <p className=' p-3 text-white' >{jobDetail.createdAt ? jobDetail.createdAt.slice(0, 10) : jobDetail.createdAt}   by {jobDetail.companyName} </p>
+            </div>
+            <div className='messageDiv'>
+                <button onClick={sendMessageToHR} >Send Message</button>
+            </div>
             </div>
             <div className='firstDiv' >
                 <div className='jobDetailDiv1'>
