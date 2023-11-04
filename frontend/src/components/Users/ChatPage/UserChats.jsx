@@ -2,6 +2,12 @@ import React, { useEffect, useState } from 'react'
 import "./UserChats.css"
 import { useNavigate, useParams } from 'react-router-dom'
 import { usersApi } from '../../../axiosApi/axiosInstance'
+import  io from "socket.io-client"
+
+const ENDPOINT = "http://localhost:5000";
+let socket,selectedChatCompare;
+
+
 const UserChats = () => {
 
   const [rooms, setRooms] = useState([])
@@ -10,6 +16,8 @@ const UserChats = () => {
   const [content, setContent] = useState('')
   const [messageSend, setMessageSend] = useState(false)
   const [hrName, setHrName] = useState('')
+  const [socketConnected,setSocketConnected] = useState(false)
+
   const userInfo = JSON.parse(localStorage.getItem("userInfo"))
   const navigate = useNavigate()
 
@@ -23,6 +31,22 @@ const UserChats = () => {
 
 
 
+  useEffect(()=>{
+    socket = io(ENDPOINT)
+    socket.emit("setup",userInfo)
+    socket.on('connection',()=>setSocketConnected(true))
+  },[])
+
+
+  useEffect(() => {
+    socket.on('message received',(newMessageReceived)=>{
+        if(!selectedChatCompare || chatId!==newMessageReceived.room._id){
+
+        }else{
+            setChats([...chats,newMessageReceived])
+        }
+    })
+})
 
 
 
@@ -41,9 +65,11 @@ const UserChats = () => {
     try {
       const res = await usersApi.post(`/users/sendChat/${chatId}/${userInfo._id}/User`, { content })
       if (res) {
+        console.log("emit data");
         console.log(res.data);
         setContent('')
         setMessageSend(true)
+          socket.emit('new message',res.data.newMessage)
 
       }
 
@@ -73,9 +99,11 @@ const UserChats = () => {
       if (res) {
         setChats(res.data.message)
         setMessageSend(false)
+        socket.emit("join chat",chatId)
       }
     }
     fetchMessages()
+    selectedChatCompare = chats;
   }, [chatId, messageSend])
 
 

@@ -2,32 +2,50 @@ import React, { useEffect, useState } from 'react'
 import "./HrChats.css"
 import { useNavigate } from 'react-router-dom'
 import { usersApi } from '../../../axiosApi/axiosInstance'
-import {toast} from "react-toastify"
+import { toast } from "react-toastify"
+
+import io from "socket.io-client"
+
+const ENDPOINT = "http://localhost:5000";
+let socket, selectedChatCompare;
+
+
 const HrChats = () => {
   const [rooms, setRooms] = useState([])
   const [chatId, setchatId] = useState('')
   const [chats, setChats] = useState([])
   const [content, setContent] = useState('')
-  const [messageSend,setMessageSend] = useState(false)
+  const [messageSend, setMessageSend] = useState(false)
   const [userName, setUserName] = useState('')
+  const [socketConnected, setSocketConnected] = useState(false)
+
 
   const hrInfo = JSON.parse(localStorage.getItem("HRInfo"))
 
   const navigate = useNavigate()
 
- 
 
-  const sendHandler = async(e)=>{
+  useEffect(()=>{
+    socket = io(ENDPOINT)
+    socket.emit("setup",hrInfo)
+    socket.on('connection',()=>setSocketConnected(true))
+  },[])
+
+
+
+
+  const sendHandler = async (e) => {
     e.preventDefault()
-    if(content ===''){
+    if (content === '') {
       return toast.error("Can't enter empty content")
     }
     try {
-      const res = await usersApi.post(`/hr/sendChat/${chatId}/${hrInfo._id}/Hr`,{content})
-      if(res){
+      const res = await usersApi.post(`/hr/sendChat/${chatId}/${hrInfo._id}/Hr`, { content })
+      if (res) {
         setContent('')
         setMessageSend(true)
-        
+        socket.emit('new message',res.data.newMessage)
+
       }
     } catch (error) {
       console.log(error);
@@ -56,10 +74,25 @@ const HrChats = () => {
       if (res) {
         setChats(res.data.message)
         setMessageSend(false)
+        socket.emit("join chat",chatId)
       }
     }
     fetchMessages()
-  }, [chatId,messageSend])
+    selectedChatCompare = chats;
+  }, [chatId, messageSend])
+
+
+
+  useEffect(() => {
+    socket.on('message received',(newMessageReceived)=>{
+        if(!selectedChatCompare || chatId!==newMessageReceived.room._id){
+
+        }else{
+            setChats([...chats,newMessageReceived])
+        }
+    })
+})
+
 
 
 
@@ -77,7 +110,7 @@ const HrChats = () => {
           <div className='userListDiv'>
             {rooms.length > 0 ? (
               rooms.map((chat, index) => (
-                <div className='chatSubDiv m-3' key={index} onClick={() =>{ (setchatId(chat._id)); setUserName(chat.user.name) }} >
+                <div className='chatSubDiv m-3' key={index} onClick={() => { (setchatId(chat._id)); setUserName(chat.user.name) }} >
                   <h5>{chat.user.name} </h5>
                 </div>
               ))
@@ -99,12 +132,12 @@ const HrChats = () => {
                           <h6 >{chat.content} </h6>
                         </div>
                       </div>
-                    ):(
-                      <div className='messageContainerLeft my-2'  key={index}>
-                      <div className='messageLeft'>
-                        <h6 >{chat.content} </h6>
+                    ) : (
+                      <div className='messageContainerLeft my-2' key={index}>
+                        <div className='messageLeft'>
+                          <h6 >{chat.content} </h6>
+                        </div>
                       </div>
-                    </div>
                     )
                   ))
                 ) : null
@@ -113,10 +146,10 @@ const HrChats = () => {
             <div className='messageInput'>
               <form className='messageForm' onSubmit={sendHandler}>
                 <div className='inputMessage'>
-                  <input value={content} type="text" className='inputBox' onChange={(e)=> setContent(e.target.value)} />
+                  <input value={content} type="text" className='inputBox' onChange={(e) => setContent(e.target.value)} />
                 </div>
                 <div className='submitButtonDiv'>
-                  <button type="submit"  className="submitButton btn btn-primary">Send</button>
+                  <button type="submit" className="submitButton btn btn-primary">Send</button>
                 </div>
               </form>
             </div>
