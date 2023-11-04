@@ -38,7 +38,6 @@ HRrouter.put("/acceptApplication/:id",acceptApplication)
 HRrouter.put("/rejectApplication/:id",rejectApplication)
 HRrouter.get('/getHrDetails/:id',getHrDetails)
 
-
 // chat routes
 
 HRrouter.get("/get-hr-rooms/:hr",chatController.getHrRoom)
