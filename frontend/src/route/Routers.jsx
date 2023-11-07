@@ -40,6 +40,7 @@ import AdminUserManageScreen from '../screens/Admins/AdminUserManageScreen'
 import AdminHrManageScreen from '../screens/Admins/AdminHrManageScreen'
 import AdminJobListScreen from '../screens/Admins/AdminJobListScreen'
 import AdminApplicationScreen from '../screens/Admins/AdminApplicationScree'
+import AdminHomeScreen from '../screens/Admins/AdminHomeScreen'
 
 
 // Chat 
@@ -86,6 +87,7 @@ const Routers = () => {
 <Route path='/admin/hr_manage' element={<AdminHrManageScreen/> } />
 <Route path='/admin/jobList' element={<AdminJobListScreen/> } />
 <Route path='/admin/applications' element={<AdminApplicationScreen/> } />
+<Route path='/admin/' element={<AdminHomeScreen/> } />
 
 
 {/* Chat */}

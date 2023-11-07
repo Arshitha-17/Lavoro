@@ -94,7 +94,7 @@ const HrProfile = () => {
                                 </div>
                                 <div className='heads'>
                                     <div><AiOutlineMessage /> </div>
-                                    <NavLink to="/hr/message" className='head'>Message</NavLink>
+                                    <NavLink to="/hr/chats" className='head'>Message</NavLink>
                                 </div>
                                 <div className='heads'>
                                     <div><MdWorkOutline /> </div>
