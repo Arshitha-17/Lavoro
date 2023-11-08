@@ -1,22 +1,46 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 // import Chart from "react-chartjs-2"
 
 import Chart from "chart.js/auto";
+import { usersApi } from '../../../axiosApi/axiosInstance';
 const Home = () => {
     const chartRef = React.createRef();
+    const [chartData, setChartData] = useState([]);
 
-    // const labels = chatData?.map(item => {
-    //   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    //   return monthNames[item._id.month - 1]; 
-    // });
-    // const data = chatData.map(item => item.totalRevenue);
+
+    useEffect(()=>{
+      const fetchApplications = async()=>{
+        const res = await usersApi.get("admin/countApplication")
+        if(res.status===200){
+          console.log(res.data.result);
+          const data = res.data.result.map(item => ({
+            month: item._id.month,
+            totalApplications: item.totalApplications
+        }));
+        setChartData(data);
+
+        }else{
+          console.error(res.data.error)
+        }
+      }
+      fetchApplications()
+    },[])
+
+
+    const labels = chartData.map(item => {
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        return monthNames[item.month - 1];
+    });
+
+    const data = chartData.map(item => item.totalApplications);
+
     
     const transformedData = {
-      labels:  ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      labels:  labels,
       datasets: [
         {
           label: "Applications",
-          data: [10,15,15,24,26,4,4,12,67,12,97,10],
+          data:data,
           backgroundColor: [
             "rgba(255, 99, 132, 0.5)",
             "rgba(54, 162, 235, 0.5)",
@@ -36,29 +60,30 @@ const Home = () => {
       ],
     };
   
-    // Chart.js options
     const options = {
       scales: {
-        y: {
-          beginAtZero: true,
-        },
+          y: {
+              beginAtZero: true,
+          },
       },
-    };
-  
-    React.useEffect(() => {
+  };
+
+  useEffect(() => {
       const ctx = chartRef.current.getContext("2d");
       let myChart = new Chart(ctx, {
-        type: "bar",
-        data: transformedData,
-        options: options,
+          type: "bar",
+          data: transformedData,
+          options: options,
       });
-  
+
       return () => {
-        if (myChart) {
-          myChart.destroy();
-        }
+          if (myChart) {
+              myChart.destroy();
+          }
       };
-    }, []);
+  }, [data]);
+
+
   return (
     <div>
         <div>

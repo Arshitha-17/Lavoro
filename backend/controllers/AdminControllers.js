@@ -5,7 +5,7 @@ import { AdminSendOtpEmail } from './SendEmail/AdminSendOtpEmail.js'
 import Category from '../models/category.js';
 import User from '../models/userModel.js';
 import Hr from '../models/hrModel.js';
-import { assign } from 'nodemailer/lib/shared/index.js';
+
 import Job from '../models/jobModel.js'
 import Applications from "../models/applicationModel.js"
 
@@ -46,13 +46,6 @@ const AdminForgotPassword = asyncHandler(async (req, res) => {
         res.status(500).json({ message: 'Failed to send email' })
     }
 
-    // ----------------remove this and uncomment above code 
-    // const emailSent = true
-    // if(emailSent){
-    //         res.status(200).json({ message:'OTP Send'});
-    //     }else{
-    //           res.status(500).json({message:'Failed to send email'})
-    //         }
 })
 
 
@@ -97,7 +90,7 @@ const AdminResetPassword = asyncHandler(async (req, res) => {
 // admin/category
 const category = asyncHandler(async (req, res) => {
     const { categoryName } = req.body;
-    const { file } = req; 
+    const { file } = req;
 
     console.log(req.body);
     try {
@@ -118,7 +111,7 @@ const category = asyncHandler(async (req, res) => {
 
 // get category
 const getCategories = asyncHandler(async (req, res) => {
-    const categories = await Category.find({deleted:false})
+    const categories = await Category.find({ deleted: false })
     res.status(200).json(categories);
 })
 
@@ -127,7 +120,7 @@ const deleteCategory = asyncHandler(async (req, res) => {
     const { id } = req.params;
     console.log(id);
     const category = await Category.findById(id)
-    category.deleted=true
+    category.deleted = true
     category.save()
     res.status(200).json({ message: 'Delete Successfully' })
     console.log(id);
@@ -159,104 +152,140 @@ const editCategory = asyncHandler(async (req, res) => {
 
 
 // get all user
-const allUsers= asyncHandler(async(req,res)=>{
+const allUsers = asyncHandler(async (req, res) => {
     const user = await User.find({})
     res.status(200).json(user)
 })
 
 // user manage
 
-const UserBlock= asyncHandler(async(req,res)=>{
+const UserBlock = asyncHandler(async (req, res) => {
 
     const userId = req.params.id
-    const  user= await User.findById(userId)
+    const user = await User.findById(userId)
     console.log(user);
-     user.isBlock = !user.isBlock
-     await user.save()
-    
-        if(user){
-            res.status(200).json({
-                isBlock:user.isBlock,message:"Success"
-            })
-        }else{
-            res.status(400).json({message:"Id Invalid"})
-        } 
+    user.isBlock = !user.isBlock
+    await user.save()
+
+    if (user) {
+        res.status(200).json({
+            isBlock: user.isBlock, message: "Success"
+        })
+    } else {
+        res.status(400).json({ message: "Id Invalid" })
+    }
 })
 
 // get hr
-const allHr = asyncHandler(async(req,res)=>{
+const allHr = asyncHandler(async (req, res) => {
     const hr = await Hr.find({})
     res.status(200).json(hr)
 })
 
 // Hr block
-const HrBlock = asyncHandler(async(req,res)=>{
-    const HrId =req.params.id
-    const hr =  await Hr.findById(HrId)
-    hr.isBlock = ! hr.isBlock
+const HrBlock = asyncHandler(async (req, res) => {
+    const HrId = req.params.id
+    const hr = await Hr.findById(HrId)
+    hr.isBlock = !hr.isBlock
     await hr.save()
-    if(hr){
-        res.status(200).json({hr:hr.isBlock,message:"Success"})
-    }else{
-        res.status(400).json({message:"Invalid Id"})
+    if (hr) {
+        res.status(200).json({ hr: hr.isBlock, message: "Success" })
+    } else {
+        res.status(400).json({ message: "Invalid Id" })
     }
 })
 
 
 // job list
 
-const jobList = asyncHandler(async(req,res)=>{
- 
-    const jobs = await Job.find({})
-    if(jobs){
+const jobList = asyncHandler(async (req, res) => {
 
-       return res.status(200).json({jobs})
-    }else{
-        return res.status(404).json({message:"no job found"})
+    const jobs = await Job.find({})
+    if (jobs) {
+
+        return res.status(200).json({ jobs })
+    } else {
+        return res.status(404).json({ message: "no job found" })
     }
 })
 
 // Aggregate Applications
 
 // Total applications
-const getTotalApplications = asyncHandler(async(req,res)=>{
+const getTotalApplications = asyncHandler(async (req, res) => {
     try {
         const pipeline = [
-          {
-            $group: {
-              _id: '$jobId',
-              applications: { $push: '$$ROOT' },
+            {
+                $group: {
+                    _id: '$jobId',
+                    applications: { $push: '$$ROOT' },
+                },
             },
-          },
-          {
-            $lookup: {
-              from: 'jobs', 
-              localField: '_id',
-              foreignField: '_id',
-              as: 'jobDetails',
+            {
+                $lookup: {
+                    from: 'jobs',
+                    localField: '_id',
+                    foreignField: '_id',
+                    as: 'jobDetails',
+                },
             },
-          },
-          {
-            $unwind: '$jobDetails',
-          },
-          {
-            $project: {
-              _id: 0,
-              jobId: '$_id',
-              jobDetails: 1,
-              applications: 1,
+            {
+                $unwind: '$jobDetails',
             },
-          },
+            {
+                $project: {
+                    _id: 0,
+                    jobId: '$_id',
+                    jobDetails: 1,
+                    applications: 1,
+                },
+            },
         ];
-    
+
         const result = await Applications.aggregate(pipeline);
-  
-        res.status(200).json({result})
-      } catch (error) {
-        
+
+        res.status(200).json({ result })
+    } catch (error) {
+
         res.status(500).json({ error: 'Internal server error' });
-      }
+    }
 })
+
+
+
+// montly wise applications
+
+const countApplications = asyncHandler(async (req, res) => {
+    const sixMonthsAgo = new Date();
+    sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 8);
+    const result =await  Applications.aggregate([
+        {
+            $match: {
+                createdAt: { $gte: sixMonthsAgo },
+            },
+        },
+        {
+            $group: {
+                _id: {
+                    year: { $year: "$createdAt" },
+                    month: { $month: "$createdAt" },
+                },
+                totalApplications: { $sum: 1 },
+
+            },
+        },
+        {
+            $sort: {
+                "_id.year": 1,
+                "_id.month": 1,
+            },
+        },
+    ]).exec();
+   res.status(200).json({result})
+
+})
+
+
 
 
 export {
@@ -273,6 +302,7 @@ export {
     HrBlock,
     allHr,
     jobList,
-    getTotalApplications
-    
+    getTotalApplications,
+    countApplications
+
 }

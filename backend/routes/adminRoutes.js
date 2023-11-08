@@ -27,7 +27,8 @@ import { authAdmin,
      allUsers,
      allHr ,
      jobList,
-     getTotalApplications    
+     getTotalApplications ,
+     countApplications  
      } from "../controllers/AdminControllers.js"
 
 const adminRouter = express.Router()
@@ -52,6 +53,7 @@ adminRouter.get('/allUsers',allUsers)
 adminRouter.get('/allHr',allHr)
 adminRouter.get('/jobList',jobList)
 adminRouter.get('/applications',getTotalApplications)
+adminRouter.get('/countApplication',countApplications)
 
 
 export default adminRouter
