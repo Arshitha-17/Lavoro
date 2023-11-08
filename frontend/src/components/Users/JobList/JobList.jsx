@@ -4,7 +4,10 @@ import { Card, Col, Container, Row } from 'react-bootstrap'
 import { BsSave } from "react-icons/bs"
 import { Link, useNavigate } from 'react-router-dom'
 import { usersApi } from '../../../axiosApi/axiosInstance'
-import {toast} from "react-toastify"
+import { toast } from "react-toastify"
+import ReactPaginate from 'react-paginate';
+
+
 
 const JobList = () => {
   const [categories, setCategories] = useState([]);
@@ -15,7 +18,11 @@ const JobList = () => {
   const [companyFilter, setCompanyFilter] = useState('');
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [isFilterApplied, setIsFilterApplied] = useState(false)
- 
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalJobs, setTotalJobs] = useState(0);
+
+
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("userInfo"))
   useEffect(() => {
@@ -67,27 +74,31 @@ const JobList = () => {
 
 
   useEffect(() => {
-    const fetchJobs = async () => {
-      let res = await usersApi.get(`users/jobList/${user._id}`);
+    const fetchJobs = async (page) => {
+      let res = await usersApi.get(`users/jobList/${user._id}?page=${page}`);
       setJobs(res.data.jobs);
+      setTotalJobs(res.data.totalJobs);
     };
-    fetchJobs();
-  }, []);
+    fetchJobs(currentPage + 1); 
+  }, [currentPage]);
 
 
 
 
 
-const handleSaveJobs = async(jobId)=>{
-  try {
-    const res = await usersApi.post(`users/saveJobs/${jobId}/${user._id}`)
-    toast.success(res.data.message);
-  } catch (error) {
-    toast.error(error.response.data.message);
-  }
- 
+  const handleSaveJobs = async (jobId) => {
+    try {
+      const res = await usersApi.post(`users/saveJobs/${jobId}/${user._id}`)
+      toast.success(res.data.message);
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
 
-};
+  const handlePageClick = (data) => {
+    const selectedPage = data.selected;
+    setCurrentPage(selectedPage);
+  };
 
 
   return (
@@ -242,7 +253,7 @@ const handleSaveJobs = async(jobId)=>{
                           <h6 className="sub">{job.jobLocation}</h6>
                           <h6 className="sub">{job.salary}</h6>
                           <div className="saveIcon">
-                            <Link  onClick={()=> handleSaveJobs(job._id)} >
+                            <Link onClick={() => handleSaveJobs(job._id)} >
                               <BsSave className="icons" />
                             </Link>
                           </div>
@@ -259,6 +270,21 @@ const handleSaveJobs = async(jobId)=>{
                     ))
                   ) : (
                     <p>No matching jobs found.</p>
+                  )}
+                </div>
+                <div className="pagination-container right">
+                  {totalJobs > 0 && (
+                    <ReactPaginate
+                      pageCount={Math.ceil(totalJobs / 5)} 
+                      pageRangeDisplayed={5} 
+                      marginPagesDisplayed={2} 
+                      previousLabel={'<< Previous'}
+                      nextLabel={'Next >>'}
+                      breakLabel={'...'}
+                      onPageChange={handlePageClick}
+                      containerClassName={'pagination'}
+                      activeClassName={'active'}
+                    />
                   )}
                 </div>
               </Col>

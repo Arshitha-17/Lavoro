@@ -224,14 +224,29 @@ const getJobs = asyncHandler(async (req, res) => {
     res.status(200).json({ jobs })
 })
 
+// job list
+
 const jobList = asyncHandler(async (req, res) => {
     const userId = req.params.id;
-    const applications = await Application.find({userId})
-    const applicationJobIds = applications.map(application => application.jobId);
-    const jobs = await Job.find({ _id: { $nin: applicationJobIds } });
+    const perPage = 5; 
+    const page = req.query.page || 1; 
+    const skip = (page - 1) * perPage;
   
-    res.status(200).json({ jobs })
-})
+    try {
+      const applications = await Application.find({ userId });
+      const applicationJobIds = applications.map(application => application.jobId);
+      const jobs = await Job.find({ _id: { $nin: applicationJobIds } })
+        .skip(skip)
+        .limit(perPage);
+  
+      const totalJobs = await Job.countDocuments({ _id: { $nin: applicationJobIds } });
+  
+      res.status(200).json({ jobs, totalJobs });
+    } catch (error) {
+      res.status(500).json({ error: 'An error occurred while fetching job listings.' });
+    }
+  });
+  
 
 // Job detail page
 const jobDetailPage = asyncHandler(async (req, res) => {
