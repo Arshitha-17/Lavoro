@@ -169,7 +169,7 @@ const Category = () => {
         </Modal.Footer>
       </Modal>
 
-      {/* Modal for editing a category */}
+     
       <Modal show={editCategoryModalVisible} onHide={() => setEditCategoryModalVisible(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Category</Modal.Title>
