@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static('backend/public'));
 
 app.use(cors({
-  origin:["https://lavoroo.site","https://www.lavoroo.site"],
+  origin:["http://lavoroo.site","http://www.lavoroo.site"],
   credentials: true
 }));
 
