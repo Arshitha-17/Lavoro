@@ -157,6 +157,36 @@ const Home = () => {
                 className='d-inline-block align-top' 
               />
         </div>
+
+        <div style={{display:"flex", justifyContent:"space-evenly"}}>
+          <div style={{color:"gray"}}> 
+            <p>Services</p>
+            <p>Services</p>
+            <p>Services</p>
+            <p>Services</p>
+          </div>
+          <div style={{color:"gray"}}>
+            <p>Company</p>
+            <p>Company</p>
+            <p>Company</p>
+            <p>Company</p>
+          </div>
+          <div style={{color:"gray"}}>
+            <p>Support</p>
+            <p>Support</p>
+            <p>Support</p>
+            <p>Support</p>
+          </div>
+        <div style={{color:"gray"}}>
+            <p>Quick Access</p>
+            <p>Quick Access</p>
+            <p>Quick Access</p>
+            <p>Quick Access</p>
+          </div>
+        </div>
+        <div style={{textAlign:"center",padding:"10px"}}>
+          <p>copyright @2023 All Rights Reserved</p>
+        </div>
       </div>
     </>
   );
