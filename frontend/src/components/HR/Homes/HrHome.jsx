@@ -5,13 +5,13 @@ import { usersApi } from '../../../axiosApi/axiosInstance';
 import { Card, Col, NavLink, Row } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 
-import logoImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/WhatsApp Image 2023-09-26 at 8.21.43 PM-PhotoRoom.png-PhotoRoom.png';
-import image1 from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair.jpg';
-import image2 from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/young-bearded-man-with-striped-shirt.jpg';
-import image3 from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/portrait-happy-woman-with-digital-tablet.jpg';
-import userImg from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/3d-render-todo-check-list-with-ticks-task-test_107791-15401-removebg-preview.png';
-import profileImg from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/illustration-user-avatar-icon_53876-5907-removebg-preview-removebg-preview.png';
-import teamImg from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/illustration-business-team-structure_53876-5881-removebg-preview.png';
+import logoImage from './logo.png'; 
+import image1 from "./img1.jpg"
+import image2 from './img2.jpg'
+import image3 from './img3.jpg'
+import userImg from './CheckList.png';
+import profileImg from './profile.png';
+import teamImg from './team.png';
 const HrHome = () => {
 
   const [allCategories, setAllCategories] = useState([])
