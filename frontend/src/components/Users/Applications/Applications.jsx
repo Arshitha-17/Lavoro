@@ -4,7 +4,7 @@ import { AiOutlineUser, AiOutlineMessage, AiOutlineUnorderedList } from 'react-i
 import { MdLogout, MdWorkOutline } from 'react-icons/md';
 import { TiTick} from 'react-icons/ti';
 import { NavLink, useNavigate } from 'react-router-dom';
-import UserProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg';
+import UserProfileImage from './Untitled.jpeg';
 import "./Applications.css"
 import { usersApi } from '../../../axiosApi/axiosInstance';
 import { toast } from 'react-toastify'

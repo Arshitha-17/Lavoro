@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Form, Button, Alert } from 'react-bootstrap';
 import FormContainer from "../forms/FormContainer";
-import userProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg';
+import userProfileImage from './Untitled.jpeg';
 import { useLocation, useNavigate } from "react-router-dom";
 import { usersApi } from "../../../axiosApi/axiosInstance";
 import { toast } from 'react-toastify';

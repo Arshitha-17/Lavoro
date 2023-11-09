@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Form, Button } from 'react-bootstrap';
 import FormContainer from "../../Users/forms/FormContainer";
 import React from 'react'
-import userProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg'; // Replace with the actual image path
+import userProfileImage from './Untitled.jpeg'; 
 import { usersApi } from "../../../axiosApi/axiosInstance";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";

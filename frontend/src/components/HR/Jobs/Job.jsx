@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Nav, Form, Button } from 'react-bootstrap';
 import './Job.css'; // Import your CSS file
 import { NavLink, useNavigate } from 'react-router-dom';
-import HrProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg'; // Replace with the actual image path
+import HrProfileImage from './Untitled.jpeg'; 
 import { AiOutlineUser, AiOutlineMessage, AiOutlineUnorderedList, } from 'react-icons/ai'
 import { IoMdNotificationsOutline } from 'react-icons/io'
 import { MdLogout, MdWorkOutline } from 'react-icons/md'
