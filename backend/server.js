@@ -1,19 +1,16 @@
 import express from "express"
 import dotenv from 'dotenv'
 import cors from 'cors'
+dotenv.config();
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import connectDB from "./config/db.js";
 import cookieParser from "cookie-parser";
 import path from 'path';
+const port = process.env.PORT || 5000
 import userRoutes from "./routes/userRoutes.js"
 import hrRoutes from "./routes/hrRoutes.js"
 import adminRoutes from './routes/adminRoutes.js'
 
-dotenv.config();
-
-const port = process.env.PORT || 5000
-
-console.log(process.env.NODE_ENV);
 
 connectDB()
 
@@ -25,7 +22,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static('backend/public'));
 
 app.use(cors({
-  origin:["http://lavoroo.site","http://www.lavoroo.site"],
+  origin:["https://lavoroo.site","https://www.lavoroo.site"],
   credentials: true
 }));
 
@@ -35,9 +32,9 @@ app.use('/api/admin', adminRoutes)
 
 
 // production
-if (true) {
+if (process.env.NODE_ENV === 'production') {
   const __dirname = path.resolve();
-  app.use(express.static(path.join(__dirname, '../frontend/dist')));
+  app.use(express.static(path.join(__dirname, '/frontend/dist')));
 
   app.get('*', (req, res) =>
     res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
