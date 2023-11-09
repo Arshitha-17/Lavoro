@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { usersApi } from '../../../axiosApi/axiosInstance'
 import  io from "socket.io-client"
 
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "https://www.lavoroo.site/"
 let socket,selectedChatCompare;
 
 

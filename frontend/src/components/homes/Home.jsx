@@ -57,8 +57,8 @@ const Home = () => {
               allCategories.length > 0 ? (
                 allCategories.map((category, index) => (
                   <Card className='cards' style={{ width: '14rem', height: '20rem' }} key={index} >
-                    <Card.Img variant="top"
-                      src={`http://localhost:5000/images/${category.image}`}
+                    <Card.Img variant="top" 
+                      src={` "https://www.lavoroo.site/images/${category.image}`}
                     />
                     <Card.Body>
                       <Link className='TitleLink' to="/jobList">
