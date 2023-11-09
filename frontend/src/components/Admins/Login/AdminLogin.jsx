@@ -4,7 +4,7 @@ import { Col, Form, Row, Button } from 'react-bootstrap';
 import FormContainer from "../../Users/forms/FormContainer";
 import React from 'react'
 import './AdminLogin.css'
-import userProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg'; // Replace with the actual image path
+import userProfileImage from './Untitled.jpeg'; // Replace with the actual image path
 import { usersApi } from "../../../axiosApi/axiosInstance";
 import { toast } from 'react-toastify'
 

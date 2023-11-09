@@ -1,6 +1,6 @@
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { FaSignOutAlt } from 'react-icons/fa';
-import logoImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/WhatsApp Image 2023-09-26 at 8.21.43 PM-PhotoRoom.png-PhotoRoom.png';
+import logoImage from './logo.png'; 
 import './HrHeader.css'
 import { LinkContainer } from 'react-router-bootstrap';
 import { IoIosNotificationsOutline } from 'react-icons/io'

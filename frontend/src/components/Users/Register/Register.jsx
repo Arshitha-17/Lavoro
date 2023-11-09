@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Col, Form, Row, Button } from "react-bootstrap";
 import FormContainer from "../forms/FormContainer";
-import userProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg'; // Replace with the actual image path
+import userProfileImage from './Untitled.jpeg'; 
 import { usersApi } from "../../../axiosApi/axiosInstance";
-import { validateRegistrationForm } from "./formValidation"; // Import the validation function
+import { validateRegistrationForm } from "./formValidation"; 
 import { toast } from "react-toastify";
 
 const Register = () => {
@@ -14,7 +14,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [validationErrors, setValidationErrors] = useState({});
-  const [existingEmails, setExistingEmails] = useState([]); // You should populate this with existing emails
+  const [existingEmails, setExistingEmails] = useState([]); 
 
   const navigate = useNavigate();
 

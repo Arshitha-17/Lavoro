@@ -1,5 +1,5 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import HrProfileImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/Untitled.jpeg'; // Replace with the actual image path
+import HrProfileImage from './Untitled.jpeg'; 
 import { AiOutlineUser, AiOutlineMessage, AiOutlineUnorderedList, } from 'react-icons/ai'
 import { IoMdNotificationsOutline } from 'react-icons/io'
 import { MdLogout, MdWorkOutline } from 'react-icons/md'

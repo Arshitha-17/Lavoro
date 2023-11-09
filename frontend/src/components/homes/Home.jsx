@@ -5,10 +5,10 @@ import { usersApi } from '../../axiosApi/axiosInstance';
 import { Card, Col, NavLink, Row } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { BsSave } from "react-icons/bs"
-import logoImage from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/WhatsApp Image 2023-09-26 at 8.21.43 PM-PhotoRoom.png-PhotoRoom.png'; 
-import image1 from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair.jpg';
-import image2 from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/young-bearded-man-with-striped-shirt.jpg';
-import image3 from '/home/arshithak/Desktop/Brocamp/Week 22/Lavoro/lavoro/frontend/public/portrait-happy-woman-with-digital-tablet.jpg';
+import logoImage from './logo.png'; 
+import image1 from './img.jpg';
+import image2 from './im2.jpg';
+import image3 from './img3.jpg';
 const Home = () => {
 
   const [allCategories, setAllCategories] = useState([])
