@@ -124,7 +124,7 @@ const Applications = () => {
                                             <Card.Text>Qualification: {application.userDetails.qualification}</Card.Text>
                                             <Card.Text>Experience: {application.userDetails.experience}</Card.Text>
                                             <Card.Text>Skills: {application.userDetails.skills}</Card.Text>
-                                            <a href={`http://localhost:5000/resume/${application.userDetails.resume}`} target="_blank" rel="noopener noreferrer">
+                                            <a href={`https://www.lavoroo.site/resume/${application.userDetails.resume}`} target="_blank" rel="noopener noreferrer">
                                                 View Resume
                                             </a>
                                             <div>

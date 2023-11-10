@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static('backend/public'));
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: ["https://istay.site","https://www.istay.site"],
   credentials: true
 }));
 
@@ -54,7 +54,7 @@ import { Server } from 'socket.io'
 const io = new Server(server, {
   pingTimeOut: 60000,
   cors: {
-    origin: "http://localhost:3000"
+    origin: ["https://istay.site","https://www.istay.site"],
   }
 })
 
