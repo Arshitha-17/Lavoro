@@ -37,6 +37,7 @@ const authUser = asyncHandler(async (req, res) => {
 // register 
 // route POST /api/users
 const registerUser = asyncHandler(async (req, res) => {
+    console.log('register user')
     const { name, email, password } = req.body
     const userExist = await User.findOne({ email })
     if (userExist) {
@@ -48,7 +49,7 @@ const registerUser = asyncHandler(async (req, res) => {
         email,
         password
     })
-
+    console.log()
     if (user) {
         generateToken(res, user._id);
         res.status(201).json({
