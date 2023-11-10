@@ -88,7 +88,8 @@ const HrChats = () => {
         if(!selectedChatCompare || chatId!==newMessageReceived.room._id){
 
         }else{
-            setChats([...chats,newMessageReceived])
+
+            setChats( (prev) => [...prev,newMessageReceived])
         }
     })
 })
