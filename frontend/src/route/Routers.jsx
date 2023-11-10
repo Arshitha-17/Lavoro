@@ -43,6 +43,7 @@ import AdminApplicationScreen from '../screens/Admins/AdminApplicationScree'
 import AdminHomeScreen from '../screens/Admins/AdminHomeScreen'
 
 
+import ContactScreen from '../screens/Users/ContactScreen'
 // Chat 
 
 import UserChatScreen from '../screens/Users/ChatScreen'
@@ -63,6 +64,7 @@ const Routers = () => {
         <Route path='/jobDetails/:jobId' element={<JobDetailScreen/>} />   
         <Route path='/applications' element={<ApplicationScreen/>} />   
         <Route path='/savedJobs' element={<SavedJobsScreen/>} />   
+        <Route path='/contact' element={<ContactScreen/>} />   
      
 {/*-------------- HR Routes--------------  */}
         <Route path='/hr/login' element={<HRLoginScreen/> } />

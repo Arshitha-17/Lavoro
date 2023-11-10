@@ -41,7 +41,7 @@ const UserChats = () => {
   useEffect(() => {
     const handleMessageReceived = (newMessageReceived) => {
         if (!selectedChatCompare || chatId !== newMessageReceived.room._id) {
-            // Do something else or leave empty if no action is needed
+         
         } else {
             setChats((prev) => [...prev, newMessageReceived]);
         }
