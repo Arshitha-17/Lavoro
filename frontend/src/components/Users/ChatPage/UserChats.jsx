@@ -39,17 +39,20 @@ const UserChats = () => {
 
 
   useEffect(() => {
-    socket.on('message received',(newMessageReceived)=>{
-        if(!selectedChatCompare || chatId!==newMessageReceived.room._id){
-        
-        }else{
-            setChats ( (prev)=>[...prev,newMessageReceived])
+    const handleMessageReceived = (newMessageReceived) => {
+        if (!selectedChatCompare || chatId !== newMessageReceived.room._id) {
+            // Do something else or leave empty if no action is needed
+        } else {
+            setChats((prev) => [...prev, newMessageReceived]);
         }
-    })
-    return ()=> {
-      socket.off("message received")
-    }
-})
+    };
+
+    socket.on('message received', handleMessageReceived);
+
+    return () => {
+        socket.off('message received', handleMessageReceived);
+    };
+});
 
 
 
