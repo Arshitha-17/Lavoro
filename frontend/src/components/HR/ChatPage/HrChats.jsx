@@ -6,7 +6,7 @@ import { toast } from "react-toastify"
 
 import io from "socket.io-client"
 
-const ENDPOINT = "https://www.llavoroo.site";
+const ENDPOINT = "https://www.lavoroo.site";
 let socket, selectedChatCompare;
 
 
