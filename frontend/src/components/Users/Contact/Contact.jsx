@@ -4,8 +4,8 @@ const Contact = () => {
     return (
         <div>
             <div>
-                <div style={{ textAlign: "center", color: "white" }}>
-                    <h4>Get In Touch With Us</h4>
+                <div style={{ textAlign: "center", color: "#0b3d3f" }}>
+                    <h4 >Get In Touch With Us</h4>
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-evenly" }}>
                     <div style={{textAlign:"center", background:"white", margin:"10px",  padding:"10px",color:"#0b3d3f"}} >
