@@ -46,7 +46,11 @@ const UserChats = () => {
             setChats ( (prev)=>[...prev,newMessageReceived])
         }
     })
+    return ()=> {
+      socket.off("message received")
+    }
 })
+
 
 
 
