@@ -41,9 +41,9 @@ const UserChats = () => {
   useEffect(() => {
     socket.on('message received',(newMessageReceived)=>{
         if(!selectedChatCompare || chatId!==newMessageReceived.room._id){
-
+        
         }else{
-            setChats([...chats,newMessageReceived])
+            setChats ( (prev)=>[...prev,newMessageReceived])
         }
     })
 })
